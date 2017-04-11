@@ -1,29 +1,21 @@
-package cn.tz.www.customer.config;
+package cn.tz.www.admin.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.*;
-import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import javax.activation.DataSource;
 
 /**
- * Created by zzc on 11/11/2016.
+ *
  */
 
 @EnableWebSecurity
@@ -33,14 +25,14 @@ public class SecurityConfig {
   private PasswordEncoder passwordEncoder;
   //调用cn.gaiasys.retail.core.service.SecurityUserDetailsService(实现了UserDetailsService接口)
   @Autowired
-  private UserDetailsService securityCustomerDetailsService;
+  private UserDetailsService securityUserDetailsService;
 /**
  * 
  * 验证登录用户
  * */
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(securityCustomerDetailsService).passwordEncoder(passwordEncoder);
+    auth.userDetailsService(securityUserDetailsService).passwordEncoder(passwordEncoder);
     
     
     
@@ -59,7 +51,7 @@ public class SecurityConfig {
 
     protected void configure(HttpSecurity http) throws Exception {
       http.rememberMe().rememberMeServices(rememberMeServices())
-          .userDetailsService(securityCustomerDetailsService)
+          .userDetailsService(securityUserDetailsService)
       .alwaysRemember(true);
       http
           .csrf().disable()
@@ -88,7 +80,7 @@ public class SecurityConfig {
     public AbstractRememberMeServices rememberMeServices() {
       PersistentTokenBasedRememberMeServices rememberMeServices =
           new PersistentTokenBasedRememberMeServices("jkai8892",
-        		  securityCustomerDetailsService,jdbcTokenRepository());
+              securityUserDetailsService,jdbcTokenRepository());
       rememberMeServices.setAlwaysRemember(true);
       rememberMeServices.setCookieName("remember-me");
       rememberMeServices.setTokenValiditySeconds(1209600);
@@ -97,36 +89,36 @@ public class SecurityConfig {
 
   }
 
-//  @Configuration
-//  @Order(2)
-//  public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-//
-//   
-//
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//      web.ignoring().antMatchers(
-//          "/resources/**",
-//          "/webjars/**",
-//          "/js/**",
-//          "/images/**",
-//          "/css/**",
-//          "/h2-console/*",
-//          "/assets/*"
-//      );
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//      http
-//          .authorizeRequests()
-//          .antMatchers("/login*").permitAll()
-//          .antMatchers("/**").hasRole("COMMON_USER")
-//          //.antMatchers("/**").hasRole("ADMIN")
-//          .and()
-//          .formLogin().loginPage("/login")
-//      ;
-//    }
+  @Configuration
+  @Order(2)
+  public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//  }
+   
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+      web.ignoring().antMatchers(
+          "/resources/**",
+          "/webjars/**",
+          "/js/**",
+          "/images/**",
+          "/css/**",
+          "/h2-console/*",
+          "/assets/*"
+      );
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+      http
+          .authorizeRequests()
+          .antMatchers("/login*").permitAll()
+          .antMatchers("/**").hasRole("COMMON_USER")
+          //.antMatchers("/**").hasRole("ADMIN")
+          .and()
+          .formLogin().loginPage("/login")
+      ;
+    }
+
+  }
 }

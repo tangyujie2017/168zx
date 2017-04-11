@@ -1,5 +1,9 @@
 package cn.tz.www.customer.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,46 +12,39 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import cn.tz.www.customer.entity.repository.customer.CustomerRepository;
-import cn.tz.www.customer.entity.table.Customer;
-import cn.tz.www.customer.entity.table.CustomerAuthority;
-import cn.tz.www.customer.entity.table.CustomerRole;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-/**
- * 
- */
+import cn.tz.www.customer.entity.repository.user.UserRepository;
+import cn.tz.www.customer.entity.table.Authority;
+import cn.tz.www.customer.entity.table.Role;
+import cn.tz.www.customer.entity.table.User;
 @Service
-public class SecurityUserDetailsService implements UserDetailsService {
+public class SecurityUserDetailsService implements UserDetailsService{
 
-	@Autowired
-	private CustomerRepository customerRepository;
+	  @Autowired
+	  private UserRepository userRepository;
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Optional<Customer> userOpt = customerRepository.findByLogin(username);
+	    Optional<User> userOpt = userRepository.findByLogin(username);
 
-		Customer user = userOpt.orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
+	    User user = userOpt.orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
 
-		List<GrantedAuthority> auth = getGrantedAuthorities(user.getCustomerRoles());
+	    List<GrantedAuthority> auth = getGrantedAuthorities(user.getRoles());
 
-		String password = user.getPassword();
+	    String password = user.getPassword();
 
-		return new org.springframework.security.core.userdetails.User(username, password, auth);
-	}
+	    return new org.springframework.security.core.userdetails.User(username, password, auth);
+	  }
 
-	public static List<GrantedAuthority> getGrantedAuthorities(List<CustomerRole> roles) {
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		roles.forEach(r -> {
-			List<CustomerAuthority> auths = r.getAuthoritys();
-			for (CustomerAuthority auth : auths) {
-				authorities.add(new SimpleGrantedAuthority(auth.getCode()));
-			}
-			authorities.add(new SimpleGrantedAuthority("ROLE_" + r.getName()));
-		});
-		return authorities;
-	}
+
+	  public static List<GrantedAuthority> getGrantedAuthorities(List<Role> roles) {
+	    List<GrantedAuthority> authorities = new ArrayList<>();
+	    roles.forEach(r -> {
+	    	List<Authority> auths = r.getAuthoritys();
+	    	for(Authority auth : auths){
+	    		authorities.add(new SimpleGrantedAuthority(auth.getCode()));
+	    	}
+	    	authorities.add(new SimpleGrantedAuthority("ROLE_"+r.getName()));
+	    });
+	    return authorities;
+	  }
 }
