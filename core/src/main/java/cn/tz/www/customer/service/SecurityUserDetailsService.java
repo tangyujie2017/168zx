@@ -16,7 +16,7 @@ import cn.tz.www.customer.entity.repository.user.UserRepository;
 import cn.tz.www.customer.entity.table.Authority;
 import cn.tz.www.customer.entity.table.Role;
 import cn.tz.www.customer.entity.table.User;
-//@Service
+@Service
 public class SecurityUserDetailsService implements UserDetailsService{
 
 	  @Autowired
