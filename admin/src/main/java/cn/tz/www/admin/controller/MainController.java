@@ -22,7 +22,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 		if(principal==null){
 			return "redirect:/login";
 		}
-		response.addHeader("X-Frame-Options", "SAMEORIGIN");
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "role_manage";
 		
 	}
@@ -31,7 +31,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 		if(principal==null){
 			return "redirect:/login";
 		}
-		response.addHeader("X-Frame-Options", "SAMEORIGIN");
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "release_infos";
 		
 	}
@@ -40,7 +40,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 		if(principal==null){
 			return "redirect:/login";
 		}
-		response.addHeader("X-Frame-Options", "SAMEORIGIN");
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "release_news";
 		
 	}
@@ -49,19 +49,20 @@ public class MainController extends WebMvcConfigurerAdapter {
 		if(principal==null){
 			return "redirect:/login";
 		}
-	  System.out.println(response.getHeader("X-Frame-Options"));
-	  
-		response.addHeader("X-Frame-Options", "SAMEORIGIN");
-		response.addHeader("X-Frame-Options", "SAMEORIGIN");
+		
+//	  response.getHeader("X-Frame-Options").
+		//response.addHeader("X-Frame-Options", "SAMEORIGIN");
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "release_slide";
 		
 		
 	}
 	@RequestMapping("/usersManage")
-	public String usersManage(Principal principal){
+	public String usersManage(Principal principal,HttpServletResponse response){
 		if(principal==null){
 			return "redirect:/login";
 		}
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "users_manage";
 		
 	}
