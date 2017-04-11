@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:tiles="http://www.thymeleaf.org">
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head lang="en">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<title>168后台管理系统</title>
 		<link href="/css/index.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/popup.js"></script>
+		<script type="text/javascript" src="js/user/index.js"></script>
 	</head>
+	<headers>
+            <frame-options policy="SAMEORIGIN" />
+    </headers>
 	<body class="index_body">
 		<div class="container">
 			<!-- Left Bar begin -->
 			<div id="left_bar">
 				<div class="citic_logo">
-					<img alt="168信息" src="images/login_bg.png">
+					<img alt="168信息" src="images/login_bg.png"/>
 				</div>
 				<div class="leftsidebar_box">
 					<span class="left_active"></span>
-					<dl class="system_log">
+					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')" class="system_log">
 						<dt>信息发布<img src="images/left_down_ico.png"/></dt>
-						<dd><a href="#" data="release_slide.html">轮播图发布</a></dd>
-						<dd><a href="#" data="release_infos.html">图文信息发布</a></dd>
-						<dd><a href="#" data="release_news.html">资讯发布</a></dd>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/releaseSlide">轮播图发布</a></dd>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/releaseInfos">图文信息发布</a></dd>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/releaseNews">资讯发布</a></dd>
 					</dl>
 					<span class="left_active"></span>
-					<dl class="statistics">
+					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')" class="statistics">
 						<dt>系统维护<img src="images/left_down_ico.png" /></dt>
-						<dd><a href="#" data="role_manage.html">角色管理</a></dd>
-						<dd><a href="#" data="users_manage.html">用户管理</a></dd>
+						<dd><a href="#" data="/roleManage">角色管理</a></dd>
+						<dd><a href="#" data="/usersManage">用户管理</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -40,7 +45,7 @@
 					<p>168信息平台后台管理系统</p>
 				</div>
 				<div class="right_tools">
-					<a class="manage_role"><span>系统管理员</span></a>
+					<a class="manage_role"><span sec:authentication="name">系统管理员</span></a>
 					<img class="v_line" src="images/lr.png" />
 					<a class="edit modify_pwd"><img src="images/edit.png" alt="修改密码" /></a>
 					<a class="edit_tips"><img src="images/tips.png" alt="修改密码" /></a>
