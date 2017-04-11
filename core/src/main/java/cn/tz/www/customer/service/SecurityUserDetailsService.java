@@ -16,17 +16,17 @@ import cn.tz.www.customer.entity.repository.user.UserRepository;
 import cn.tz.www.customer.entity.table.Authority;
 import cn.tz.www.customer.entity.table.Role;
 import cn.tz.www.customer.entity.table.User;
-@Service
+//@Service
 public class SecurityUserDetailsService implements UserDetailsService{
 
 	  @Autowired
 	  private UserRepository userRepository;
 
 	  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+         System.out.println("username:"+username);
 	    Optional<User> userOpt = userRepository.findByLogin(username);
 
-	    User user = userOpt.orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
+	    User user = userOpt.orElseThrow(() -> new UsernameNotFoundException("用户名不存在: " + username));
 
 	    List<GrantedAuthority> auth = getGrantedAuthorities(user.getRoles());
 

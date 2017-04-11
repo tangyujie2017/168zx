@@ -30,7 +30,7 @@ public class SecurityCustomerDetailsService implements UserDetailsService {
 
 		Optional<Customer> userOpt = customerRepository.findByLogin(username);
 
-		Customer user = userOpt.orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
+		Customer user = userOpt.orElseThrow(() -> new UsernameNotFoundException("用户名不存在: " + username));
 
 		List<GrantedAuthority> auth = getGrantedAuthorities(user.getCustomerRoles());
 
