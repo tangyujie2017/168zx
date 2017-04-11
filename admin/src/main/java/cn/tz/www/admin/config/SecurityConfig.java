@@ -33,7 +33,10 @@ public class SecurityConfig {
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(securityUserDetailsService).passwordEncoder(passwordEncoder);
-    
+    //给内存加载一个用户
+    auth
+    .inMemoryAuthentication()
+        .withUser("admin").password("123456").roles("ADMIN");
     
     
   }
