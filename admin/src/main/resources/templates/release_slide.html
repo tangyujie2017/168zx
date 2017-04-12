@@ -81,27 +81,27 @@
 					<table class="slide_img_table" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td class="lable_td">序号：</td>
-							<td><input class="w200h28" type="text" value="1" /></td>
+							<td><input class="w200h28" type="text" id="add_sn" value="1" /></td>
 						</tr>
 						<tr>
 							<td class="lable_td">上传图片：</td>
 							<td>
 								<img id="image_view" src="images/iphone-6.jpg"/>
 								<a class="choose_img">选择</a>
-								<input id="upload_image" class="file_upload"  type="file"  accept="image/*" ></input>
+								<input id="upload_image" class="file_upload"   type="file"  accept="image/*" ></input>
 							</td>
 						</tr>
 						
 						<tr>
 							<td class="lable_td">说明：</td>
 							<td>
-								<textarea class="txtarea"></textarea>
+								<textarea class="txtarea" id="add_remark"></textarea>
 							</td>
 						</tr>
 					</table>
 				</div>
 				<div class="btn_group">
-					<a class="confirm_btn">确定</a>
+					<a class="confirm_btn" id="add_slide">确定</a>
 					<a class="cancle_btn">取消</a>
 				</div>
 			</div>

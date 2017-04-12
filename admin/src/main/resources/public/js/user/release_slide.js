@@ -27,6 +27,42 @@ $(function() {
 	});
 	
 	//
+	$("#add_slide").click(function(){
+		 var fd = new FormData();
+		
+		    fd.append('sn', $("#add_sn").val());
+	
+		    fd.append('remark', $("#add_remark").val());
+		    var upload_image = document.getElementById("upload_image");
+		    for (var i = 0; i < upload_image.files.length; i++) {
+
+		        var pic = upload_image.files[i];
+		        fd.append('slide_file', pic);
+		    }
+		    
+		    var header = $("meta[name='_csrf_header']").attr("content");
+		    var token = $("meta[name='_csrf']").attr("content");
+		    $.ajax({
+		        url: "slide/addSlide",
+		        type: "POST",
+		        // Form数据
+		        data: fd,
+		        cache: false,
+		        contentType: false,
+		        processData: false,
+		        beforeSend: function(xhr) {
+		            xhr.setRequestHeader(header, token);
+		        },
+		        success: function(data) {
+		            // 1向品牌列表动态添加一条显示数据
+		            if (data.success) {
+		            	
+		            }
+
+		        }
+		    });
+		    
+	});
 	
 	
 	
