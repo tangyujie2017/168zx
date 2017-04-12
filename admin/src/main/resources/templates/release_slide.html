@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head lang="en">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 		<title>168后台管理系统</title>
 		<link href="css/index.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/information.css" />
-		<link rel="stylesheet" type="text/css" href="css/business_center.css" />
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/popup.js"></script>
+		<script type="text/javascript" src="js/util/jquery-ajax-pager.js"></script>
+		<script type="text/javascript" src="js/util/js-extend.js"></script>
+		<script type="text/javascript" src="js/user/release_slide.js"></script>
 	</head>
 	<body>
 		<div class="tab_lists">
@@ -47,7 +52,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="pages">
+					<!-- <div class="pages">
 						<div class="total">
 							共1000条结果，每页显示6条。
 						</div>
@@ -62,7 +67,7 @@
 							<a class="page_num">100</a>
 							<a class="nextBtn"><img src="images/next_ico.png" /></a>
 						</div>
-					</div>
+					</div> -->
 				</form>
 			</div>
 		</div>
@@ -81,15 +86,12 @@
 						<tr>
 							<td class="lable_td">上传图片：</td>
 							<td>
-								<img src="images/iphone-6.jpg"/>
+								<img id="image_view" src="images/iphone-6.jpg"/>
 								<a class="choose_img">选择</a>
-								<input class="file_upload" type="file" value="" />
+								<input id="upload_image" class="file_upload"  type="file"  accept="image/*" ></input>
 							</td>
 						</tr>
-						<tr>
-							<td class="lable_td">链接：</td>
-							<td><input class="w300h28" type="text" value="http://www.baidu.com" /></td>
-						</tr>
+						
 						<tr>
 							<td class="lable_td">说明：</td>
 							<td>
@@ -133,6 +135,10 @@
 	            subBox.click(function(){
 	                $("#checkAll").attr("checked",subBox.length == $("input[name='checked_box']:checked").length ? true : false);
 	            });
+	            
+	          
+	            
+	            
 			});
 		</script>
 		

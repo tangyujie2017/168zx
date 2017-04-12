@@ -45,12 +45,8 @@ public class User extends BaseEntity {
     
     @Column(name = "create_time")
     private Date createTime = new Date();
+   
     
-    /**
-     * 用户个人信息
-     */
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    private UserProfile profile;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
@@ -172,17 +168,5 @@ public class User extends BaseEntity {
     }
     // ------------- convert --------------
 
-    /**
-     * @return the profile
-     */
-    public UserProfile getProfile() {
-        return profile;
-    }
-
-    /**
-     * @param profile the profile to set
-     */
-    public void setProfile(UserProfile profile) {
-        this.profile = profile;
-    }
+   
 }

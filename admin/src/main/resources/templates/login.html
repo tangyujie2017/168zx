@@ -32,11 +32,11 @@
 			<form  th:action="@{/login}" method="post" >
 			<div class="name_pwd">
 				&nbsp;<br/>
-				<label class="login_input_tips" for="loginName" default_txt="请输入用户名">请输入用户名</label>
-				<input id="loginName" class="login_name" name="username" type="text" value="" autocomplete="off" />
+				
+				<input id="loginName" class="login_name" name="username" type="text" value="" placeholder="请输入用户名" autocomplete="off" />
 				<img class="head" src="images/login_name.png" />
-				<label class="login_input_tips" for="loginPwd" default_txt="请输入密码">请输入密码</label>
-				<input id="loginPwd" class="login_pwd" name="password" type="password" value="" autocomplete="off" />
+				
+				<input id="loginPwd" class="login_pwd" name="password" type="password" value="" placeholder="请输入密码" autocomplete="off" />
 				<img class="pwd" src="images/login_pwd.png" />
 			</div>
 			<div><input id="logon" type="submit" value="登录"/></div>

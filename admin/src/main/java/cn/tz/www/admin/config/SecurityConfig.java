@@ -70,6 +70,7 @@ public class SecurityConfig {
           //.antMatchers("/api/customer/vip/*").hasAnyAuthority(authorities);
           //.antMatchers("/api/customer/*").hasAnyRole("SHOP_DEV","PROV_DEV","COMMON_USER","ADMIN")
       ;
+      ;
     }
 
     @Bean

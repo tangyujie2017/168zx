@@ -1,14 +1,22 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-	<head>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head lang="en">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 		<title>168后台管理系统</title>
 		<link href="css/index.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/information.css" />
-		<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- 		<link rel="stylesheet" type="text/css" href="css/information.css" />
+ -->		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/popup.js"></script>
+		<script type="text/javascript" src="js/util/jquery-ajax-pager.js"></script>
+		<script type="text/javascript" src="js/util/js-extend.js"></script>
+		<script type="text/javascript" src="js/user/userManage.js"></script>
+		
 	</head>
 	<body>
 		<div class="tab_lists">
@@ -26,12 +34,12 @@
 					<table class="goods_table">
 						<thead>
 							<tr>
-								<td><input type="checkbox" name="checked_box" id="checkAll" />全选</td><td>用户名</td><td>用户角色</td><td>真实姓名</td><td>性别</td><td>手机号</td>
+								<td><input type="checkbox" name="checked_box" id="checkAll" />全选</td><td>用户名</td><td>用户角色</td><td>真实姓名</td><td>手机号</td>
 								<td>操作</td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
+						<tbody    id="user_data">
+							<!-- <tr>
 								<td><input type="checkbox" name="checked_box" /></td><td>iPhone8 Plus</td><td>超级管理员</td><td>孙悟空</td><td>男</td><td>18888888888</td>
 								<td><a href="#" class="on_delete">删除</a><a href="#" class="modify">修改</a><a href="#" class="resetPwd">重置密码</a></td>
 							</tr>
@@ -50,10 +58,14 @@
 							<tr>
 								<td><input type="checkbox" name="checked_box" /></td><td>iPhone8 Plus</td><td>测试管理岗</td><td>孙悟空</td><td>男</td><td>18888888888</td>
 								<td><a href="#" class="on_delete">删除</a><a href="#">修改</a><a href="#" class="resetPwd">重置密码</a></td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
-					<div class="pages">
+					<div   id="pager">
+                      
+                    </div>
+					
+					<!-- <div class="pages">
 						<div class="total">
 							共1000条结果，每页显示6条。
 						</div>
@@ -68,7 +80,7 @@
 							<a class="page_num">100</a>
 							<a class="nextBtn"><img src="images/next_ico.png" /></a>
 						</div>
-					</div>
+					</div> -->
 				</form>
 			</div>
 		</div>
@@ -89,33 +101,31 @@
 			</div>
 			<div class="row">
 				<span class="sort_name">用户名：</span>
-				<input type="text" class="customs_input" placeholder="请输入用户名" />
+				<input type="text" class="customs_input" id="add_user_name" placeholder="请输入用户名" />
 			</div>
 			<div class="row">
 				<span class="sort_name">真实姓名：</span>
-				<input type="text" class="customs_input" placeholder="请输入真实姓名" />
+				<input type="text" class="customs_input" id="add_user_realName" placeholder="请输入真实姓名" />
 			</div>
 			<div class="row">
 				<span class="sort_name">移动电话：</span>
-				<input type="text" class="customs_input" placeholder="请输入电话号码" />
+				<input type="text" class="customs_input" id="add_user_tel" placeholder="请输入电话号码" />
 			</div>
-			<div class="row">
-				<span class="sort_name">性别：</span>
-				<input type="radio" name="sex" value="0" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="sex" value="1" />女
-			</div>
+			
 			<div class="row">
 				<span class="sort_name">密码：</span>
-				<input type="password" class="customs_input" placeholder="请输入密码" />
+				<input type="password" class="customs_input" id="add_user_pwd" placeholder="请输入密码" />
 			</div>
-			<div class="row">
-				<span class="sort_name">确认密码：</span>
-				<input type="password" class="customs_input" placeholder="请再次输入密码" />
-			</div>
+			
+			
 			<div class="sort_btn">
-				<a class="close_btn concle">取消</a><a id="submit">保存</a>
+				<a class="close_btn concle">取消</a><a id="submit"  class="submit_add_user">保存</a>
 			</div>
 		</div>
+		
+		
+		
+		
 		<!-- 修改用户 -->
 		<div class="modify_user">
 			<div class="row_title">
@@ -191,11 +201,7 @@
 		</div>
 		<script type="text/javascript">
 			$(function(){
-				$(".page_num:first").css({"color":"#da251c","border":"1px solid #da251c"});
-				$(".page_num").click(function(){
-					$(this).siblings("a").css({"color":"#666","border":"1px solid #ddd"});
-					$(this).css({"color":"#da251c","border":"1px solid #da251c"});
-				});
+				
 				//全选/全不选
 	           		$("#checkAll").click(function() {
 	                		$('input[name="checked_box"]').attr("checked",this.checked); 
