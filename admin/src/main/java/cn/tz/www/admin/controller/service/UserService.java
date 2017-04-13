@@ -10,5 +10,6 @@ public interface UserService {
 	public Boolean checkUserName(String login);
 	public void createUser(User user)throws Exception;
 	public Page<User> loadUserList(Groups groups, Page<User> page);
+	public User loadUserByLogin(String login);
 	
 }

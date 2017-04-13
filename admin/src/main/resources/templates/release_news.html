@@ -15,6 +15,9 @@
 		<script charset="utf-8" src="css/default/lang/zh_CN.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/popup.js"></script>
+		<script type="text/javascript" src="js/util/jquery-ajax-pager.js"></script>
+		<script type="text/javascript" src="js/util/js-extend.js"></script>
+		<script type="text/javascript" src="js/user/release_news.js"></script>
 	</head>
 	<body>
 		<div class="tab_lists">
@@ -26,17 +29,17 @@
 					<table class="add_news_table" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td class="news_td">标题：</td>
-							<td><input class="w300h28" type="text" value="机构预计通胀压力可能仍将维持温和" /></td>
+							<td><input id="add_news_title" class="w300h28" type="text" value="" placeholder="用一句话描述"/></td>
 						</tr>
 						<tr>
-							<td class="news_td">类型：</td>
+							<td class="news_td">消息类型：</td>
 							<td>
-							<select class="customs_addr">
-					          <option>管理员</option>
-					          <option>商户管理岗</option>
-					          <option>对账管理岗</option>
-					          <option>运营管理岗</option>
-					          <option>测试管理岗</option>
+							<select class="customs_addr" id="add_news_type">
+					          <option value="1">证券要闻</option>
+					          <option value="2">A股分析</option>
+					          <option value="3">宏观策略</option>
+					          <option value="4">独家参考</option>
+					          <option value="5">股海淘金</option>
 				            </select>
 							
 							</td>
@@ -44,19 +47,19 @@
 						<tr>
 							<td class="news_td">说明：</td>
 							<td>
-								<textarea class="txtarea"></textarea>
+								<textarea id="add_news_declare" class="txtarea"></textarea>
 							</td>
 						</tr>
 						<tr>
 							<td class="news_td">内容：</td>
 							<td>
 								<div class="txt_container">
-									<textarea name="content"></textarea>
+									<textarea id="add_news_context" name="content"></textarea>
 								</div>
 							</td>
 						</tr>
 					</table>
-					<input class="submit_btn" type="submit" value="提交" />
+					<input class="submit_btn" type="submit" id="add_new_submit" value="提交" />
 				</div>
 				
 			</div>
