@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head lang="en">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 		<title>168后台管理系统</title>
 		<link href="css/index.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="css/default/default.css" />
@@ -25,8 +29,17 @@
 							<td><input class="w300h28" type="text" value="机构预计通胀压力可能仍将维持温和" /></td>
 						</tr>
 						<tr>
-							<td class="news_td">链接：</td>
-							<td><input class="w300h28" type="text" value="http://www.baidu.com/article/170407.htm" /></td>
+							<td class="news_td">类型：</td>
+							<td>
+							<select class="customs_addr">
+					          <option>管理员</option>
+					          <option>商户管理岗</option>
+					          <option>对账管理岗</option>
+					          <option>运营管理岗</option>
+					          <option>测试管理岗</option>
+				            </select>
+							
+							</td>
 						</tr>
 						<tr>
 							<td class="news_td">说明：</td>
@@ -49,12 +62,24 @@
 			</div>
 		</div>
 		<script>
-			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('textarea[name="content"]', {
-					allowFileManager : true
-				});
-			});
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var token = $("meta[name='_csrf']").attr("content");
+		var editor = KindEditor.create('textarea[name="content"]', {
+	        uploadJson : '/richTextArea/fileUpload',
+	        extraFileUploadParams : { 
+	        	"_csrf":token
+            }, 
+	        fileManagerJson : '/richTextArea/fileManager',  
+	        allowFileManager : true,
+	        items : ['source', '|', 'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste',
+	                 'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+	                 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+	                 'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+	                 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+	                 'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image','multiimage',
+	                 'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+	                 'anchor', 'link', 'unlink']
+	    });
 		</script>
 	</body>
 </html>

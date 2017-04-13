@@ -113,7 +113,9 @@ public class SecurityConfig {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {  
+    protected void configure(HttpSecurity http) throws Exception {
+    	//关闭X-Frame-Options
+    	 http.headers().frameOptions().disable();
     	http
         .authorizeRequests()
         .antMatchers("/", "/home").permitAll()

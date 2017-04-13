@@ -7,19 +7,27 @@ import java.util.Iterator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import cn.tz.www.admin.config.Config.Values;
+import cn.tz.www.admin.controller.service.SlideService;
+import cn.tz.www.admin.controller.util.PageParam;
+import cn.tz.www.admin.controller.util.PageVo;
 import cn.tz.www.customer.entity.table.Slide;
 import cn.tz.www.customer.entity.tools.CommonUtil;
 import cn.tz.www.customer.entity.tools.Constants;
+import cn.tz.www.customer.entity.tools.Groups;
 import cn.tz.www.customer.entity.tools.JsonObj;
+import cn.tz.www.customer.entity.tools.Page;
 
 @Controller
 public class SlideController {
@@ -27,15 +35,35 @@ public class SlideController {
 	private ServletContext servletContext;
 	@Autowired
 	private Values values;
+	@Autowired
+	private SlideService slideService;
+
+	@RequestMapping(value = "/slide/check")
+	@ResponseBody
+	public JsonObj checkSlide(Integer sn, Principal principal) {
+		if (principal == null) {
+			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
+		}
+
+		return JsonObj.newSuccessJsonObj("检测成功", slideService.checkSn(sn));
+	}
+
 	@PostMapping(value = "/slide/addSlide")
 	@ResponseBody
 	public JsonObj addSlide(Slide slide, Principal principal, HttpServletRequest request) {
 		if (principal == null) {
 			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
 		}
+		uploadImg(slide, request);
+		slideService.createSlide(slide);
+		return JsonObj.newSuccessJsonObj("创建成功");
+	}
+
+	private void uploadImg(Slide slide, HttpServletRequest request) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
-		//String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		// String username =
+		// SecurityContextHolder.getContext().getAuthentication().getName();
 		String savePath = values.getUploadedImagesDir();
 		if (CommonUtil.isNull(savePath)) {// 没有配置特定目录 就保存到temp目录
 			savePath = servletContext.getRealPath("/") + "temp";
@@ -66,14 +94,37 @@ public class SlideController {
 			try {
 				uploadify.transferTo(file);
 			} catch (IllegalStateException | IOException e) {
-			
+
 				e.printStackTrace();
 			}
 			CommonUtil.thumbnailImage(file, Constants.THUMBNAIL_WIDTH, Constants.THUMBNAIL_HEIGHT, "small_", false);// 生成缩略图
 			slide.setImgPath("slide/small_" + newFileName);
 
 		}
-		
-		return JsonObj.newSuccessJsonObj("创建用户成功");
 	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/slide/list")
+	@ResponseBody
+	public PageVo<Slide> createUser(@Valid PageParam param, BindingResult result, Principal principal) {
+		if (principal == null) {
+			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
+		}
+		int pageSize = param.getPageSize();
+		int currentPage = param.getPageIndex();
+		// ProviderGoodsQuery<Commodity> query = new ProviderGoodsQuery<>();
+		// Groups groups = query.toQueryGroups(param.getSearchParam());
+		Groups groups = new Groups();
+		groups.setOrderby("sn");
+		groups.setOrder(false);
+		Page<Slide> page = new Page<Slide>(pageSize, currentPage);
+		slideService.loadSlideList(groups, page);
+		PageVo<Slide> vo = new PageVo<>();
+		String picBasePath = values.getUploadedImagesUrlPrefix();
+		vo.setTotal(page.getTotalCount());
+		vo.setPicPath(picBasePath);
+		vo.setItems(page.getItems());
+		return vo;
+	}
+
 }

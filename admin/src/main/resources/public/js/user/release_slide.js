@@ -1,5 +1,6 @@
 $(function() {
-	//图片本地预览
+	search();
+	// 图片本地预览
 	$('#upload_image').change(function(event) {
 		// 根据这个 <input> 获取文件的 HTML5 js 对象
 		var files = event.target.files, file;
@@ -22,48 +23,143 @@ $(function() {
 			// 用这个 URL 产生一个 <img> 将其显示出来
 			$('#image_view').attr('src', imgURL);
 			// 使用下面这句可以在内存中释放对此 url 的伺服，跑了之后那个 URL 就无效了
-			 //URL.revokeObjectURL(imgURL); 
+			// URL.revokeObjectURL(imgURL);
+		}
+	});
+
+	//
+	$("#add_slide").click(function() {
+		checkSn();
+	});
+
+});
+function checkSn() {
+	if ($("#add_sn").val() == "") {
+		$("#add_sn").focus();
+		return;
+	}
+	var upload_image = document.getElementById("upload_image");
+	if (upload_image.files.length < 1) {
+
+		alert("没有选择图片");
+		return;
+	}
+	
+	$.ajax({
+		url : "slide/check",
+		type : 'get',
+		data : {
+			"sn" : $("#add_sn").val()
+		},
+		dataType : 'json',
+		timeout : 1000,
+		success : function(data, status) {
+			console.log(data)
+			if (data.result) {
+				addSlide();
+			} else {
+				alert("图片序号已经存在不能添加");
+
+			}
+		},
+		fail : function(err, status) {
+			alert("系统错误，请稍后");
 		}
 	});
 	
-	//
-	$("#add_slide").click(function(){
-		 var fd = new FormData();
-		
-		    fd.append('sn', $("#add_sn").val());
 	
-		    fd.append('remark', $("#add_remark").val());
-		    var upload_image = document.getElementById("upload_image");
-		    for (var i = 0; i < upload_image.files.length; i++) {
+	
+	
+}
+function addSlide() {
 
-		        var pic = upload_image.files[i];
-		        fd.append('slide_file', pic);
-		    }
-		    
-		    var header = $("meta[name='_csrf_header']").attr("content");
-		    var token = $("meta[name='_csrf']").attr("content");
-		    $.ajax({
-		        url: "slide/addSlide",
-		        type: "POST",
-		        // Form数据
-		        data: fd,
-		        cache: false,
-		        contentType: false,
-		        processData: false,
-		        beforeSend: function(xhr) {
-		            xhr.setRequestHeader(header, token);
-		        },
-		        success: function(data) {
-		            // 1向品牌列表动态添加一条显示数据
-		            if (data.success) {
-		            	
-		            }
+	var fd = new FormData();
 
-		        }
-		    });
-		    
+	fd.append('sn', $("#add_sn").val());
+
+	fd.append('remark', $("#add_remark").val());
+	var upload_image = document.getElementById("upload_image");
+	for (var i = 0; i < upload_image.files.length; i++) {
+
+		var pic = upload_image.files[i];
+		fd.append('slide_file', pic);
+	}
+
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
+	$.ajax({
+		url : "slide/addSlide",
+		type : "POST",
+		// Form数据
+		data : fd,
+		cache : false,
+		contentType : false,
+		processData : false,
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		},
+		success : function(data) {
+			
+			if (data.success) {
+				$("#add_slide_div").hide();
+				$(".deleted_tipsBox,.success_tipsBox,.add_slide_img,.add_user").fadeOut("fast");
+				$("#mask,#top_mask").fadeOut("fast");
+				
+				alert("添加成功");
+				search();
+			}
+
+		}
 	});
+
+}
+
+function search(){
+
 	
+	$('#pager')
+	.sjAjaxPager(
+			{
+				url : "/slide/list",
+				pageSize : 10,
+				searchParam : {
+					/*
+					 * 如果有其他的查询条件，直接在这里传入即可
+					 */
+					
+					id : 1,
+					name : 'test'
+				},
+				beforeSend : function() {
+					
+				},
+				success : function(data) {
+					
+					creatSlideList(data);
+				},
+				complete : function() {
+				}
+			});
+
+}
+function creatSlideList(data){
+	var html = "";
 	
-	
-});
+	if (data.items.length > 0) {
+		var list = data.items;
+		for (var i = 0; i < list.length; i++) {
+			html += "<tr><td>"
+			html += list[i].sn
+			html += "</td><td><img src='"+data.picPath+"/"+list[i].imgPath+"' /></td>"
+			html += "<td>" + list[i].remark + "</td>"
+			
+			html += "<td><a href='#' class='modify'>修改</a><a href='#' class='on_delete'>删除</a></td>"
+			html += "</tr>"
+		}
+
+	}
+	$("#slide_data").html("");
+	$("#slide_data").html(html);
+
+
+}

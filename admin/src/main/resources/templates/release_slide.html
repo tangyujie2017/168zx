@@ -6,7 +6,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
 		<meta name="_csrf" th:content="${_csrf.token}"/>
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 		<title>168后台管理系统</title>
@@ -34,7 +33,7 @@
 								<td>序号</td><td>图片</td><td>说明</td><td  class="role_ope_td">操作</td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody  id="slide_data">
 							<tr>
 								<td>1</td><td><img src="images/login_bg.jpg"/></td><td>轮播图1</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
 							</tr>
@@ -52,6 +51,9 @@
 							</tr>
 						</tbody>
 					</table>
+					<div   id="pager">
+                      
+                    </div>
 					<!-- <div class="pages">
 						<div class="total">
 							共1000条结果，每页显示6条。
@@ -72,7 +74,7 @@
 			</div>
 		</div>
 		<!-- 添加轮播图 -->
-		<div class="add_slide_img">
+		<div class="add_slide_img"  id="add_slide_div">
 			<div class="img_infos">
 				<div class="row_title">
 					<img class="alert_circle" src="images/alert_circle.png" />添加轮播图<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
@@ -81,7 +83,7 @@
 					<table class="slide_img_table" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td class="lable_td">序号：</td>
-							<td><input class="w200h28" type="text" id="add_sn" value="1" /></td>
+							<td><input class="w200h28" type="text" id="add_sn" value="" /></td>
 						</tr>
 						<tr>
 							<td class="lable_td">上传图片：</td>
