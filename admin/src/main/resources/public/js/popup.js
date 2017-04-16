@@ -60,6 +60,12 @@
 			}
 		});
 		
+		//分页
+		$(".page_num:first").css({"color":"#da251c","border":"1px solid #da251c"});
+		$(".page_num").click(function(){
+			$(this).siblings("a").css({"color":"#666","border":"1px solid #ddd"});
+			$(this).css({"color":"#da251c","border":"1px solid #da251c"});
+		});
 	});
 	
 	

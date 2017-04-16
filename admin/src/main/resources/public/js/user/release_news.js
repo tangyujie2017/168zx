@@ -32,7 +32,7 @@ $(function() {
 		    },
 			success : function(data, status) {
 				if (data.success) {
-					
+					alert(data.message);
 				}
 			},
 			fail : function(err, status) {
