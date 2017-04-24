@@ -36,7 +36,7 @@ public class NewsServiceImpl implements NewsService {
 			vo.setTitle(a.getTitle());
 			vo.setContext(a.getContext());
 			vo.setViewTimes(a.getViewTimes());
-			vo.setImg(a.getImg());
+			//vo.setImg(a.getImg());
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			vo.setCreateTime(formatter.format(a.getCreateTime()));
 			vos.add(vo);
@@ -59,7 +59,7 @@ public class NewsServiceImpl implements NewsService {
 		vo.setTitle(n.getTitle());
 		vo.setContext(n.getContext());
 		vo.setViewTimes(n.getViewTimes());
-		vo.setImg(n.getImg());
+		//vo.setImg(n.getImg());
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		vo.setCreateTime(formatter.format(n.getCreateTime()));
 		return vo;
