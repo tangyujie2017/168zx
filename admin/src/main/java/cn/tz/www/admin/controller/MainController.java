@@ -66,5 +66,14 @@ public class MainController extends WebMvcConfigurerAdapter {
 		return "users_manage";
 		
 	}
+	@RequestMapping("/usersAuthority")
+	public String usersAuthority(Principal principal,HttpServletResponse response){
+		if(principal==null){
+			return "redirect:/login";
+		}
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		return "permission_control";
+		
+	}
 	
 }
