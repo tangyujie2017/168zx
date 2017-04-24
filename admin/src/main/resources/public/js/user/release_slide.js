@@ -31,6 +31,7 @@ $(function() {
 	$("#add_slide").click(function() {
 		checkSn();
 	});
+	
 
 });
 function checkSn() {
@@ -71,6 +72,11 @@ function checkSn() {
 	
 	
 }
+
+
+
+
+
 function addSlide() {
 
 	var fd = new FormData();
@@ -153,7 +159,7 @@ function creatSlideList(data){
 			html += "</td><td><img src='"+data.picPath+"/"+list[i].imgPath+"' /></td>"
 			html += "<td>" + list[i].remark + "</td>"
 			
-			html += "<td><a href='#' class='modify'>修改</a><a href='#' class='on_delete'>删除</a></td>"
+			html += "<td><a href='#' class='modify' onclick='addRoleBox();'>修改</a><a href='#' class='on_delete'>删除</a></td>"
 			html += "</tr>"
 		}
 

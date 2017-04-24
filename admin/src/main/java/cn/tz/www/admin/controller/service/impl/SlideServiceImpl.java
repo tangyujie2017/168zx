@@ -21,6 +21,10 @@ public class SlideServiceImpl implements SlideService {
 	public void createSlide(Slide slide) {
 		slideRepository.persist(slide);
 	}
+    @Transactional
+  	public void updateSlide(Slide slide) {
+  		slideRepository.update(slide);
+  	}
 
 	@Override
 	public Page<Slide> loadSlideList(Groups groups, Page<Slide> page) {

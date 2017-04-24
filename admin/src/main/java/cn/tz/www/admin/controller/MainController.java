@@ -50,8 +50,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 			return "redirect:/login";
 		}
 		
-//	  response.getHeader("X-Frame-Options").
-		//response.addHeader("X-Frame-Options", "SAMEORIGIN");
+
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "release_slide";
 		
@@ -64,6 +63,15 @@ public class MainController extends WebMvcConfigurerAdapter {
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "users_manage";
+		
+	}
+	@RequestMapping("/permission")
+	public String usersPermission(Principal principal,HttpServletResponse response){
+		if(principal==null){
+			return "redirect:/login";
+		}
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		return "permission_control";
 		
 	}
 	
