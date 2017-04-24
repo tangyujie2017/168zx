@@ -31,7 +31,6 @@ $(function() {
 	$("#add_slide").click(function() {
 		checkSn();
 	});
-	
 
 });
 function checkSn() {
@@ -45,7 +44,7 @@ function checkSn() {
 		alert("没有选择图片");
 		return;
 	}
-	
+
 	$.ajax({
 		url : "slide/check",
 		type : 'get',
@@ -67,15 +66,8 @@ function checkSn() {
 			alert("系统错误，请稍后");
 		}
 	});
-	
-	
-	
-	
+
 }
-
-
-
-
 
 function addSlide() {
 
@@ -105,12 +97,13 @@ function addSlide() {
 			xhr.setRequestHeader(header, token);
 		},
 		success : function(data) {
-			
+
 			if (data.success) {
 				$("#add_slide_div").hide();
-				$(".deleted_tipsBox,.success_tipsBox,.add_slide_img,.add_user").fadeOut("fast");
+				$(".deleted_tipsBox,.success_tipsBox,.add_slide_img,.add_user")
+						.fadeOut("fast");
 				$("#mask,#top_mask").fadeOut("fast");
-				
+
 				alert("添加成功");
 				search();
 			}
@@ -120,46 +113,45 @@ function addSlide() {
 
 }
 
-function search(){
+function search() {
 
-	
-	$('#pager')
-	.sjAjaxPager(
-			{
-				url : "/slide/list",
-				pageSize : 10,
-				searchParam : {
-					/*
-					 * 如果有其他的查询条件，直接在这里传入即可
-					 */
-					
-					id : 1,
-					name : 'test'
-				},
-				beforeSend : function() {
-					
-				},
-				success : function(data) {
-					
-					creatSlideList(data);
-				},
-				complete : function() {
-				}
-			});
+	$('#pager').sjAjaxPager({
+		url : "/slide/list",
+		pageSize : 10,
+		searchParam : {
+			/*
+			 * 如果有其他的查询条件，直接在这里传入即可
+			 */
+
+			id : 1,
+			name : 'test'
+		},
+		beforeSend : function() {
+
+		},
+		success : function(data) {
+
+			creatSlideList(data);
+		},
+		complete : function() {
+		}
+	});
 
 }
-function creatSlideList(data){
+function creatSlideList(data) {
 	var html = "";
-	
+
 	if (data.items.length > 0) {
 		var list = data.items;
 		for (var i = 0; i < list.length; i++) {
 			html += "<tr><td>"
 			html += list[i].sn
-			html += "</td><td><img src='"+data.picPath+"/"+list[i].imgPath+"' /></td>"
+			html += "</td><td><img src='" + data.picPath + "/"
+					+ list[i].imgPath + "' /></td>"
 			html += "<td>" + list[i].remark + "</td>"
-			
-			html += "<td><a href='#' class='modify' onclick='addRoleBox();'>修改</a><a href='#' class='on_delete'>删除</a></td>"
+
+			html += "<td><a href='#' class='modify' onclick=''>修改</a><a href='#' class='on_delete' onclick='delSlide("
+					+ list[i].id + ")'>删除</a></td>"
 			html += "</tr>"
 		}
 
@@ -167,5 +159,32 @@ function creatSlideList(data){
 	$("#slide_data").html("");
 	$("#slide_data").html(html);
 
+}
 
+function delSlide(slideid) {
+	var fd = new FormData();
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
+	fd.append('id', slideid);
+	$.ajax({
+		url : "/slide/delSlide",
+		type : "POST",
+		// Form数据
+		data : fd,
+		cache : false,
+		contentType : false,
+		processData : false,
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		},
+		success : function(data) {
+
+			if (data.success) {
+
+				alert("刪除成功");
+				search();
+			}
+
+		}
+	});
 }

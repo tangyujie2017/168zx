@@ -50,6 +50,20 @@ public class NewsController {
 		return JsonObj.newSuccessJsonObj("创建消息成功");
 	}
 
+	@PostMapping("/news/delNews")
+	@ResponseBody
+	public JsonObj delNews(Long id, Principal principal) {
+		//
+		if (principal == null) {
+			return JsonObj.newErrorJsonObj("用户已过期请从新登录");
+		}
+
+		newsService.delNews(id);
+		// 设置USer
+
+		return JsonObj.newSuccessJsonObj("删除消息成功");
+	}
+
 	private Integer createViewTimes() {
 		int max = 2000;
 		int min = 200;

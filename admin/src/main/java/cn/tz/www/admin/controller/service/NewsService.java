@@ -9,4 +9,5 @@ public interface NewsService {
 	public void createNews(News news);
 	public Page<News>  newsList(Groups groups, Page<News> page);
 	public News loadNewsById(Long id) ;
+	public void delNews(Long id);
 }

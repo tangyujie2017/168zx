@@ -22,8 +22,8 @@ public class SlideServiceImpl implements SlideService {
 		slideRepository.persist(slide);
 	}
     @Transactional
-  	public void updateSlide(Slide slide) {
-  		slideRepository.update(slide);
+  	public void delSlide(Long id) {
+  		slideRepository.delete(id);
   	}
 
 	@Override

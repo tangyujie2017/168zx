@@ -29,6 +29,12 @@
 						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/releaseNews">资讯发布</a></dd>
 					</dl>
 					<span class="left_active"></span>
+					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')" class="system_log">
+						<dt>客户管理<img src="images/left_down_ico.png"/></dt>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/releaseSlide">客户管理</a></dd>
+						
+					</dl>
+					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')" class="statistics">
 						<dt>系统维护<img src="images/left_down_ico.png" /></dt>
 						<dd><a href="#" data="/roleManage">角色管理</a></dd>
@@ -48,7 +54,7 @@
 					<img class="v_line" src="images/lr.png" />
 					<a class="edit modify_pwd"><img src="images/edit.png" alt="修改密码" /></a>
 					<a class="edit_tips"><img src="images/tips.png" alt="修改密码" /></a>
-					<a class="exit" href="login.html"><img src="images/exit.png" alt="安全退出" /></a>
+					<a class="exit" href="/login?logout"><img src="images/exit.png" alt="安全退出" /></a>
 					<a class="exit_tips"><img src="images/exit_tips.png" alt="安全退出" /></a>
 				</div>
 			</div>

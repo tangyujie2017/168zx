@@ -8,5 +8,5 @@ public interface SlideService {
 	public void createSlide(Slide slide);
 	public Page<Slide> loadSlideList(Groups groups, Page<Slide> page);
 	public Boolean checkSn(Integer sn);
-	public void updateSlide(Slide slide);
+	public void delSlide(Long id);
 }

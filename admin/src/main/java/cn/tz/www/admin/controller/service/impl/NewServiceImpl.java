@@ -22,6 +22,10 @@ public class NewServiceImpl implements NewsService {
 	public void createNews(News news) {
 		newsRepository.persist(news);
 	}
+	@Transactional
+	public void delNews(Long id) {
+		newsRepository.delete(id);
+	}
 
 	public Page<News> newsList(Groups groups, Page<News> page) {
 

@@ -58,15 +58,15 @@ public class SlideController {
 		slideService.createSlide(slide);
 		return JsonObj.newSuccessJsonObj("创建成功");
 	}
-	@PostMapping(value = "/slide/modifySlide")
+	@PostMapping(value = "/slide/delSlide")
 	@ResponseBody
-	public JsonObj modifySlide(Slide slide, Principal principal, HttpServletRequest request) {
+	public JsonObj delSlide(Long id, Principal principal, HttpServletRequest request) {
 		if (principal == null) {
 			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
 		}
-		uploadImg(slide, request);
-		slideService.updateSlide(slide);
-		return JsonObj.newSuccessJsonObj("修改成功");
+	
+		slideService.delSlide(id);
+		return JsonObj.newSuccessJsonObj("刪除成功");
 	}
 	private void uploadImg(Slide slide, HttpServletRequest request) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

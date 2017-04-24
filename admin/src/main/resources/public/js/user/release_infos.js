@@ -110,16 +110,45 @@ function creatNewsList(data) {
 		for (var i = 0; i < list.length; i++) {
 			html += "<tr><td>"
 			html += i
-			html += "</td><td><img src='images/login_bg.jpg'/></td>"
+			html += "</td>"
 			html += "<td>" + list[i].title + "</td>"
 			html += "<td>2017-04-07</td>"
-			html += "<td><a href='#' class='modify' onclick='loadNewsById("+list[i].id+")'>预览</a><a href='#' class='on_delete'>删除</a></td>"
+			html += "<td><a href='#' class='modify' onclick='loadNewsById("+list[i].id+")'>预览</a><a href='#' class='on_delete' onclick='delNews("+list[i].id+")'>删除</a></td>"
 			html += "</tr>"
 		}
 
 	}
 	$("#news_data").html("");
 	$("#news_data").html(html);
+
+}
+function delNews(news_id){
+
+	var fd = new FormData();
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
+	fd.append('id', news_id);
+	$.ajax({
+		url : "/news/delNews",
+		type : "POST",
+		// Form数据
+		data : fd,
+		cache : false,
+		contentType : false,
+		processData : false,
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		},
+		success : function(data) {
+
+			if (data.success) {
+
+				alert("刪除成功");
+				search();
+			}
+
+		}
+	});
 
 }
 function loadNewsById(id){
