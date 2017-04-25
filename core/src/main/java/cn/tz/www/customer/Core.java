@@ -24,4 +24,7 @@ public class Core {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    public static void main(String[] args) {
+		
+	}
 }
