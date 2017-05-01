@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+		<title>168后台管理系统</title>
+		<link href="css/index.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/popup.js"></script>
+	</head>
+	<body>
+		<div class="tab_lists">
+			<div class="tab_names">
+				<a class="tabs">权限管理</a>
+			</div>
+			<div class="content_detail goods_lists">
+				<div class="goods_search vip_sets">
+					<a class="role_add"><img src="images/add_ico.png" />新增</a>
+				</div>
+				<!-- table lists -->
+				<form action="post">
+					<table class="goods_table">
+						<thead>
+							<tr>
+								<td>序号</td><td>权限名称</td><td>权限代码</td><td  class="role_ope_td">操作</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td><td><i class="first_level"></i><span>用户管理</span></td><td>USER_MANAGE</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
+							</tr>
+							<tr>
+								<td>11</td><td><i class="second_level"></i><span>添加用户</span></td><td>USER_MANAGE_ADD</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
+							</tr>
+							<tr>
+								<td>12</td><td><i class="second_level"></i><span>编辑用户</span></td><td>USER_MANAGE_ADD</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
+							</tr>
+							<tr>
+								<td>2</td><td><i class="first_level"></i><span>角色管理</span></td><td>ROLE_MANAGE</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
+							</tr>
+							<tr>
+								<td>21</td><td><i class="second_level"></i><span>添加角色</span></td><td>ROLE_MANAGE_ADD</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
+							</tr>
+							<tr>
+								<td>22</td><td><i class="second_level"></i><span>编辑角色</span></td><td>ROLE_MANAGE_ADD</td><td><a href="#" class="modify">修改</a><a href="#" class="on_delete">删除</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pages">
+						<div class="total">
+							共1000条结果，每页显示6条。
+						</div>
+						<div class="page_list">
+							<a class="prevBtn"><img src="images/prev_ico.png" /></a>
+							<a class="page_num">1</a>
+							<a class="page_num">2</a>
+							<a class="page_num">3</a>
+							<span>......</span>
+							<a class="page_num">98</a>
+							<a class="page_num">99</a>
+							<a class="page_num">100</a>
+							<a class="nextBtn"><img src="images/next_ico.png" /></a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 添加轮播图 -->
+		<div class="add_slide_img">
+			<div class="img_infos">
+				<div class="row_title">
+					<img class="alert_circle" src="images/alert_circle.png" />添加权限<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+				</div>
+				<div class="wrap_container">
+					<table class="slide_img_table" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td class="lable_td">所属父类：</td>
+							<td class="focus_selected">
+								<input class="w200h28 selected_dom" type="text" placeholder="系统管理" /><a class="clean_input"><i></i></a>
+								<!--下拉选择父级节点-->
+								<div class="dom_box">
+									<ul class="dom_lists">
+									    <li>无</li>
+										<li>系统管理</li>
+										<li>用户管理</li>
+										<li>角色管理</li>
+										<li>系统管理2</li>
+										<li>用户管理2</li>
+										<li>角色管理2</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="lable_td">权限名称：</td>
+							<td><input class="w200h28" type="text" placeholder="添加用户" /></td>
+						</tr>
+						<tr>
+							<td class="lable_td">排序：</td>
+							<td><input class="w200h28" type="text" placeholder="11" /></td>
+						</tr>
+						<tr>
+							<td class="lable_td">权限代码：</td>
+							<td><input class="w300h28" type="text" placeholder="USER_MANAGE_ADD" /></td>
+						</tr>
+						<tr>
+							<td class="lable_td">说明：</td>
+							<td>
+								<textarea class="txtarea"></textarea>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn_group">
+					<a class="confirm_btn">确定</a>
+					<a class="cancle_btn">取消</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 删除消息提示 -->
+		<div class="deleted_tipsBox">
+			<div class="row_title">
+				<img class="alert_circle" src="images/alert_circle.png" />提示信息<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn"><img class="alert_line" src="images/alert_line.png" alt="" />×</a>
+			</div>
+			<div class="confirm_del">
+				确定删除此条内容吗？
+			</div>
+			<div class="sort_btn">
+				<a class="close_btn concle">取消</a><a id="submit">确定</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				//选择父级权限节点
+				$(".selected_dom").on("focus",onFocusSlideDown);
+				$(".selected_dom").on("blur",onBlurSlideUp);
+				$(".dom_lists li").on("click",selectParentLevel);
+				function onFocusSlideDown(){
+					$(".dom_box").slideDown();
+				}
+				function onBlurSlideUp(){
+					$(".dom_box").slideUp();
+				}
+				function selectParentLevel(){
+					var _liText=$(this).text();
+					$(".selected_dom").val(_liText);
+					$(".dom_box").slideUp();
+				}
+				
+			});
+		</script>
+		
+	</body>
+</html>

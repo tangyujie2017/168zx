@@ -31,7 +31,9 @@
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')" class="system_log">
 						<dt>客户管理<img src="images/left_down_ico.png"/></dt>
-						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/releaseSlide">客户管理</a></dd>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/customerManage">客户管理</a></dd>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/customerRole">客户角色</a></dd>
+						<dd sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PUBLISH')"><a href="#" data="/customerPermission">客户资源</a></dd>
 						
 					</dl>
 					<span class="left_active"></span>
