@@ -21,7 +21,7 @@ public class CustomerInfoController {
 			return JsonObj.newErrorJsonObj("请求参数不正确");
 		}
 
-		return JsonObj.newSuccessJsonObj("获取消息成功", newsService.loadNewsByType(1));
+		return JsonObj.newSuccessJsonObj("获取消息成功", newsService.loadNewsByType(type));
 
 	}
 

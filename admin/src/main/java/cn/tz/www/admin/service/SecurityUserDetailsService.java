@@ -1,4 +1,4 @@
-package cn.tz.www.customer.service;
+package cn.tz.www.admin.service;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -23,7 +23,7 @@ public class SecurityConfig {
   
   @Autowired
   private PasswordEncoder passwordEncoder;
-  //调用cn.gaiasys.retail.core.service.SecurityUserDetailsService(实现了UserDetailsService接口)
+  //
   @Autowired
   private UserDetailsService securityUserDetailsService;
 /**
