@@ -2,6 +2,7 @@ package cn.tz.www.customer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,7 +17,8 @@ public class CustomerInfoController {
 	// 注册
 	@RequestMapping(value = "/api/customer/info/list")
 	@ResponseBody
-	public JsonObj getNewsByType(Integer type) {
+	public JsonObj getNewsByType( Integer type) {
+		
 		if (type == null) {
 			return JsonObj.newErrorJsonObj("请求参数不正确");
 		}

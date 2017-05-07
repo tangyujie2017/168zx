@@ -74,5 +74,15 @@ public class UserController {
 		vo.setItems(page.getItems());
 		return vo;
 	}
+	//修改密码
+	@RequestMapping(value = "/user/modify")
+	@ResponseBody
+	public PageVo<User> modify(Principal principal) {
+		if (principal == null) {
+			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
+		}
+		
+		return null;
+	}
 
 }
