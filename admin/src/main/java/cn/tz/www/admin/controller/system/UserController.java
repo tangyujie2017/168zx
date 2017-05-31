@@ -67,7 +67,6 @@ public class UserController {
 	@PreAuthorize("hasAnyAuthority('SYSTEM_USER','SYSTEM_USER_VIEW')")
 	public String index(Model model) {
 		Groups groups = new Groups();
-		groups.Add("enable",true);
 		List<RoleDetails> roles = userService.findRoleByGroups(groups);
 		model.addAttribute("allRoles", roles);
 		return "system/user";

@@ -22,6 +22,7 @@ import cn.tz.www.admin.controller.service.req.ReadReq;
 import cn.tz.www.admin.controller.service.req.ReadResp;
 import cn.tz.www.admin.controller.service.req.Resp;
 import cn.tz.www.admin.controller.service.req.UpdateReq;
+import cn.tz.www.customer.entity.repository.authority.AuthorityRepository;
 import cn.tz.www.customer.entity.repository.role.RoleRepository;
 import cn.tz.www.customer.entity.repository.role.RoleRepositoryCustom;
 import cn.tz.www.customer.entity.repository.user.UserRepository;
@@ -41,8 +42,8 @@ public class UserServiceImpl implements UserService {
 	private RoleRepository roleRepository;
 	@Autowired
 	private RoleRepositoryCustom roleRepositoryCustom;
-//	@Autowired
-//	private AuthorityRepository authorityRepository;
+	@Autowired
+	private AuthorityRepository authorityRepository;
 
 	@Override
 	public CreateResp<UserDetails> create(CreateReq<UserDetails> req) {
@@ -207,47 +208,47 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public AuthorityDetails findAuthority(Long id) {
-//		Authority authority = authorityRepository.find(id);
-//		if(authority != null){
-//			return authority.toDetails();
-//		}
+		Authority authority = authorityRepository.find(id);
+		if(authority != null){
+			return authority.toDetails();
+		}
 		return null;
 	}
 
 	@Override
 	public Page findAuthorityPageByGroups(Groups groups, Page page) {
 		// TODO Auto-generated method stub
-		return null; //authorityRepository.findEntityPageByGroups(groups, page);
+		return authorityRepository.findEntityPageByGroups(groups, page);
 	}
 	
 	@Override
 	public List<AuthorityDetails> findAuthorityByGroups(Groups groups){
-		//List<Authority> list = authorityRepository.findEntityByGroups(groups);
-		return null;//Authority.toDetailsList(list);
+	List<Authority> list = authorityRepository.findEntityByGroups(groups);
+		return Authority.toDetailsList(list);
 	}
 
 	@Override
 	@Transactional
 	public void saveAuthority(AuthorityDetails authorityDetails) throws Exception {
 		Authority authority = Authority.fromDetails(authorityDetails);
-		//authorityRepository.persist(authority);
+		authorityRepository.persist(authority);
 	}
 
 	@Override
 	@Transactional
 	public void updateAuthority(AuthorityDetails authorityDetails) throws Exception {
-//		Authority authority = authorityRepository.find(authorityDetails.getId());
-//		authority.setName(authorityDetails.getName());
-//		authority.setCode(authorityDetails.getCode());
-//		authority.setDetails(authorityDetails.getDetails());
-//		authority.setSort(authorityDetails.getSort());
-//		Authority parent = null;
-//		if(authorityDetails.getParentId() != null){
-//			parent = new Authority();
-//			parent.setId(authorityDetails.getParentId());
-//		}
-//		authority.setParent(parent);
-//		authorityRepository.update(authority);
+		Authority authority = authorityRepository.find(authorityDetails.getId());
+		authority.setName(authorityDetails.getName());
+		authority.setCode(authorityDetails.getCode());
+		authority.setDetails(authorityDetails.getDetails());
+		authority.setSort(authorityDetails.getSort());
+		Authority parent = null;
+		if(authorityDetails.getParentId() != null){
+			parent = new Authority();
+			parent.setId(authorityDetails.getParentId());
+		}
+		authority.setParent(parent);
+		authorityRepository.update(authority);
 	}
 	
 	

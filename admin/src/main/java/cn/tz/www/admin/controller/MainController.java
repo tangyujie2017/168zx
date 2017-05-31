@@ -68,7 +68,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "users_manage";
+		return "redirect:/user/";
 
 	}
 
