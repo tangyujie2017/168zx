@@ -3,8 +3,11 @@ package cn.tz.www.customer.entity.table;
 
 import javax.persistence.*;
 
+import cn.tz.www.admin.controller.service.detail.system.UserDetails;
 import cn.tz.www.customer.entity.BaseEntity;
 import cn.tz.www.customer.entity.table.Role;
+import cn.tz.www.customer.service.Select2NameVo;
+import cn.tz.www.customer.service.Select2Vo;
 
 import java.util.*;
 
@@ -73,7 +76,12 @@ public class User extends BaseEntity {
         this.locked = locked;
         this.roles = roles;
     }
-
+    public static List<UserDetails> toDetailsList(List<User> userList) {
+        if (userList == null) return null;
+        List<UserDetails> detailsList = new ArrayList<>(userList.size());
+        userList.stream().forEach(user -> detailsList.add(user.toDetails()));
+        return detailsList;
+      }
   
 
    
@@ -168,5 +176,58 @@ public class User extends BaseEntity {
     }
     // ------------- convert --------------
 
-   
+    public UserDetails toDetails() {
+        return new UserDetails(
+            id,
+            mobile,
+            realName,
+            login,
+            password,
+            locked,
+            Role.toDetailsList(roles),
+            headPhoto,
+            createTime);
+      }
+    public static User fromDetails(UserDetails details) {
+        return new User(
+            details.getMobile(),
+            details.getRealName(),
+            details.getLogin(),
+            details.getPassword(),
+            details.isLocked(),
+            Role.fromDetailsList(details.getRoles()));
+      }
+    public static User fromDetails2(UserDetails details) {
+        return new User(
+            details.getId(),
+            details.getMobile(),
+            details.getRealName(),
+            details.getLogin(),
+            details.isLocked(),
+            Role.fromDetailsList(details.getRoles()));
+      }
+    public static List<Select2Vo> toSelect2VoList(List<User> userList) {
+		if (userList == null)
+			return null;
+		List<Select2Vo> selectList = new ArrayList<>(userList.size());
+		userList.stream().forEach(user -> {
+			Select2Vo vo = new Select2Vo();
+			vo.setId(user.getId());
+			vo.setText(user.getRealName());
+			selectList.add(vo);
+		});
+		return selectList;
+	}
+    public static List<Select2NameVo> toSelect2NameVoList(List<User> userList) {
+		if (userList == null)
+			return null;
+		List<Select2NameVo> selectList = new ArrayList<>(userList.size());
+		userList.stream().forEach(user -> {
+			Select2NameVo vo = new Select2NameVo();
+			vo.setId(user.getMobile());
+			vo.setText(user.getRealName()+"("+vo.getId()+")");
+			selectList.add(vo);
+		});
+		return selectList;
+	}
 }

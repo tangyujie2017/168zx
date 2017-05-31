@@ -2,6 +2,7 @@ package cn.tz.www.customer.entity.table;
 
 import javax.persistence.*;
 
+import cn.tz.www.admin.controller.service.detail.system.RoleDetails;
 import cn.tz.www.customer.entity.BaseEntity;
 
 import java.util.ArrayList;
@@ -90,11 +91,37 @@ public class Role extends BaseEntity {
 	public List<User> getUsers() {
 		return users;
 	}
-
+	 public RoleDetails toSimpDetails() {
+		    return new RoleDetails(id, name, details);
+		  }
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-	
-
+	 public static Role fromDetails(RoleDetails details) {
+		    return new Role(details.getId(), details.getName(), details.getDetails());
+		  }
+	 public static List<RoleDetails> toDetailsList(List<Role> roleList) {
+		    List<RoleDetails> detailsList = new ArrayList<>();
+		    if (roleList != null) {
+		      roleList.stream().forEach(r -> detailsList.add(r.toDetails()));
+		    }
+		    return detailsList;
+		  }
+	 public RoleDetails toDetails() {
+		    return new RoleDetails(id, name, details, enable, Authority.toDetailsList(authoritys));
+		  }
+	 public static List<Role> fromDetailsList(List<RoleDetails> detailsList) {
+		    List<Role> roleList = new ArrayList<>(detailsList.size());
+		    if (detailsList != null) {
+		      detailsList.stream().forEach(d -> roleList.add(fromDetails(d)));
+		    }
+		    return roleList;
+		  }
+	 public static List<RoleDetails> toSimpDetailsList(List<Role> roleList) {
+		    List<RoleDetails> detailsList = new ArrayList<>();
+		    if (roleList != null) {
+		      roleList.stream().forEach(r -> detailsList.add(r.toSimpDetails()));
+		    }
+		    return detailsList;
+		  }
 }

@@ -28,8 +28,8 @@ public class NewsController {
 
 	@Autowired
 	private NewsService newsService;
-	@Autowired
-	private UserService userService;
+//	@Autowired
+//	private UserService userService;
 
 	@PostMapping("/news/create")
 	@ResponseBody
@@ -43,9 +43,9 @@ public class NewsController {
 		news.setViewTimes(createViewTimes());
 		newsService.createNews(news);
 		// 设置USer
-		if (!principal.getName().equals("admin")) {
-			news.setCreateUser(userService.loadUserByLogin(principal.getName()));
-		}
+//		if (!principal.getName().equals("admin")) {
+//			news.setCreateUser(userService.loadUserByLogin(principal.getName()));
+//		}
 
 		return JsonObj.newSuccessJsonObj("创建消息成功");
 	}

@@ -1,17 +1,16 @@
 package cn.tz.www.customer.entity.repository.authority;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import cn.tz.www.customer.entity.table.Authority;
-import cn.tz.www.customer.entity.table.Role;
-
+import cn.tz.www.customer.entity.table.User;
 
 /**
- * Created by zzc on 16/11/2016.
+ * Created by zzc on 11/11/2016.
  */
 @Repository
-public interface AuthorityRepository extends CrudRepository<Authority, Integer> {
-  Role findByName(String name);
-  Role findByDetails(String details);
+public interface AuthorityRepository extends CrudRepository<Authority, Long>, AuthorityRepositoryCustom {
+   
+    
+    
 }

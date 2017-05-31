@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import cn.tz.www.admin.controller.service.detail.system.AuthorityDetails;
 import cn.tz.www.customer.entity.BaseEntity;
 
 @Entity
@@ -115,5 +116,36 @@ public class Authority extends BaseEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	public AuthorityDetails toDetails() {
+		Long parentId = null;
+		String parentName = null;
+		if(parent != null){
+			parentId = parent.getId();
+			parentName = parent.getName();
+		}
+		return new AuthorityDetails(id,name,code,details,parentId,parentName,sort,Authority.toDetailsList(children));
+	}
+	public static List<AuthorityDetails> toDetailsList(List<Authority> authorityList){
+		List<AuthorityDetails> detailsList = new ArrayList<>();
+		if(authorityList != null){
+			authorityList.stream().forEach(authority -> detailsList.add(authority.toDetails()));
+		}
+		return detailsList;
+	}
+	public static List<Authority> fromDetailsList(List<AuthorityDetails> detailsList){
+		if (detailsList == null)
+			return null;
+		List<Authority> authList = new ArrayList<>(detailsList.size());
+		detailsList.stream().forEach(d -> authList.add(fromDetails(d)));
+		return authList;
+	}
+	public static Authority fromDetails(AuthorityDetails authorityDetails) {
+		Authority parent = null;
+		if(authorityDetails.getParentId() != null){
+			parent = new Authority();
+			parent.setId(authorityDetails.getParentId());
+		}
+		return new Authority(authorityDetails.getId(), authorityDetails.getName(), authorityDetails.getCode(),
+				authorityDetails.getDetails(),authorityDetails.getSort(),parent);
+	}
 }
