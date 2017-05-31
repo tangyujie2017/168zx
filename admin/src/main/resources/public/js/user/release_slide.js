@@ -37,6 +37,14 @@ function checkSn() {
 	if ($("#add_sn").val() == "") {
 		$("#add_sn").focus();
 		return;
+	}else{
+		var t=$("#add_sn").val();
+		if(!isNaN(t)){
+			
+			}else{
+			  alert("请填写数字");
+			  return;
+			}
 	}
 	var upload_image = document.getElementById("upload_image");
 	if (upload_image.files.length < 1) {
@@ -49,16 +57,17 @@ function checkSn() {
 		url : "slide/check",
 		type : 'get',
 		data : {
-			"sn" : $("#add_sn").val()
+			"sn" : $("#add_sn").val(),
+			"type":$("#slide_type").val()
 		},
 		dataType : 'json',
 		timeout : 1000,
 		success : function(data, status) {
 			console.log(data)
-			if (data.result) {
+			if (data.success) {
 				addSlide();
 			} else {
-				alert("图片序号已经存在不能添加");
+				alert(data.message);
 
 			}
 		},
@@ -74,7 +83,7 @@ function addSlide() {
 	var fd = new FormData();
 
 	fd.append('sn', $("#add_sn").val());
-
+	fd.append('type', $("#slide_type").val());
 	fd.append('remark', $("#add_remark").val());
 	var upload_image = document.getElementById("upload_image");
 	for (var i = 0; i < upload_image.files.length; i++) {
@@ -103,7 +112,11 @@ function addSlide() {
 				$(".deleted_tipsBox,.success_tipsBox,.add_slide_img,.add_user")
 						.fadeOut("fast");
 				$("#mask,#top_mask").fadeOut("fast");
-
+                //清空值
+				$("#add_sn").val("");
+				$("#slide_type").val("1");
+				$("#add_remark").val("");
+				$("#upload_image").val("");
 				alert("添加成功");
 				search();
 			}
@@ -148,9 +161,27 @@ function creatSlideList(data) {
 			html += list[i].sn
 			html += "</td><td><img src='" + data.picPath + "/"
 					+ list[i].imgPath + "' /></td>"
+					
+		 if(list[i].type==1){
+			 html += "<td>要闻速递</td>"		 
+		 }
+		 if(list[i].type==2){
+			 html += "<td>A股直击</td>"		 
+		 }
+		 if(list[i].type==3){
+			 html += "<td>热点追踪</td>"		 
+		 }
+		 if(list[i].type==4){
+			html += "<td>黑马池</td>"		 
+			 }
+		 if(list[i].type==5){
+			html += "<td>名师操盘</td>"		 
+				 }			
+					
+					
 			html += "<td>" + list[i].remark + "</td>"
 
-			html += "<td><a href='#' class='modify' onclick=''>修改</a><a href='#' class='on_delete' onclick='delSlide("
+			html += "<td><a href='#' class='on_delete' onclick='delSlide("
 					+ list[i].id + ")'>删除</a></td>"
 			html += "</tr>"
 		}

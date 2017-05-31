@@ -9,4 +9,5 @@ public interface SlideService {
 	public Page<Slide> loadSlideList(Groups groups, Page<Slide> page);
 	public Boolean checkSn(Integer sn);
 	public void delSlide(Long id);
+	public Boolean totalSlideByType(Integer type);
 }

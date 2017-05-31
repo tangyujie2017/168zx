@@ -27,6 +27,10 @@ public class Slide implements Serializable{
 	private String  imgPath;
 	@Column(name = "remark")
 	private String remark;
+	
+	@Column(name = "type")
+	private Integer type=1;
+	
 	public Long getId() {
 		return id;
 	}
@@ -50,6 +54,12 @@ public class Slide implements Serializable{
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	
 

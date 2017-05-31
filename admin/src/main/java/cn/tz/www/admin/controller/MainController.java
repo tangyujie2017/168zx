@@ -102,13 +102,22 @@ public class MainController extends WebMvcConfigurerAdapter {
 
 	}
 
-	@RequestMapping("/customerPermission.")
+	@RequestMapping("/customerPermission")
 	public String customerPermission(Principal principal, HttpServletResponse response) {
 		if (principal == null) {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "customer_permission";
+
+	}
+	@RequestMapping("/releaseProduct")
+	public String releaseProduct(Principal principal, HttpServletResponse response) {
+		if (principal == null) {
+			return "redirect:/login";
+		}
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		return "release_product";
 
 	}
 

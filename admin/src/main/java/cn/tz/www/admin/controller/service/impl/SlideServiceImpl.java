@@ -40,4 +40,16 @@ public class SlideServiceImpl implements SlideService {
 		}
 		return true;
 	}
+	public Boolean totalSlideByType(Integer type){
+		Groups g = new Groups();
+		g.Add("type", type);
+		List<Slide> list = slideRepository.findEntityByGroups(g);
+		//每一个类型只能有三个
+		if(list!=null&&list.size() > 3){
+			return false;
+		}else{
+			return true;
+		}
+		
+	}
 }

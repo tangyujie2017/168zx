@@ -40,12 +40,21 @@ public class SlideController {
 
 	@RequestMapping(value = "/slide/check")
 	@ResponseBody
-	public JsonObj checkSlide(Integer sn, Principal principal) {
+	public JsonObj checkSlide(Integer sn,Integer type, Principal principal) {
 		if (principal == null) {
 			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
 		}
+		if(slideService.checkSn(sn)){
+			if(slideService.totalSlideByType(type)){
+				return JsonObj.newSuccessJsonObj("检测成功");
+			}else{
+				return JsonObj.newErrorJsonObj("每类轮播图不能超过三个");
+			}
+		}else{
+			return JsonObj.newErrorJsonObj("序号已经存在，不能添加");
+		}
 
-		return JsonObj.newSuccessJsonObj("检测成功", slideService.checkSn(sn));
+		
 	}
 
 	@PostMapping(value = "/slide/addSlide")

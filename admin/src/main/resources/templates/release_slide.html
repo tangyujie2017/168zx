@@ -30,7 +30,7 @@
 					<table class="goods_table">
 						<thead>
 							<tr>
-								<td>序号</td><td>图片</td><td>说明</td><td  class="role_ope_td">操作</td>
+								<td>序号</td><td>图片</td><td>类型</td><td>说明</td><td  class="role_ope_td">操作</td>
 							</tr>
 						</thead>
 						<tbody  id="slide_data">
@@ -61,11 +61,24 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="lable_td">类型：</td>
+							
+							<td> 
+							<select class="slide_type" id="slide_type">
+					          <option value="1">要闻速递</option>
+					          <option value="2">A股直击</option>
+					          <option value="3">热点追踪</option>
+					          <option value="4">黑马池</option>
+					          <option value="5">名师操盘</option>
+				            </select>
+							</td>
+						</tr>
+						<tr>
 							<td class="lable_td">上传图片：</td>
 							<td>
 								<img id="image_view" src="images/iphone-6.jpg"/>
 								<a class="choose_img">选择</a>
-								<input id="upload_image" class="file_upload"   type="file"  accept="image/*" ></input>
+								<input id="upload_image" class="file_upload"   type="file"   accept="image/*" ></input>
 							</td>
 						</tr>
 						
