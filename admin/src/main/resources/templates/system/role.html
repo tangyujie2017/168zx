@@ -6,6 +6,7 @@
 <meta charset="UTF-8" />
 <title>角色管理</title>
 <head th:include="tag::tag" />
+<script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
 <script type="text/javascript" th:src="@{/js/system/role.js}"></script>
 
 </head>
@@ -19,7 +20,7 @@
 		</div> -->
 		<div class="page-header">&nbsp;</div>
 		
-	<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_EDIT')" value="true"/>
+	<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_EDIT')" value="true"/>
 
 		<div class="left-10 de-size-wrapper" id="searchDiv">
 			<div class="profile-info-value searchTr">
@@ -48,7 +49,7 @@
 					</button>
 			</div>
 			<div class="profile-info-value">
-				<a sec:authorize="hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_ADD')" href="javascript:void(-1)" onclick="siMenu('role_add','添加角色','/role/add');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加角色</a>
+				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_ADD')" href="javascript:void(-1)" onclick="openWin('/role/add','添加角色');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加角色</a>
 			</div>
 		</div>
 		<div class="col-md-12" id="roleTableDiv" style="overflow-y: auto; overflow-x: auto">

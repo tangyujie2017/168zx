@@ -3391,7 +3391,7 @@
 			}
 		} );
 		var input = $( "<input type='text' class='input-size-40 height-30'/>" );
-		var span = $("<span>&nbsp;&nbsp;&nbsp;&nbsp;页面跳转：</span>");
+		var span = $("<span >页面跳转：</span>");
 		span.appendTo(div);
 		input.appendTo(div);
 	

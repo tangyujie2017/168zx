@@ -7,6 +7,7 @@
 <title>权限管理</title>
 <head th:include="tag::tag" />
 <link type="text/css" rel="stylesheet" th:href="@{/css/TreeGrid.css}"/>
+<script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
 
 <script type="text/javascript" th:src="@{/js/common/TreeGrid.js}"></script>
 <script type="text/javascript" th:src="@{/js/system/authority.js}"></script>
@@ -22,7 +23,7 @@
 		</div> -->
 		<div class="page-header">&nbsp;</div>
 		
-	<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_EDIT')" value="true"/>
+	<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_EDIT')" value="true"/>
 
 		<div class="left-10 de-size-wrapper" id="searchDiv">
 			<div class="profile-info-value searchTr">
@@ -48,7 +49,7 @@
 					</div>
 			</div>
 			<div class="profile-info-value">
-					<a sec:authorize="hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_ADD')" href="javascript:void(-1)" onclick="siMenu('authority_add','添加权限','/authority/add');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加权限</a>
+					<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_ADD')" href="javascript:void(-1)" onclick="openWin('/authority/add','添加权限');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加权限</a>
 			</div>
 		</div>
 		<div class="col-md-12" style="overflow-y: auto; overflow-x: auto">

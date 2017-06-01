@@ -64,7 +64,7 @@ public class UserController {
 	}
 
 	@GetMapping("/")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_USER','SYSTEM_USER_VIEW')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_VIEW')")
 	public String index(Model model) {
 		Groups groups = new Groups();
 		List<RoleDetails> roles = userService.findRoleByGroups(groups);
@@ -92,7 +92,6 @@ public class UserController {
 
 		Page<User> page = new Page<User>(pageSize, currentPage);
 		Groups groups = CommonUtil.filterGroup(params);
-		groups.Add("user.enable",true);
 		groups.setOrderby("user."+colname);
 		if ("desc".equals(dir)) {
 			groups.setOrder(false);
@@ -201,17 +200,16 @@ public class UserController {
 	}
 
 	@GetMapping("/add")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_USER','SYSTEM_USER_ADD')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_ADD')")
 	public String addForm(Model model) {
 		Groups groups = new Groups();
-		groups.Add("enable",true);
 		List<RoleDetails> roles = userService.findRoleByGroups(groups);
 		model.addAttribute("allRoles", roles);
 		return "system/user_add";
 	}
 
 	@PostMapping("/add")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_USER','SYSTEM_USER_ADD')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_ADD')")
 	@ResponseBody
 	public JsonObj addSubmit(@Valid UserAddCmd userAddCmd, BindingResult result, Model model) {
 		if (result.hasErrors()) {
@@ -234,12 +232,12 @@ public class UserController {
 	}
 
 	@GetMapping("/edit")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_USER','SYSTEM_USER_EDIT')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_EDIT')")
 	public String editForm(Long id,Model model) {
 		UserDetails userDetails = userService.findUser(id);
 		UserEditCmd userEditCmd = UserEditCmd.fromDetails(userDetails);
 		Groups groups = new Groups();
-		groups.Add("enable",true);
+		
 		List<RoleDetails> roles = userService.findRoleByGroups(groups);
 		model.addAttribute("allRoles", roles);
 		
@@ -248,7 +246,7 @@ public class UserController {
 	}
 
 	@PostMapping("/edit")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_USER','SYSTEM_USER_EDIT')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_EDIT')")
 	@ResponseBody
 	public JsonObj editSubmit(@Valid UserEditCmd userEditCmd, BindingResult result,Model model) {
 		if (result.hasErrors()) {

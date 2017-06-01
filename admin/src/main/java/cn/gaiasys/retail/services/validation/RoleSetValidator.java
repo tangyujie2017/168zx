@@ -28,7 +28,7 @@ public class RoleSetValidator implements ConstraintValidator<RoleSet, Collection
     if (value == null) return false;
     if (value.isEmpty()) return false;
     Groups groups = new Groups();
-    groups.Add("enable",true);
+   
 	List<RoleDetails> roles = userService.findRoleByGroups(groups );
     
     if (roles == null || roles.isEmpty()) {

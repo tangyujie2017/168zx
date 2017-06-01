@@ -42,7 +42,7 @@ $(function(){
 			   if(isnull(editAuth)){
 				   return "暂无编辑权限！";
 			   }
-			   return '<div class="action-buttons"><a class="blue" href="javascript:void(-1);" onclick=siMenu("role_edit","编辑角色","/role/edit?id='+data+'") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a></div>';
+			   return '<div class="action-buttons"><a class="blue" href="javascript:void(-1);" onclick=openWin("/role/edit?id='+data+'","编辑角色") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a></div>';
 			}
 		}];
 	roleTable = initTables("roleTable", "load/role", objData, false,false,null, function() {
@@ -50,4 +50,20 @@ $(function(){
 });
 function search(){
 	searchButton(roleTable);
+}
+
+function openWin (url,title){
+	layer.open({
+        type: 2,
+        skin: 'layui-layer-lan',
+        title: title,
+        fix: false,
+        shadeClose: true,
+        maxmin: true,
+        area: ['1000px', '500px'],
+        content: url,
+        end: function(){
+        	search();
+        }
+    });
 }

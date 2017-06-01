@@ -60,8 +60,8 @@ function submitForm(){
 		$("#addUserForm").ajaxSubmit(function(data){
 			unmask();
 			if(data.success){
-				siMenu('user_','用户管理',userUrl);
-				top.mainFrame.tab.close('user_add');
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.layer.close(index);
 			}else{
 				alertInfo(data.message);
 			}

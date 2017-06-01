@@ -73,7 +73,7 @@ function customOperater(row, col) {
 		   return "暂无编辑权限！";
 	   }
 	return '<div class="action-buttons">'+
-	'<a class="blue" href="javascript:void(-1);" onclick=siMenu("authority_edit","编辑权限","/authority/edit?id='+row.id+'") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a></div>'
+	'<a class="blue" href="javascript:void(-1);" onclick=openWin("/authority/edit?id='+row.id+'","编辑权限") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a></div>'
 }
 /*
  * 展开、关闭所有节点。 isOpen=Y表示展开，isOpen=N表示关闭
@@ -96,4 +96,20 @@ function search(){
 	var str = "[" + searchs.join(",") + "]";
 	var data = {"iDisplayLength":100,"sSearch":str};
 	initData(data);
+}
+
+function openWin (url,title){
+	layer.open({
+        type: 2,
+        skin: 'layui-layer-lan',
+        title: title,
+        fix: false,
+        shadeClose: true,
+        maxmin: true,
+        area: ['1000px', '500px'],
+        content: url,
+        end: function(){
+        	search();
+        }
+    });
 }

@@ -48,7 +48,7 @@ $(function() {
 			   if(isnull(editAuth)){
 				   return "暂无编辑权限！";
 			   }
-			   return '<div class="action-buttons"><a class="blue" href="javascript:void(-1);" onclick=siMenu("user_edit","编辑用户","/user/edit?id='+data+'") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a>'+
+			   return '<div class="action-buttons"><a class="blue" href="javascript:void(-1);" onclick=openWin("/user/edit?id='+data+'","编辑用户") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a>'+
 			   '<a class="blue" href="javascript:void(-1);" title="修改密码" onclick="editDialog(this)"><i class="ace-icon fa fa-key bigger-160"></i></a></div>';
  			}
  		} ];
@@ -115,3 +115,21 @@ function delDialog(obj){
 		alertInfo("删除！");
 	})
 }
+
+function openWin (url,title){
+	layer.open({
+        type: 2,
+        skin: 'layui-layer-lan',
+        title: title,
+        fix: false,
+        shadeClose: true,
+        maxmin: true,
+        area: ['1000px', '500px'],
+        content: url,
+        end: function(){
+        	search();
+        }
+    });
+}
+
+

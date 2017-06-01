@@ -37,7 +37,7 @@ public class RoleController {
 	private UserService userService;
 	
 	@GetMapping("/")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_VIEW')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_VIEW')")
 	public String index() {
 		
 		return "system/role";
@@ -78,13 +78,13 @@ public class RoleController {
 	}
 	
 	@GetMapping("/add")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_ADD')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_ADD')")
 	public String addForm() {
 		return "system/role_add";
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_ADD')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_ADD')")
 	@ResponseBody
 	public JsonObj addSubmit(@Valid RoleCmd roleCmd, BindingResult result){
 		if (result.hasErrors()) {
@@ -105,7 +105,7 @@ public class RoleController {
 	}
 	
 	@GetMapping("/edit")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_EDIT')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_EDIT')")
 	public String editForm(Long id,Model model) {
 		RoleDetails roleDetails = userService.findRole(id);
 		Groups groups = new Groups();
@@ -119,7 +119,7 @@ public class RoleController {
 	}
 	
 	@PostMapping("/edit")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_ROLE','SYSTEM_ROLE_EDIT')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_EDIT')")
 	@ResponseBody
 	public JsonObj editSubmit(@Valid RoleCmd roleCmd, BindingResult result){
 		if (result.hasErrors()) {

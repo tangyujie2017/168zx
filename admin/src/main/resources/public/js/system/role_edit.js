@@ -34,13 +34,8 @@ function submitForm(){
 		$("#roleForm").ajaxSubmit(function(data){
 			unmask();
 			if(data.success){
-				siMenu('role_','角色管理',url);
-				var id = $("#id").val();
-				if(isnull(id)){
-					top.mainFrame.tab.close('role_add');
-				}else{
-					top.mainFrame.tab.close('role_edit');
-				}
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.layer.close(index);
 			}else{
 				alertInfo(data.message);
 			}

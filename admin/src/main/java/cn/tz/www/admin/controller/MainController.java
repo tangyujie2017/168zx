@@ -25,7 +25,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "role_manage";
+		return "redirect:/role/";
 
 	}
 
@@ -78,7 +78,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "permission_control";
+		return "redirect:/authority/";
 
 	}
 

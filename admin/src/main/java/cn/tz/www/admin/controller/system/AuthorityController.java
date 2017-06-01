@@ -36,7 +36,7 @@ public class AuthorityController {
 	private UserService userService;
 	
 	@GetMapping("/")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_VIEW')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_VIEW')")
 	public String index() {
 		
 		return "system/authority";
@@ -78,7 +78,6 @@ public class AuthorityController {
 	{
 		List<ZtreeVo> ztreeVos = new ArrayList<ZtreeVo>();
 		Groups groups = new Groups();
-		groups.Add("enable",true);
 		if(id == null || id == 0)
 		{
 			groups.Add("parent","",MatchType.NULL);
@@ -106,13 +105,13 @@ public class AuthorityController {
 	}
 	
 	@GetMapping("/add")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_ADD')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_ADD')")
 	public String addForm() {
 		return "system/authority_add";
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_ADD')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_ADD')")
 	@ResponseBody
 	public JsonObj addSubmit(@Valid AuthorityCmd authorityCmd, BindingResult result){
 		if (result.hasErrors()) {
@@ -133,7 +132,7 @@ public class AuthorityController {
 	}
 	
 	@GetMapping("/edit")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_EDIT')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_EDIT')")
 	public String editForm(Long id,Model model) {
 		AuthorityDetails authorityDetails = userService.findAuthority(id);
 		
@@ -142,7 +141,7 @@ public class AuthorityController {
 	}
 	
 	@PostMapping("/edit")
-	@PreAuthorize("hasAnyAuthority('SYSTEM_AUTHORITY','SYSTEM_AUTHORITY_EDIT')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_EDIT')")
 	@ResponseBody
 	public JsonObj editSubmit(@Valid AuthorityCmd authorityCmd, BindingResult result){
 		if (result.hasErrors()) {

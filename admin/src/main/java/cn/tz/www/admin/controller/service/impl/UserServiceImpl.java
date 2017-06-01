@@ -143,8 +143,6 @@ public class UserServiceImpl implements UserService {
 	
 	public UserDetails findUserByField(String propertyName, Object value){
 		Groups groups = new Groups();
-		groups.Add("enable",true);
-		groups.Add("locked",false);
 		groups.Add(propertyName,value);
 		List<User> list = userRepository.findEntityByGroups(groups);
 		if(!list.isEmpty()){

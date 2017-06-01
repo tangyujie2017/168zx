@@ -41,13 +41,8 @@ function submitForm(){
 		$("#authorityForm").ajaxSubmit(function(data){
 			unmask();
 			if(data.success){
-				siMenu('authority_','权限管理',url);
-				var id = $("#id").val();
-				if(isnull(id)){
-					top.mainFrame.tab.close('authority_add');
-				}else{
-					top.mainFrame.tab.close('authority_edit');
-				}
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.layer.close(index);
 			}else{
 				alertInfo(data.message);
 			}
