@@ -35,7 +35,7 @@ public class CustomerUserServiceImpl implements CustomerUserService {
 
 		List<CustomerRole> roleList = new ArrayList<CustomerRole>();
 		roleList.add(customerRoleRepository.findByName("NORMAL"));
-		cust.setCustomerRoles(roleList);
+		cust.setRoles(roleList);
 		customerRepository.save(cust);
 		customerVo.setId(cust.getId());
 		return customerVo;
