@@ -6,9 +6,9 @@ package cn.tz.www.admin.controller.cmd;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import cn.gaiasys.retail.services.RoleSet;
 import cn.tz.www.admin.controller.service.detail.system.RoleDetails;
 import cn.tz.www.admin.controller.service.detail.system.UserDetails;
+import cn.tz.www.admin.service.RoleSet;
 
 import java.util.*;
 

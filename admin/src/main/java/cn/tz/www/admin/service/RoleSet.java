@@ -1,9 +1,11 @@
-package cn.gaiasys.retail.services;
+package cn.tz.www.admin.service;
 
-import cn.gaiasys.retail.services.validation.RoleSetValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+
+import cn.tz.www.admin.service.validation.RoleSetValidator;
+
 import java.lang.annotation.*;
 
 /**

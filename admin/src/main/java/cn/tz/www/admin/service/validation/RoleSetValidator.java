@@ -1,11 +1,11 @@
-package cn.gaiasys.retail.services.validation;
+package cn.tz.www.admin.service.validation;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.gaiasys.retail.services.RoleSet;
 import cn.tz.www.admin.controller.service.UserService;
 import cn.tz.www.admin.controller.service.detail.system.RoleDetails;
+import cn.tz.www.admin.service.RoleSet;
 import cn.tz.www.customer.entity.tools.Groups;
 
 import javax.validation.ConstraintValidator;

@@ -1,9 +1,9 @@
 package cn.tz.www.admin.controller.cmd;
 
 
-import cn.gaiasys.retail.services.RoleSet;
 import cn.tz.www.admin.controller.service.detail.system.RoleDetails;
 import cn.tz.www.admin.controller.service.detail.system.UserDetails;
+import cn.tz.www.admin.service.RoleSet;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,7 +20,7 @@ public class UserAddCmd {
   @Size(min = 2, max = 10, message = "真实姓名：字符长度在2-10之间")
   private String realName;
 
-  @RoleSet private Collection<Long> roles;
+  @RoleSet() private Collection<Long> roles;
 
   @Size(min = 6, max = 128)
   private String password;

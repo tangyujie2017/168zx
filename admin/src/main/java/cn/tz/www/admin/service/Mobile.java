@@ -1,9 +1,11 @@
-package cn.gaiasys.retail.services;
+package cn.tz.www.admin.service;
 
 
-import cn.gaiasys.retail.services.validation.MobileValidator;
 
 import javax.validation.Constraint;
+
+import cn.tz.www.admin.service.validation.MobileValidator;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -1,10 +1,11 @@
-package cn.gaiasys.retail.services.validation;
+package cn.tz.www.admin.service.validation;
 
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import cn.gaiasys.retail.services.Mobile;
+import cn.tz.www.admin.service.Mobile;
+
 
 /**
  * Created by zzc on 17/11/2016.

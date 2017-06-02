@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="admin/src/main/java"/>
+	<classpathentry kind="src" path="core/src/main/java"/>
+	<classpathentry kind="src" path="customer/src/main/java"/>
+	<classpathentry kind="src" path="customer/src/test/java"/>
+	<classpathentry kind="lib" path="admin/src/main/resources/public/css/default/jsp/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="admin/src/main/resources/public/css/default/jsp/lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="admin/src/main/resources/public/css/default/jsp/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="customer/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
