@@ -17,7 +17,7 @@ public class RoleCmd {
 	private String name;
 	private String details;
 	
-	private Boolean enable;
+	
 	
 	private List<Long> authorityIds;
 
@@ -29,11 +29,10 @@ public class RoleCmd {
 		this.name = name;
 	}
 	
-	public RoleCmd(Long id, String name, String details, Boolean enable,List<Long> authorityIds) {
+	public RoleCmd(Long id, String name, String details,List<Long> authorityIds) {
 		this.id = id;
 		this.name = name;
 		this.details = details;
-		this.enable = enable;
 		this.authorityIds = authorityIds;
 	}
 	
@@ -46,7 +45,7 @@ public class RoleCmd {
 			ids = tmpIds;
 		}
 		
-		return new RoleCmd(roleDetails.getId(), roleDetails.getName(), roleDetails.getDetails(), roleDetails.getEnable(), ids);
+		return new RoleCmd(roleDetails.getId(), roleDetails.getName(), roleDetails.getDetails(), ids);
 	}
 
 	public Long getId() {
@@ -72,7 +71,7 @@ public class RoleCmd {
 			authorityIds.stream().forEach(i -> authDetailsSet.add(new AuthorityDetails(Long.valueOf(i))));
 			authorityDetailsList = authDetailsSet;
 		}
-		return new RoleDetails(id, name, details, enable, authorityDetailsList);
+		return new RoleDetails(id, name, details, authorityDetailsList);
 	}
 
 	public String getDetails() {
@@ -83,13 +82,7 @@ public class RoleCmd {
 		this.details = details;
 	}
 
-	public Boolean getEnable() {
-		return enable;
-	}
-
-	public void setEnable(Boolean enable) {
-		this.enable = enable;
-	}
+	
 
 	public List<Long> getAuthorityIds() {
 		return authorityIds;

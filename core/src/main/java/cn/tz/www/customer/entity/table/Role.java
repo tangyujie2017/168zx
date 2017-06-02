@@ -73,7 +73,7 @@ public class Role extends BaseEntity {
 		  // ----------------- convert -------------------
 
 		  public RoleDetails toDetails() {
-		    return new RoleDetails(id, name, details, enable, Authority.toDetailsList(authoritys));
+		    return new RoleDetails(id, name, details, Authority.toDetailsList(authoritys));
 		  }
 
 		  public RoleDetails toSimpDetails() {

@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import cn.tz.www.admin.controller.service.detail.system.AuthorityDetails;
+import cn.tz.www.admin.controller.service.detail.system.CustomerAuthorityDetails;
 import cn.tz.www.customer.entity.BaseEntity;
 
 @Entity
@@ -84,6 +86,28 @@ public class CustomerAuthority extends BaseEntity {
 		this.details = details;
 	}
 
+	
+
+	
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	
+	
 	public CustomerAuthority getParent() {
 		return parent;
 	}
@@ -100,20 +124,38 @@ public class CustomerAuthority extends BaseEntity {
 		this.children = children;
 	}
 
-	public Integer getSort() {
-		return sort;
+	//----------------------
+	public CustomerAuthorityDetails toDetails() {
+		Long parentId = null;
+		String parentName = null;
+		if(parent != null){
+			parentId = parent.getId();
+			parentName = parent.getName();
+		}
+		return new CustomerAuthorityDetails(id,name,code,details,parentId,parentName,sort,CustomerAuthority.toDetailsList(children));
 	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
+	public static List<CustomerAuthorityDetails> toDetailsList(List<CustomerAuthority> authorityList){
+		List<CustomerAuthorityDetails> detailsList = new ArrayList<>();
+		if(authorityList != null){
+			authorityList.stream().forEach(authority -> detailsList.add(authority.toDetails()));
+		}
+		return detailsList;
 	}
-
-	public Long getId() {
-		return id;
+	
+	public static List<CustomerAuthority> fromDetailsList(List<CustomerAuthorityDetails> detailsList){
+		if (detailsList == null)
+			return null;
+		List<CustomerAuthority> authList = new ArrayList<>(detailsList.size());
+		detailsList.stream().forEach(d -> authList.add(fromDetails(d)));
+		return authList;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public static CustomerAuthority fromDetails(CustomerAuthorityDetails authorityDetails) {
+		CustomerAuthority parent = null;
+		if(authorityDetails.getParentId() != null){
+			parent = new CustomerAuthority();
+			parent.setId(authorityDetails.getParentId());
+		}
+		return new CustomerAuthority(authorityDetails.getId(), authorityDetails.getName(), authorityDetails.getCode(),
+				authorityDetails.getDetails(),authorityDetails.getSort(),parent);
 	}
-
 }

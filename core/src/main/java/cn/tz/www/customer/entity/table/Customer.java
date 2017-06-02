@@ -1,25 +1,28 @@
 package cn.tz.www.customer.entity.table;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
-
+import cn.tz.www.admin.controller.service.detail.system.CustomerDetails;
+import cn.tz.www.admin.controller.service.detail.system.UserDetails;
 import cn.tz.www.customer.entity.BaseEntity;
 import cn.tz.www.customer.entity.em.CustomerEnum;
+import cn.tz.www.customer.service.Select2NameVo;
+import cn.tz.www.customer.service.Select2Vo;
 
 @Entity
 @Table(name = "customer")
 public class Customer extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 4285275098457224134L;
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	protected Long id;
-
 	@Column(name = "mobile")
     private String mobile;
 	
@@ -35,11 +38,11 @@ public class Customer extends BaseEntity {
     @Column(name = "locked")
     private boolean locked;
     
-    //韬唤璇佸彿
+    //身份证号
     @Column(length = 50)
     private String idcard;
     
-    //澶村儚
+    //头像
     @Column(length = 50, name = "head_photo")
     private String headPhoto;
     
@@ -51,7 +54,7 @@ public class Customer extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(name = "customer_customerrole", joinColumns = { @JoinColumn(name = "customerid", referencedColumnName = "id") }, inverseJoinColumns = {
             @JoinColumn(name = "roleid", referencedColumnName = "id") })
-    private List<CustomerRole> customerRoles;
+    private List<CustomerRole> roles;
 
 
 
@@ -163,16 +166,102 @@ public class Customer extends BaseEntity {
 
 
 
-	public List<CustomerRole> getCustomerRoles() {
-		return customerRoles;
+	
+	 public List<CustomerRole> getRoles() {
+		return roles;
 	}
 
 
 
-	public void setCustomerRoles(List<CustomerRole> customerRoles) {
-		this.customerRoles = customerRoles;
+	public void setRoles(List<CustomerRole> roles) {
+		this.roles = roles;
 	}
 
+	public Customer() {
+      
+    }
+
+	public Customer(Long id, String realName) {
+	        this.id = id;
+	        this.realName = realName;
+	    }
+
+	    public Customer(String mobile, String realName, String login, String password, boolean locked, List<CustomerRole> roles) {
+	        this.mobile = mobile;
+	        this.realName = realName;
+	        this.login = login;
+	        this.password = password;
+	        this.locked = locked;
+	        this.roles = roles;
+	    }
+	
+	    public Customer(Long id, String mobile, String realName, String login, boolean locked, List<CustomerRole> roles) {
+	        this.id = id;
+	        this.mobile = mobile;
+	        this.login = login;
+	        this.realName = realName;
+	        this.locked = locked;
+	        this.roles = roles;
+	    }
+	
+	
+	
+	
+	
+    public CustomerDetails toDetails() {
+        return new CustomerDetails(
+            id,
+            mobile,
+            realName,
+            login,
+            password,
+            locked,
+            CustomerRole.toDetailsList(roles),
+            headPhoto,
+            createTime);
+      }
+    public static Customer fromDetails(CustomerDetails details) {
+        return new Customer(
+            details.getMobile(),
+            details.getRealName(),
+            details.getLogin(),
+            details.getPassword(),
+            details.isLocked(),
+            CustomerRole.fromDetailsList(details.getRoles()));
+      }
+    public static Customer fromDetails2(CustomerDetails details) {
+        return new Customer(
+            details.getId(),
+            details.getMobile(),
+            details.getRealName(),
+            details.getLogin(),
+            details.isLocked(),
+            CustomerRole.fromDetailsList(details.getRoles()));
+      }
+    public static List<Select2Vo> toSelect2VoList(List<Customer> userList) {
+		if (userList == null)
+			return null;
+		List<Select2Vo> selectList = new ArrayList<>(userList.size());
+		userList.stream().forEach(user -> {
+			Select2Vo vo = new Select2Vo();
+			vo.setId(user.getId());
+			vo.setText(user.getRealName());
+			selectList.add(vo);
+		});
+		return selectList;
+	}
+    public static List<Select2NameVo> toSelect2NameVoList(List<Customer> userList) {
+		if (userList == null)
+			return null;
+		List<Select2NameVo> selectList = new ArrayList<>(userList.size());
+		userList.stream().forEach(user -> {
+			Select2NameVo vo = new Select2NameVo();
+			vo.setId(user.getMobile());
+			vo.setText(user.getRealName()+"("+vo.getId()+")");
+			selectList.add(vo);
+		});
+		return selectList;
+	}
 
 
 	

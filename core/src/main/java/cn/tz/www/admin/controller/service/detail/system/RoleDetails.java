@@ -13,7 +13,7 @@ public class RoleDetails {
   
   private String details;
   
-  private Boolean enable;
+  
   
   private List<AuthorityDetails> authoritys;
   
@@ -32,11 +32,11 @@ public class RoleDetails {
 	  this.details = details;
   }
 
-  public RoleDetails(Long id, String name, String details, Boolean enable, List<AuthorityDetails> authoritys) {
+  public RoleDetails(Long id, String name, String details,  List<AuthorityDetails> authoritys) {
     this.id = id;
     this.name = name;
     this.details = details;
-    this.enable = enable;
+   
     this.authoritys = authoritys;
     if (authoritys != null && !authoritys.isEmpty()) {
 		StringBuffer sBuffer = new StringBuffer();
@@ -72,13 +72,7 @@ public void setDetails(String details) {
 	this.details = details;
 }
 
-public Boolean getEnable() {
-	return enable;
-}
 
-public void setEnable(Boolean enable) {
-	this.enable = enable;
-}
 
 public List<AuthorityDetails> getAuthoritys() {
 	return authoritys;

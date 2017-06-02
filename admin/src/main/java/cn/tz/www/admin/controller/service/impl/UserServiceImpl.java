@@ -197,7 +197,7 @@ public class UserServiceImpl implements UserService {
 		Role role = roleRepositoryCustom.find(roleDetails.getId());
 		role.setName(roleDetails.getName());
 		role.setDetails(roleDetails.getDetails());
-		role.setEnable(roleDetails.getEnable());
+		
 		role.setAuthoritys(Authority.fromDetailsList(roleDetails.getAuthoritys()));
 		roleRepositoryCustom.update(role);
 	}

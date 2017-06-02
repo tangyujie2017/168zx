@@ -67,8 +67,7 @@ public class SecurityConfig {
           .antMatchers("/api/customer/public/*").permitAll()
           .antMatchers("/api/customer/*").authenticated()
           .antMatchers("/api/customer/vip/*").hasAnyRole("VIP")
-          //.antMatchers("/api/customer/vip/*").hasAnyAuthority(authorities);
-          //.antMatchers("/api/customer/*").hasAnyRole("SHOP_DEV","PROV_DEV","COMMON_USER","ADMIN")
+         
       ;
       ;
     }

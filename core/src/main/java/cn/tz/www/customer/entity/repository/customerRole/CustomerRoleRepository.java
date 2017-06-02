@@ -8,10 +8,10 @@ import cn.tz.www.customer.entity.table.Role;
 
 
 /**
- * 
+ * Created by zzc on 16/11/2016.
  */
 @Repository
-public interface CustomerRoleRepository extends CrudRepository<CustomerRole, Integer> {
+public interface CustomerRoleRepository extends CrudRepository<CustomerRole, Long> {
 	CustomerRole findByName(String name);
 	CustomerRole findByDetails(String details);
 }
