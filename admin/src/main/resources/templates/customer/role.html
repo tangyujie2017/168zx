@@ -20,7 +20,7 @@
 		</div> -->
 		<div class="page-header">&nbsp;</div>
 		
-	<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_EDIT')" value="true"/>
+	<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_CUSTOMER')" value="true"/>
 
 		<div class="left-10 de-size-wrapper" id="searchDiv">
 			<div class="profile-info-value searchTr">
@@ -49,7 +49,7 @@
 					</button>
 			</div>
 			<div class="profile-info-value">
-				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_ROLE_ADD')" href="javascript:void(-1)" onclick="openWin('/customerRole/add','添加客户类型');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加客户类型</a>
+				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_CUSTOMER')" href="javascript:void(-1)" onclick="openWin('/customerRole/add','添加客户类型');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加客户类型</a>
 			</div>
 		</div>
 		<div class="col-md-12" id="roleTableDiv" style="overflow-y: auto; overflow-x: auto">

@@ -1,6 +1,9 @@
 	$(function ($) {
 		//角色管理 ——> 添加角色
 		$(".role_add,.modify,.user_add").on("click",addRoleBox);
+		
+		
+		
 		function addRoleBox(){
 			$("body").append("<div id='mask'></div>");
 			$("#mask").addClass("mask").fadeIn("slow");

@@ -23,7 +23,8 @@
 			</div>
 			<div class="content_detail goods_lists">
 				<div class="goods_search vip_sets">
-					<a class="role_add"><img src="images/add_ico.png" />新增</a>
+				
+					<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','PUBLISH_ADD')" class="role_add"><img src="images/add_ico.png" />新增</a>
 				</div>
 				<!-- table lists -->
 				<form action="post">

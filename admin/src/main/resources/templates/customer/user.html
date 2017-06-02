@@ -14,7 +14,7 @@
 	<div>
 		<div class="page-header">&nbsp;</div>
 		
-		<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_EDIT')" value="true"/>
+		<input type="hidden" id="editAuth" sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_CUSTOMER')" value="true"/>
 		
 		<div class="left-10 de-size-wrapper" id="searchDiv">
 			<div class="profile-info-value searchTr">
@@ -54,7 +54,7 @@
 					<button class="btn g-btn-primary" onclick="search();"><i class="glyphicon glyphicon-search"></i> 搜索</button>
 			</div>
 			<div class="profile-info-value">
-				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_ADD')" href="javascript:void(-1)" onclick="openWin('/customer/add','添加客户');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加客户</a>
+				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_CUSTOMER')" href="javascript:void(-1)" onclick="openWin('/customer/add','添加客户');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加客户</a>
 			</div>
 		</div>
 		<div class="col-md-12" style="overflow-y: auto; overflow-x: auto">

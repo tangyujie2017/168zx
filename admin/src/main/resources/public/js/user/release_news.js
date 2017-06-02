@@ -33,6 +33,8 @@ $(function() {
 			success : function(data, status) {
 				if (data.success) {
 					alert(data.message);
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
 				}
 			},
 			fail : function(err, status) {

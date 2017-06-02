@@ -182,5 +182,22 @@ function loadNewsById(id){
 			alert("系统错误，请稍后");
 		}
 	});
-	
+
+	}
+
+
+function openWin (url,title){
+	layer.open({
+        type: 2,
+        skin: 'layui-layer-lan',
+        title: title,
+        fix: false,
+        shadeClose: true,
+        maxmin: true,
+        area: ['1000px', '500px'],
+        content: url,
+        end: function(){
+        	search();
+        }
+    });
 }
