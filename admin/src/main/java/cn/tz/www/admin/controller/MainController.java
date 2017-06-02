@@ -98,7 +98,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "customer_role";
+		return "redirect:/customerRole/";
 
 	}
 
@@ -108,7 +108,7 @@ public class MainController extends WebMvcConfigurerAdapter {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "customer_permission";
+		return "redirect:/customerAuthority/";
 
 	}
 	@RequestMapping("/releaseProduct")

@@ -42,7 +42,7 @@ $(function(){
 			   if(isnull(editAuth)){
 				   return "暂无编辑权限！";
 			   }
-			   return '<div class="action-buttons"><a class="blue" href="javascript:void(-1);" onclick=openWin("/role/edit?id='+data+'","编辑角色") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a></div>';
+			   return '<div class="action-buttons"><a class="blue" href="javascript:void(-1);" onclick=openWin("/customerRole/edit?id='+data+'","编辑角色") title="编辑"><i class="ace-icon fa fa-pencil bigger-160"></i></a></div>';
 			}
 		}];
 	roleTable = initTables("roleTable", "load/role", objData, false,false,null, function() {

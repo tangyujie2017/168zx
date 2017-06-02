@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 <meta charset="UTF-8" />
-<title>编辑角色</title>
+<title>客户类型</title>
 <head th:include="tag::tag" />
 <script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
 <script type="text/javascript" th:src="@{/js/customer/role_edit.js}" ></script>
@@ -14,22 +14,22 @@
 		<div class="page-header">&nbsp;</div>
 		
 		<div class="col-md-12">
-		<form method="post" th:object="${roleCmd}" th:action="@{/role/edit}" id="roleForm">
+		<form method="post" th:object="${roleCmd}" th:action="@{/customerRole/edit}" id="roleForm">
 		<div class="tab-content padding-24" style="overflow-y: auto; overflow-x: auto; height: 780px;">
 				<input type="hidden" id="id" name="id" th:value="*{id}" />
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">编辑角色</h3>
+							<h3 class="panel-title">编辑类型</h3>
 						</div>
 						<table class="table table-bordered g-table g-table-form">
 							<tr>
-								<td class="g-required">角色名称：</td>
+								<td class="g-required">类型名称：</td>
 								<td>
 									<div class="col-md-3"><input type="text" name="details" id="details" class="form-control" th:value="*{details}" /></div>
 								</td>
 							</tr>
 							<tr>
-								<td  class="g-required">角色标识：</td>
+								<td  class="g-required">类型标识：</td>
 								<td>
 									<div class="col-md-3"><input type="text" name="name" id="name" class="form-control"  th:value="*{name}" /></div>
 								</td>
@@ -48,7 +48,7 @@
 					
 					<div class="panel panel-default" th:if="*{name!='STAFF_USER'}">
 						<div class="panel-heading">
-							<h3 class="panel-title">操作权限</h3>
+							<h3 class="panel-title">操作资源</h3>
 						</div>
 					<!-- <div class="width-50 left-25 bottom-25">
 						<label class="right-15 top-25" th:each="authority : ${authoritys}">

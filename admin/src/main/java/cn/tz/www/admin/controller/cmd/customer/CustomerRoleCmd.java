@@ -1,51 +1,53 @@
-package cn.tz.www.admin.controller.cmd.system;
+package cn.tz.www.admin.controller.cmd.customer;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.tz.www.admin.controller.service.detail.system.AuthorityDetails;
+import cn.tz.www.admin.controller.service.detail.system.CustomerAuthorityDetails;
+import cn.tz.www.admin.controller.service.detail.system.CustomerRoleDetails;
 import cn.tz.www.admin.controller.service.detail.system.RoleDetails;
 
 
 /**
  * Created by zzc on 16/11/2016.
  */
-public class RoleCmd {
+public class CustomerRoleCmd {
 
 	private Long id;
 	private String name;
 	private String details;
-	
 	private Boolean enable=true;
+	
 	
 	private List<Long> authorityIds;
 
-	public RoleCmd() {
+	public CustomerRoleCmd() {
 	}
 
-	public RoleCmd(Long id, String name) {
+	public CustomerRoleCmd(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 	
-	public RoleCmd(Long id, String name, String details,List<Long> authorityIds) {
+	public CustomerRoleCmd(Long id, String name, String details,List<Long> authorityIds) {
 		this.id = id;
 		this.name = name;
 		this.details = details;
 		this.authorityIds = authorityIds;
 	}
 	
-	public static RoleCmd fromDetails(RoleDetails roleDetails){
+	public static CustomerRoleCmd fromDetails(CustomerRoleDetails roleDetails){
 		List<Long> ids = null;
-		List<AuthorityDetails> authoritys = roleDetails.getAuthoritys();
+		List<CustomerAuthorityDetails> authoritys = roleDetails.getAuthoritys();
 		if(authoritys != null){
 			List<Long> tmpIds = new ArrayList<>();
 			authoritys.stream().forEach(r -> tmpIds.add(r.getId()));
 			ids = tmpIds;
 		}
 		
-		return new RoleCmd(roleDetails.getId(), roleDetails.getName(), roleDetails.getDetails(), ids);
+		return new CustomerRoleCmd(roleDetails.getId(), roleDetails.getName(), roleDetails.getDetails(), ids);
 	}
 
 	public Long getId() {
@@ -64,22 +66,14 @@ public class RoleCmd {
 		this.name = name;
 	}
 
-	public RoleDetails toDetails() {
-		List<AuthorityDetails> authorityDetailsList = null;
+	public CustomerRoleDetails toDetails() {
+		List<CustomerAuthorityDetails> authorityDetailsList = null;
 		if(authorityIds != null){
-			List<AuthorityDetails> authDetailsSet = new ArrayList<>();
-			authorityIds.stream().forEach(i -> authDetailsSet.add(new AuthorityDetails(Long.valueOf(i))));
+			List<CustomerAuthorityDetails> authDetailsSet = new ArrayList<>();
+			authorityIds.stream().forEach(i -> authDetailsSet.add(new CustomerAuthorityDetails(Long.valueOf(i))));
 			authorityDetailsList = authDetailsSet;
 		}
-		return new RoleDetails(id, name, details, authorityDetailsList);
-	}
-
-	public Boolean getEnable() {
-		return enable;
-	}
-
-	public void setEnable(Boolean enable) {
-		this.enable = enable;
+		return new CustomerRoleDetails(id, name, details, authorityDetailsList);
 	}
 
 	public String getDetails() {
@@ -99,6 +93,13 @@ public class RoleCmd {
 	public void setAuthorityIds(List<Long> authorityIds) {
 		this.authorityIds = authorityIds;
 	}
-	
+
+	public Boolean getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
+	}
 
 }

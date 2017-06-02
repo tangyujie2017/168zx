@@ -25,6 +25,7 @@ import cn.tz.www.admin.controller.service.req.Resp;
 import cn.tz.www.admin.controller.service.req.UpdateReq;
 import cn.tz.www.admin.controller.util.AuthorityUtil;
 import cn.tz.www.admin.controller.util.TableVo;
+import cn.tz.www.customer.entity.table.Customer;
 import cn.tz.www.customer.entity.table.User;
 import cn.tz.www.customer.entity.tools.CommonUtil;
 import cn.tz.www.customer.entity.tools.Constants;
@@ -90,7 +91,7 @@ public class CustomerController {
 		String dir = tableVo.getsSortDir_0();
 		String colname = request.getParameter("mDataProp_" + col);
 
-		Page<User> page = new Page<User>(pageSize, currentPage);
+		Page<Customer> page = new Page<Customer>(pageSize, currentPage);
 		Groups groups = CommonUtil.filterGroup(params);
 		groups.setOrderby("user."+colname);
 		if ("desc".equals(dir)) {
@@ -100,7 +101,7 @@ public class CustomerController {
 		}
 		
 		customerService.findUserPageByGroups(groups, page);
-		page.setItems(User.toDetailsList(page.getItems()));
+		page.setItems(Customer.toDetailsList(page.getItems()));
 
 		int total = page.getTotalCount();
 		tableVo.setAaData(page.getItems());

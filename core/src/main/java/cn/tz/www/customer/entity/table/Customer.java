@@ -263,7 +263,12 @@ public class Customer extends BaseEntity {
 		return selectList;
 	}
 
-
+    public static List<CustomerDetails> toDetailsList(List<Customer> userList) {
+        if (userList == null) return null;
+        List<CustomerDetails> detailsList = new ArrayList<>(userList.size());
+        userList.stream().forEach(user -> detailsList.add(user.toDetails()));
+        return detailsList;
+      }
 	
 
 }

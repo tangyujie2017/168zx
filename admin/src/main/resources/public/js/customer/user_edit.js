@@ -7,7 +7,7 @@ $(function() {
 			required: true,
 			mobile: true,
 			remote:{
-				url:'/user/check/mobile',
+				url:'/customer/check/mobile',
 				data:{
 					'id':function() {
 						var id = $('#id').val();

@@ -4,7 +4,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="UTF-8" />
-<title>权限管理</title>
+<title>资源管理</title>
 <head th:include="tag::tag" />
 <link type="text/css" rel="stylesheet" th:href="@{/css/TreeGrid.css}"/>
 <script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
@@ -49,7 +49,7 @@
 					</div>
 			</div>
 			<div class="profile-info-value">
-					<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_ADD')" href="javascript:void(-1)" onclick="openWin('/authority/add','添加权限');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加权限</a>
+					<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_AUTHORITY_ADD')" href="javascript:void(-1)" onclick="openWin('/customerAuthority/add','添加资源');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加资源</a>
 			</div>
 		</div>
 		<div class="col-md-12" style="overflow-y: auto; overflow-x: auto">

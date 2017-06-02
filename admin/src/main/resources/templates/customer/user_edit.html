@@ -21,11 +21,11 @@
 		
 		<div class="col-md-12">
 		<form method="post" th:object="${customerEditCmd}"
-				th:action="@{/user/edit}" id="editUserForm">
+				th:action="@{/customer/edit}" id="editUserForm">
 				<input type="hidden" id="id" name="id" th:value="*{id}" />
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">编辑用户</h3>
+							<h3 class="panel-title">编辑客户</h3>
 						</div>
 						<table class="table table-bordered g-table g-table-form">
 							<tr>
@@ -41,7 +41,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="g-required">角色：</td>
+								<td class="g-required">客户类型：</td>
 								<td>
 									<div class="col-md-6">
 									<span class="block input-icon input-icon-right"><label

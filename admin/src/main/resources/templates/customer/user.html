@@ -54,7 +54,7 @@
 					<button class="btn g-btn-primary" onclick="search();"><i class="glyphicon glyphicon-search"></i> 搜索</button>
 			</div>
 			<div class="profile-info-value">
-				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_ADD')" href="javascript:void(-1)" onclick="openWin('/user/add','添加用户');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加用户</a>
+				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_ADD')" href="javascript:void(-1)" onclick="openWin('/customer/add','添加客户');" class="btn g-btn-primary"><i class='ace-icon fa fa-plus white'></i>添加客户</a>
 			</div>
 		</div>
 		<div class="col-md-12" style="overflow-y: auto; overflow-x: auto">
@@ -64,7 +64,7 @@
 		</div>
 		<div id="userDialogDiv"></div>
 		<div id="userDialog" class="hide">
-			<form class="form-horizontal" id="userForm" method="post" onsubmit="return false;" th:action="@{/user/update/password}" action="#">
+			<form class="form-horizontal" id="userForm" method="post" onsubmit="return false;" th:action="@{/customer/update/password}" action="#">
 				<input type="hidden" id="id" name="id" value="" />
 				<input type="hidden" id="roles" name="roles" value="1" />
 				<div class="form-group">
