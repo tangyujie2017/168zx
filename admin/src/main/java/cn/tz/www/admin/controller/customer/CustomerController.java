@@ -210,8 +210,15 @@ public class CustomerController {
 	@PostMapping("/add")
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SYSTEM_USER_ADD')")
 	@ResponseBody
-	public JsonObj addSubmit(CustomerAddCmd userAddCmd,  Model model) {
-		
+	public JsonObj addSubmit(@Valid CustomerAddCmd userAddCmd, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			StringBuffer errorMsg = new StringBuffer();
+			List<ObjectError> errors = result.getAllErrors();
+			for(ObjectError error : errors){
+				errorMsg.append(error.getDefaultMessage()+"<br/>");
+			}
+			return JsonObj.newErrorJsonObj(errorMsg.toString());
+		}
 		String newPassword = passwordEncoder.encode(userAddCmd.getPassword());
 		userAddCmd.setPassword(newPassword);
 		CreateReq<CustomerDetails> req = new CreateReq<>(userAddCmd.toDetails());
