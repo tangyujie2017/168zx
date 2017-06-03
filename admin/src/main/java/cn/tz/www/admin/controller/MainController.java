@@ -111,6 +111,15 @@ public class MainController extends WebMvcConfigurerAdapter {
 		return "redirect:/customerAuthority/";
 
 	}
+	@RequestMapping("/releaseProducts")
+	public String releaseProducts(Principal principal, HttpServletResponse response) {
+		if (principal == null) {
+			return "redirect:/login";
+		}
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		return "release_products";
+
+	}
 	@RequestMapping("/releaseProduct")
 	public String releaseProduct(Principal principal, HttpServletResponse response) {
 		if (principal == null) {
