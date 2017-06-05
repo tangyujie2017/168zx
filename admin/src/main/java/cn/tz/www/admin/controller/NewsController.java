@@ -1,8 +1,12 @@
 package cn.tz.www.admin.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 import javax.validation.Valid;
 
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.tz.www.admin.controller.service.NewsService;
 import cn.tz.www.admin.controller.service.UserService;
+import cn.tz.www.admin.controller.util.NewsVo;
 import cn.tz.www.admin.controller.util.PageParam;
 import cn.tz.www.admin.controller.util.PageVo;
 import cn.tz.www.customer.entity.table.News;
@@ -76,7 +81,7 @@ public class NewsController {
 
 	@RequestMapping("/news/list")
 	@ResponseBody
-	public PageVo<News> listNews(@Valid PageParam param, BindingResult result, Principal principal) {
+	public PageVo<NewsVo> listNews(@Valid PageParam param, BindingResult result, Principal principal) {
 		//
 		if (principal == null) {
 			JsonObj.newErrorJsonObj("用户已过期请从新登录");
@@ -88,11 +93,25 @@ public class NewsController {
 		g.setOrderby("createTime");
 		Page<News> page = new Page<News>(pageSize, currentPage);
 		newsService.newsList(g, page);
-		PageVo<News> vo = new PageVo<>();
-		// String picBasePath = values.getUploadedImagesUrlPrefix();
+		PageVo<NewsVo> vo = new PageVo<>();
 		vo.setTotal(page.getTotalCount());
-		// vo.setPicPath(picBasePath);
-		vo.setItems(page.getItems());
+		List<NewsVo> list=new ArrayList<>();
+		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		page.getItems().stream().forEach((Consumer)a->{
+			News n=(News)a;
+			NewsVo temp=new NewsVo();
+			temp.setContext(n.getContext());
+			temp.setCreateTime(time.format(n.getCreateTime()));
+			temp.setCreateUser(n.getCreateUser());
+			temp.setDeclareContext(n.getDeclareContext());
+			temp.setId(n.getId());
+			temp.setStatus(n.getStatus());
+			temp.setTitle(n.getTitle());
+			temp.setViewTimes(n.getViewTimes());
+			list.add(temp);
+		});
+		vo.setItems(list);
 		return vo;
 	}
 

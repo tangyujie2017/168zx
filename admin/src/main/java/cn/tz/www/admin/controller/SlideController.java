@@ -44,7 +44,7 @@ public class SlideController {
 		if (principal == null) {
 			JsonObj.newErrorJsonObj("用户信息过期请重新登录");
 		}
-		if(slideService.checkSn(sn)){
+		if(slideService.checkSn(sn,type)){
 			if(slideService.totalSlideByType(type)){
 				return JsonObj.newSuccessJsonObj("检测成功");
 			}else{

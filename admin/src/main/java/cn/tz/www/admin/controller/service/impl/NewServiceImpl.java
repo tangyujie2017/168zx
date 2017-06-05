@@ -37,4 +37,5 @@ public class NewServiceImpl implements NewsService {
 		return newsRepository.find(id);
 	}
 
+	
 }

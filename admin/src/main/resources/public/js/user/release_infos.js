@@ -112,7 +112,7 @@ function creatNewsList(data) {
 			html += i
 			html += "</td>"
 			html += "<td>" + list[i].title + "</td>"
-			html += "<td>2017-04-07</td>"
+			html += "<td>"+list[i].createTime+"</td>"
 			html += "<td><a href='#' class='modify' onclick='loadNewsById("+list[i].id+")'>预览</a><a href='#' class='on_delete' onclick='delNews("+list[i].id+")'>删除</a></td>"
 			html += "</tr>"
 		}

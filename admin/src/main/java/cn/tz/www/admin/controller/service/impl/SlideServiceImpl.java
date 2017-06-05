@@ -31,9 +31,10 @@ public class SlideServiceImpl implements SlideService {
 		return slideRepository.findEntityPageByGroups(groups, page);
 	}
 
-	public Boolean checkSn(Integer sn) {
+	public Boolean checkSn(Integer sn,Integer type) {
 		Groups g = new Groups();
 		g.Add("sn", sn);
+		g.Add("type", type);
 		List<Slide> list = slideRepository.findEntityByGroups(g);
 		if (list != null && list.size() > 0) {
 			return false;
