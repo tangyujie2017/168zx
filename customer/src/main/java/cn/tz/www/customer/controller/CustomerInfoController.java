@@ -1,13 +1,18 @@
 package cn.tz.www.customer.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.tz.www.customer.controller.service.NewsService;
+import cn.tz.www.customer.entity.table.News;
+import cn.tz.www.customer.entity.tools.Groups;
 import cn.tz.www.customer.entity.tools.JsonObj;
+import cn.tz.www.customer.entity.tools.Page;
+import cn.tz.www.customer.util.PageParamNews;
 
 @Controller
 public class CustomerInfoController {
@@ -17,13 +22,22 @@ public class CustomerInfoController {
 	// 注册
 	@RequestMapping(value = "/api/customer/info/list")
 	@ResponseBody
-	public JsonObj getNewsByType( Integer type) {
+	public JsonObj getNewsByType(@Valid PageParamNews param) {
 		
-		if (type == null) {
+		if (param != null&&param.getSearch().getType()!=null) {
+			int pageSize = param.getPageSize();
+			int currentPage = param.getPageIndex();
+			Groups g = new Groups();
+			g.Add("type", param.getSearch().getType());
+			g.Add("status", 1);
+			g.setOrderby("createTime");
+			Page<News> page = new Page<News>(pageSize, currentPage);
+			return JsonObj.newSuccessJsonObj("获取消息成功", newsService.loadNewsByType(g,page));
+			
+		}else{
 			return JsonObj.newErrorJsonObj("请求参数不正确");
 		}
-
-		return JsonObj.newSuccessJsonObj("获取消息成功", newsService.loadNewsByType(type));
+		
 
 	}
 

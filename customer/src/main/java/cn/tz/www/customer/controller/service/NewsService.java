@@ -1,11 +1,14 @@
 package cn.tz.www.customer.controller.service;
 
-import java.util.List;
 
+
+import cn.tz.www.customer.entity.table.News;
+import cn.tz.www.customer.entity.tools.Groups;
+import cn.tz.www.customer.entity.tools.Page;
 import cn.tz.www.customer.view.NewsVo;
 
 public interface NewsService {
-	public List<NewsVo> loadNewsByType(Integer type) ;
+	public Page<NewsVo> loadNewsByType(Groups groups, Page<News> page) ;
 	public void updateViewTimes(Long newsId);
 	public NewsVo getNewsById(Long newsId);
 }

@@ -14,34 +14,41 @@ import cn.tz.www.customer.controller.service.NewsService;
 import cn.tz.www.customer.entity.repository.news.NewsRepository;
 import cn.tz.www.customer.entity.table.News;
 import cn.tz.www.customer.entity.tools.Groups;
+import cn.tz.www.customer.entity.tools.Page;
 @Service
 public class NewsServiceImpl implements NewsService {
 	@Autowired
 	private NewsRepository newsRepository;
 
-	public List<NewsVo> loadNewsByType(Integer type) {
-		Groups g = new Groups();
-		g.Add("type", type);
-		g.Add("status", 1);
-		g.setOrderby("createTime ");
-		List<News> list = newsRepository.findEntityByGroups(g);
-		return convertNews(list);
+	public Page<NewsVo> loadNewsByType(Groups groups, Page<News> page) {
+		
+		page  = newsRepository.findEntityPageByGroups(groups, page);
+		
+		
+		return convertNews(page);
 	}
 
-	private List<NewsVo> convertNews(List<News> list) {
+	@SuppressWarnings("unchecked")
+	private Page<NewsVo> convertNews(Page<News> page) {
+		Page<NewsVo> result=new Page<>(page.getPageSize(), page.getCurrentPage());
+		result.setFromIndex(page.getFromIndex());
+		result.setTotalCount(page.getTotalCount());
+		result.setTotalPageCount(page.getTotalPageCount());
 		List<NewsVo> vos = new ArrayList<NewsVo>();
-		list.stream().forEach(a -> {
+		page.getItems().stream().forEach(a -> {
+			News news=(News)a;
 			NewsVo vo = new NewsVo();
-			vo.setId(a.getId());
-			vo.setTitle(a.getTitle());
-			vo.setContext(a.getContext());
-			vo.setViewTimes(a.getViewTimes());
+			vo.setId(news.getId());
+			vo.setTitle(news.getTitle());
+			vo.setContext(news.getContext());
+			vo.setViewTimes(news.getViewTimes());
 			//vo.setImg(a.getImg());
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			vo.setCreateTime(formatter.format(a.getCreateTime()));
+			vo.setCreateTime(formatter.format(news.getCreateTime()));
 			vos.add(vo);
 		});
-		return vos;
+		result.setItems(vos);
+		return  result;
 	}
 
 	@Transactional

@@ -21,10 +21,8 @@ public class SliderServiceImpl implements SliderService {
 	@Override
 	public List<SliderVo> loadSliderByType(Integer type, String imgUrl) {
 		Groups g = new Groups();
-		// g.Add("type", type);
-		// g.Add("status", 1);
-		// g.setOrderby("createTime ");
-		g.setOrderby("sn");
+		 g.Add("type", type);
+	     g.setOrderby("sn");
 		List<Slide> list = slideRepository.findEntityByGroups(g);
 		return convertNews(list, imgUrl);
 	}

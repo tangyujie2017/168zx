@@ -1,65 +1,162 @@
 package cn.tz.www.customer.controller.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import cn.tz.www.customer.controller.service.CustomerUserService;
 import cn.tz.www.customer.entity.repository.customer.CustomerRepository;
 import cn.tz.www.customer.entity.repository.customerRole.CustomerRoleRepository;
 import cn.tz.www.customer.entity.table.Customer;
-import cn.tz.www.customer.entity.table.CustomerRole;
+import cn.tz.www.customer.entity.tools.Groups;
 import cn.tz.www.customer.entity.tools.JsonObj;
-import cn.tz.www.customer.view.CustomerVo;
+import cn.tz.www.customer.view.CustomerResource;
+import cn.tz.www.customer.view.Resource;
 
 @Service
 public class CustomerUserServiceImpl implements CustomerUserService {
 	@Autowired(required = true)
 	private CustomerRepository customerRepository;
-	@Autowired(required = true)
-	private CustomerRoleRepository customerRoleRepository;
-	//@Autowired
-	//private PasswordEncoder passwordEncoder;
-
-	@Transactional
-	public CustomerVo registCustomer(CustomerVo customerVo) {
-		Customer cust = new Customer();
-		cust.setLogin(customerVo.getLogin());
-		//cust.setPassword(passwordEncoder.encode(customerVo.getPassword()));
-		cust.setLocked(false);
-
-		List<CustomerRole> roleList = new ArrayList<CustomerRole>();
-		roleList.add(customerRoleRepository.findByName("NORMAL"));
-		cust.setRoles(roleList);
-		customerRepository.save(cust);
-		customerVo.setId(cust.getId());
-		return customerVo;
-
+	
+	
+	
+	private  static List<Resource> resource=new ArrayList<>();
+	static{
+		//可以写进配置项
+		initResource();
 	}
 
-	public Boolean checkCustomer(String login) {
-		Optional<Customer> list = customerRepository.findByLogin(login);
-		if (list != null) {
-			return false;
-		} else {
-			return true;
-		}
+	private static void initResource(){
+		Resource r1=new Resource("YWSD","要闻速递",false);
+		Resource r2=new Resource("AGZJ","A股直击",false);
+		Resource r3=new Resource("LCCP","理财产品",false);
+		Resource r4=new Resource("HMC","黑马池",false);
+		Resource r5=new Resource("MSCP","名师操盘",false);
+		Resource r6=new Resource("GRZX","个人中心",false);
+		resource.add(r1);
+		resource.add(r2);
+		resource.add(r3);
+		resource.add(r4);
+		resource.add(r5);
+		resource.add(r6);
+		
 	}
+	
 
-	public JsonObj readByMobile(String login, String password) {
-		Customer user = customerRepository.findByMobile(login);
-		if (user != null) {
-			CustomerVo vo = new CustomerVo();
-			vo.setId(user.getId());
-			vo.setLogin(user.getLogin());
-			vo.setPassword(password);
-			return JsonObj.newSuccessJsonObj("登录成功", vo);
+	
+
+	public JsonObj readByMobile(String login, String password,PasswordEncoder passwordEncoder) {
+	
+		
+		
+		Optional<Customer> customer = customerRepository.findByLogin(login);
+		//检查密码
+		if (customer.isPresent()) {
+			Customer user= customer.get();
+			if(passwordEncoder.matches(password, user.getPassword())){
+				CustomerResource customerResource=new CustomerResource();
+				customerResource.setId(user.getId());
+				customerResource.setLogin(user.getLogin());
+				customerResource.setUserName(user.getRealName());
+				customerResource.setPassword("");
+				customerResource.setResList(resource);//全部不能访问
+				Map<String,Resource>map=new HashMap<>();
+				//找出角色对应能访问的资源
+				user.getRoles().stream().forEach(a->{
+					a.getAuthoritys().stream().forEach(b->{
+						Resource r=new Resource();
+						r.setIsVisit(true);
+						r.setResourceCode(b.getCode());
+						r.setResourceName(b.getName());
+						map.put(b.getCode(), r);
+					});
+				});
+				List<Resource> resourceList=new ArrayList<>();
+				customerResource.getResList().stream().forEach(a->{
+					if(map.get(a.getResourceCode())!=null){
+						resourceList.add(map.get(a.getResourceCode()));
+					}else{
+						resourceList.add(a);
+					}
+					
+				});
+				
+				customerResource.setResList(resourceList);
+				
+				
+				return JsonObj.newSuccessJsonObj("登录成功", customerResource);
+			}else{
+				return JsonObj.newErrorJsonObj("密码不正确");
+			}
+			
+			
+		
+			
+		
 		}
+	
+		
 		return JsonObj.newErrorJsonObj("用户名不存在");
+	}
+
+
+
+
+	@Override
+	public JsonObj LoadCustomerById(Long id) {
+		Customer user = customerRepository.find(id);
+		//检查密码
+		if (user!=null) {
+		
+
+			CustomerResource customerResource=new CustomerResource();
+			customerResource.setId(user.getId());
+			customerResource.setLogin(user.getLogin());
+			customerResource.setUserName(user.getRealName());
+			customerResource.setPassword("");
+			customerResource.setResList(resource);//全部不能访问
+			Map<String,Resource>map=new HashMap<>();
+			//找出角色对应能访问的资源
+			user.getRoles().stream().forEach(a->{
+				a.getAuthoritys().stream().forEach(b->{
+					Resource r=new Resource();
+					r.setIsVisit(true);
+					r.setResourceCode(b.getCode());
+					r.setResourceName(b.getName());
+					map.put(b.getCode(), r);
+				});
+			});
+			List<Resource> resourceList=new ArrayList<>();
+			customerResource.getResList().stream().forEach(a->{
+				if(map.get(a.getResourceCode())!=null){
+					resourceList.add(map.get(a.getResourceCode()));
+				}else{
+					resourceList.add(a);
+				}
+				
+			});
+			
+			customerResource.setResList(resourceList);
+			
+			
+			return JsonObj.newSuccessJsonObj("登录成功", customerResource);
+		
+			
+			
+		
+			
+		
+		}
+
+		return JsonObj.newErrorJsonObj("用户不存在,请联系客服");
+		
 	}
 }
