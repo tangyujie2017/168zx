@@ -1,5 +1,8 @@
 package cn.tz.www.customer.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,9 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.tz.www.customer.controller.rep.LoginReq;
 import cn.tz.www.customer.controller.service.CustomerUserService;
 import cn.tz.www.customer.entity.tools.JsonObj;
+import cn.tz.www.customer.view.CustomerResource;
 import cn.tz.www.customer.view.CustomerVo;
+import cn.tz.www.customer.view.Resource;
 
 @Controller
 public class CustomerUserController {
@@ -24,14 +30,33 @@ public class CustomerUserController {
 	// 免状态登录
 	@GetMapping(value = "/api/customer/login")
 	@ResponseBody
-	public JsonObj loginCustomer(String login, String password, HttpServletRequest request,
+	public JsonObj loginCustomer(LoginReq req, HttpServletRequest request,
 			HttpServletResponse response) {
-		if(login!=null&&!"".equals(login)&&password!=null&&!"".equals(password)){
-			 JsonObj resp = customerUserService.readByMobile(login,password, passwordEncoder);
-			 return resp;
-		}else{
-			return JsonObj.newErrorJsonObj("请填写用户名和密码");
-		}
+         if(req!=null){
+        	 JsonObj resp = customerUserService.readByMobile(req.getLogin(),req.getPassword(), passwordEncoder);
+        	 return resp;
+         }else{
+        	 //没有用户登陆
+         CustomerResource customerResource=new CustomerResource();
+        	List<Resource> resource=new ArrayList<>();
+        	Resource r1=new Resource("YWSD","要闻速递",false);
+      		Resource r2=new Resource("AGZJ","A股直击",false);
+      	    Resource r3=new Resource("LCCP","理财产品",false);
+      		Resource r4=new Resource("HMC","黑马池",false);
+      		Resource r5=new Resource("MSCP","名师操盘",false);
+      		Resource r6=new Resource("GRZX","个人中心",true);
+      		resource.add(r1);
+      		resource.add(r2);
+      		resource.add(r3);
+      		resource.add(r4);
+      		resource.add(r5);
+      		resource.add(r6);
+      		customerResource.setResList(resource);
+      		return JsonObj.newSuccessJsonObj("没有用户登录", customerResource);
+         }
+		 
+		
+	
 		
 	   
 		
