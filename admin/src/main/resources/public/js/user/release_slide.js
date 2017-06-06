@@ -169,14 +169,12 @@ function creatSlideList(data) {
 			 html += "<td>A股直击</td>"		 
 		 }
 		 if(list[i].type==3){
-			 html += "<td>热点追踪</td>"		 
+			 html += "<td>名师操盘</td>"		 
 		 }
 		 if(list[i].type==4){
 			html += "<td>黑马池</td>"		 
 			 }
-		 if(list[i].type==5){
-			html += "<td>名师操盘</td>"		 
-				 }			
+			
 					
 					
 			html += "<td>" + list[i].remark + "</td>"
