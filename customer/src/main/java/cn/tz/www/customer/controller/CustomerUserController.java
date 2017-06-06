@@ -30,10 +30,10 @@ public class CustomerUserController {
 	// 免状态登录
 	@GetMapping(value = "/api/customer/login")
 	@ResponseBody
-	public JsonObj loginCustomer(LoginReq req, HttpServletRequest request,
+	public JsonObj loginCustomer(String login ,String password, HttpServletRequest request,
 			HttpServletResponse response) {
-         if(req!=null){
-        	 JsonObj resp = customerUserService.readByMobile(req.getLogin(),req.getPassword(), passwordEncoder);
+         if(login!=null&&!"".equals(login)&&password!=null&&!"".equals(password)){
+        	 JsonObj resp = customerUserService.readByMobile(login,password, passwordEncoder);
         	 return resp;
          }else{
         	 //没有用户登陆
@@ -41,9 +41,9 @@ public class CustomerUserController {
         	List<Resource> resource=new ArrayList<>();
         	Resource r1=new Resource("YWSD","要闻速递",false);
       		Resource r2=new Resource("AGZJ","A股直击",false);
-      	    Resource r3=new Resource("LCCP","理财产品",false);
+      		Resource r3=new Resource("MSCP","名师操盘",false);
       		Resource r4=new Resource("HMC","黑马池",false);
-      		Resource r5=new Resource("MSCP","名师操盘",false);
+      		Resource r5=new Resource("LCCP","理财产品",false);
       		Resource r6=new Resource("GRZX","个人中心",true);
       		resource.add(r1);
       		resource.add(r2);

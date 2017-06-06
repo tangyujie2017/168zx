@@ -37,9 +37,9 @@ public class CustomerUserServiceImpl implements CustomerUserService {
 	private static void initResource(){
 		Resource r1=new Resource("YWSD","要闻速递",false);
 		Resource r2=new Resource("AGZJ","A股直击",false);
-		Resource r3=new Resource("LCCP","理财产品",false);
+		Resource r3=new Resource("MSCP","名师操盘",false);
 		Resource r4=new Resource("HMC","黑马池",false);
-		Resource r5=new Resource("MSCP","名师操盘",false);
+		Resource r5=new Resource("LCCP","理财产品",false);
 		Resource r6=new Resource("GRZX","个人中心",false);
 		resource.add(r1);
 		resource.add(r2);

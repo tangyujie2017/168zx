@@ -22,13 +22,12 @@ public class CustomerInfoController {
 	// 注册
 	@RequestMapping(value = "/api/customer/info/list")
 	@ResponseBody
-	public JsonObj getNewsByType(@Valid PageParamNews param) {
+	public JsonObj getNewsByType(Integer type, Integer pageSize,Integer currentPage) {
 		
-		if (param != null&&param.getSearch().getType()!=null) {
-			int pageSize = param.getPageSize();
-			int currentPage = param.getPageIndex();
+		if (type != null&&pageSize!=null&&currentPage!=null) {
+			
 			Groups g = new Groups();
-			g.Add("type", param.getSearch().getType());
+			g.Add("type", type);
 			g.Add("status", 1);
 			g.setOrderby("createTime");
 			Page<News> page = new Page<News>(pageSize, currentPage);
