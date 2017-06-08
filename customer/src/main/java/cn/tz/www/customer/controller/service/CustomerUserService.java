@@ -7,5 +7,6 @@ import cn.tz.www.customer.view.CustomerVo;
 
 public interface CustomerUserService {
 	public JsonObj readByMobile(String login,String password,PasswordEncoder passwordEncoder);
+	public JsonObj resetPassword(Long id , String oldPassword,String newPassword,PasswordEncoder passwordEncoder);
 	public JsonObj LoadCustomerById(Long id);
 }

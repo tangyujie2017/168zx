@@ -75,6 +75,16 @@ public class CustomerUserController {
 		}
 		
 	}
-
+  
+	@RequestMapping(value = "/api/customer/reset")
+	@ResponseBody
+	public JsonObj resetPassword(Long customerId,String oldPassword,String newPassword) throws Exception {
+		if(customerId!=null&&oldPassword!=null&&!"".equals(oldPassword)&&newPassword!=null&&!"".equals(newPassword)){
+			return customerUserService.resetPassword(customerId, oldPassword, newPassword, passwordEncoder);
+		}else{
+			return JsonObj.newErrorJsonObj("请求参数不正确");
+		}
+		
+	} 	
 	
 }

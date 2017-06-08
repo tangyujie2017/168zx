@@ -45,6 +45,7 @@ public class SecurityConfig {
           .antMatchers("/api/customer/check").permitAll()
           .antMatchers("/api/customer/login").permitAll()
           .antMatchers("/api/customer/regist").permitAll()
+          .antMatchers("/api/customer/reset").permitAll()
           //公共资源不需要认证
           .antMatchers("/api/customer/public/*").permitAll()
           .antMatchers("/api/customer/*").authenticated()

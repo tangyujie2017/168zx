@@ -108,6 +108,23 @@ public class CustomerUserServiceImpl implements CustomerUserService {
 	}
 
 
+	@Transactional
+	public JsonObj resetPassword(Long id , String oldPassword,String newPassword,PasswordEncoder passwordEncoder){
+		Customer user = customerRepository.find(id);
+		
+		if(user!=null){
+			if(passwordEncoder.matches(oldPassword, user.getPassword())){
+				user.setPassword(passwordEncoder.encode(newPassword));
+				customerRepository.update(user);
+				return JsonObj.newSuccessJsonObj("修改密码成功");	
+				
+			}else{
+				return JsonObj.newErrorJsonObj("旧密码输入不正确");	
+			}
+		}else{
+			return JsonObj.newErrorJsonObj("用户不存在,请联系管理员");
+		}
+		}
 
 
 	@Override

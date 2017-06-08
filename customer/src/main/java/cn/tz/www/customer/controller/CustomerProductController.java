@@ -1,12 +1,10 @@
 package cn.tz.www.customer.controller;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.tz.www.customer.controller.service.ProductService;
@@ -14,7 +12,6 @@ import cn.tz.www.customer.entity.table.Product;
 import cn.tz.www.customer.entity.tools.Groups;
 import cn.tz.www.customer.entity.tools.JsonObj;
 import cn.tz.www.customer.entity.tools.Page;
-import cn.tz.www.customer.util.PageParamProduct;
 
 @Controller
 public class CustomerProductController {
@@ -23,14 +20,11 @@ public class CustomerProductController {
 	@Value("${customer.images.url-prefix}")
 	private String imgUrl;
 	// 注册
-	@PostMapping(value = "/api/customer/product/list")
+	@GetMapping(value = "/api/customer/product/list")
 	@ResponseBody
-	public JsonObj loadProductList(@Valid PageParamProduct param) {
-		
-		if (param != null) {
-			int pageSize = param.getPageSize();
-			int currentPage = param.getPageIndex();
-			Groups g = new Groups();
+	public JsonObj loadProductList( Integer pageSize,Integer currentPage) {
+		if (pageSize!=null&&currentPage!=null) {
+           Groups g = new Groups();
 			
 			Page<Product> page = new Page<Product>(pageSize, currentPage);
 			return JsonObj.newSuccessJsonObj("获取消息成功", productService.loadProductList(g, page, imgUrl));
@@ -38,6 +32,8 @@ public class CustomerProductController {
 		}else{
 			return JsonObj.newErrorJsonObj("请求参数不正确");
 		}
+	
+		
 		
 
 	}
