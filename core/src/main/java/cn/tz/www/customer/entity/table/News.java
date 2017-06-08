@@ -40,7 +40,8 @@ public class News {
 	
 	@Column(name = "view_times")
 	private Integer viewTimes;
-
+	@Column(name = "newsMainImg")
+    private String newsMainImg;
 	public Long getId() {
 		return id;
 	}
@@ -111,6 +112,14 @@ public class News {
 
 	public void setDeclareContext(String declareContext) {
 		this.declareContext = declareContext;
+	}
+
+	public String getNewsMainImg() {
+		return newsMainImg;
+	}
+
+	public void setNewsMainImg(String newsMainImg) {
+		this.newsMainImg = newsMainImg;
 	}
 
 	

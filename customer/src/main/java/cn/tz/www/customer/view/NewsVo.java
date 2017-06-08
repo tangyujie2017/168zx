@@ -7,11 +7,12 @@ public class NewsVo {
 	private Long id;
 	private Integer status;
 	private String title;
-	private String img;
+	private String newsMainImg;
 	private Integer type;
     private String context;
 	private String createTime;
 	private Integer viewTimes;
+	private String baseUrl;
 	public Long getId() {
 		return id;
 	}
@@ -30,11 +31,18 @@ public class NewsVo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getImg() {
-		return img;
+	
+	public String getNewsMainImg() {
+		return newsMainImg;
 	}
-	public void setImg(String img) {
-		this.img = img;
+	public void setNewsMainImg(String newsMainImg) {
+		this.newsMainImg = newsMainImg;
+	}
+	public String getBaseUrl() {
+		return baseUrl;
+	}
+	public void setBaseUrl(String baseUrl) {
+		this.baseUrl = baseUrl;
 	}
 	public Integer getType() {
 		return type;
