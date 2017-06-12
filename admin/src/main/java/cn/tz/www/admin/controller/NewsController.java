@@ -132,6 +132,7 @@ public class NewsController {
 		return s;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/news/list")
 	@ResponseBody
 	public PageVo<NewsVo> listNews(@Valid PageParam param, BindingResult result, Principal principal) {
@@ -151,12 +152,16 @@ public class NewsController {
 		List<NewsVo> list=new ArrayList<>();
 		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		page.getItems().stream().forEach((Consumer)a->{
+		page.getItems().stream().forEach((Consumer<?>)a->{
 			News n=(News)a;
 			NewsVo temp=new NewsVo();
 			temp.setContext(n.getContext());
 			temp.setCreateTime(time.format(n.getCreateTime()));
-			temp.setCreateUser(n.getCreateUser());
+			if(n.getCreateUser()!=null){
+				
+				temp.setCreateUser(n.getCreateUser().getRealName()==null?"":n.getCreateUser().getRealName());
+			}
+		
 			temp.setDeclareContext(n.getDeclareContext());
 			temp.setId(n.getId());
 			temp.setStatus(n.getStatus());
@@ -175,7 +180,21 @@ public class NewsController {
 		if (principal == null) {
 			JsonObj.newErrorJsonObj("用户已过期请从新登录");
 		}
-
-		return JsonObj.newSuccessJsonObj("创建消息成功", newsService.loadNewsById(newsId));
+		News n=newsService.loadNewsById(newsId);
+		NewsVo temp=new NewsVo();
+		temp.setContext(n.getContext());
+		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		temp.setCreateTime(time.format(n.getCreateTime()));
+		if(n.getCreateUser()!=null){
+			
+			temp.setCreateUser(n.getCreateUser().getRealName()==null?"":n.getCreateUser().getRealName());
+		}
+	
+		temp.setDeclareContext(n.getDeclareContext());
+		temp.setId(n.getId());
+		temp.setStatus(n.getStatus());
+		temp.setTitle(n.getTitle());
+		temp.setViewTimes(n.getViewTimes());
+		return JsonObj.newSuccessJsonObj("加载成功", temp);
 	}
 }

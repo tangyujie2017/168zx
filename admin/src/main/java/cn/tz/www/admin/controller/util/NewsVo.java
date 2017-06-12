@@ -12,7 +12,7 @@ public class NewsVo {
 	private String title;
 	private String declareContext;
 	private String context;
-	private User createUser;
+	private String createUser;
 	 private String createTime;
 	 private Integer viewTimes;
 	public Long getId() {
@@ -42,14 +42,15 @@ public class NewsVo {
 	public String getContext() {
 		return context;
 	}
-	public void setContext(String context) {
-		this.context = context;
-	}
-	public User getCreateUser() {
+	
+	public String getCreateUser() {
 		return createUser;
 	}
-	public void setCreateUser(User createUser) {
+	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
+	}
+	public void setContext(String context) {
+		this.context = context;
 	}
 	public String getCreateTime() {
 		return createTime;
