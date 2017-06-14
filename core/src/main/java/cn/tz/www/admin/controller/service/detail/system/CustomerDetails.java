@@ -24,6 +24,7 @@ public class CustomerDetails {
     
 	private String createTime;
 	private String basePath;
+	private String serverTime;
 	private List<CustomerRoleDetails> roles;
 
 	public String getBasePath() {
@@ -51,7 +52,7 @@ public class CustomerDetails {
 	}
 
 	public CustomerDetails(long id, String mobile, String realName, String login, String password, boolean locked,
-			List<CustomerRoleDetails> roles, String headPhoto, Date createTime) {
+			List<CustomerRoleDetails> roles, String headPhoto, Date createTime,String serverTime) {
 		this.id = id;
 		this.mobile = mobile;
 		this.realName = realName;
@@ -69,12 +70,13 @@ public class CustomerDetails {
 		}
 		this.headPhoto = headPhoto;
 		this.createTime = CommonUtil.getNow(2, createTime);
+		this.serverTime=serverTime;
 	}
 
 	
 
 	public CustomerDetails(long id, String mobile, String realName, String login, String password, boolean locked,
-			String headPhoto, Date createTime) {
+			String headPhoto, Date createTime,String serverTime) {
 		this.id = id;
 		this.mobile = mobile;
 		this.realName = realName;
@@ -83,10 +85,11 @@ public class CustomerDetails {
 		this.locked = locked;
 		this.headPhoto = headPhoto;
 		this.createTime = CommonUtil.getNow(2, createTime);
+		this.serverTime=serverTime;
 	}
 
 	public CustomerDetails(long id, String mobile, String realName, String login, String password, boolean locked,
-			List<CustomerRoleDetails> roles, String headPhoto) {
+			List<CustomerRoleDetails> roles, String headPhoto,String serverTime) {
 		this.id = id;
 		this.mobile = mobile;
 		this.realName = realName;
@@ -94,6 +97,7 @@ public class CustomerDetails {
 		this.password = password;
 		this.locked = locked;
 		this.roles = roles;
+		this.serverTime=serverTime;
 		if (!roles.isEmpty()) {
 			StringBuffer sBuffer = new StringBuffer();
 			for (CustomerRoleDetails role : roles) {
@@ -105,13 +109,14 @@ public class CustomerDetails {
 		this.headPhoto = headPhoto;
 	}
 
-	public CustomerDetails(long id, String mobile, String realName, String login, boolean locked, List<CustomerRoleDetails> roles) {
+	public CustomerDetails(long id, String mobile, String realName, String login, boolean locked, List<CustomerRoleDetails> roles,String serverTime) {
 		this.id = id;
 		this.mobile = mobile;
 		this.realName = realName;
 		this.login = login;
 		this.locked = locked;
 		this.roles = roles;
+		this.serverTime= serverTime;
 	}
 
 	public Long getId() {
@@ -192,6 +197,14 @@ public class CustomerDetails {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getServerTime() {
+		return serverTime;
+	}
+
+	public void setServerTime(String serverTime) {
+		this.serverTime = serverTime;
 	}
 
 	

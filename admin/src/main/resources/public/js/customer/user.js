@@ -22,13 +22,20 @@ $(function() {
 		"visible" : true,
 		"data" : 'realName',
 		"width" : "120px"
+	},{
+		"title" : "到期时间",
+		"class" : "center",
+		"sortable" : true,
+		"visible" : true,
+		"data" : 'serverTime',
+		"width" : "120px"
 	}, {
 		"title" : "角色",
 		"class" : "center",
 		"sortable" : false,
 		"visible" : true,
 		"data" : 'roleStr',
-		'width':'420px'
+		'width':'360px'
 	}, {
 		"title" : "状态",
 		"class" : "center",

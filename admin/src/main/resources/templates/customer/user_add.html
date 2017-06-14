@@ -5,7 +5,11 @@
 <meta charset="UTF-8" />
 <title>添加用户</title>
 <head th:include="tag::tag" />
+<link rel="stylesheet" type="text/css" th:href="@{/js/time/datedropper.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/js/time/timedropper.min.css}"/>
 <script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/time/datedropper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/time/timedropper.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/customer/user_add.js}"></script>
 </head>
 <body>
@@ -37,6 +41,12 @@
 								<td  class="g-required">真实姓名：</td>
 								<td>
 									<div class="col-md-3"><input type="text" name="realName" id="realName" class="form-control" /></div>
+								</td>
+							</tr>
+							<tr>
+								<td  class="g-required">到期时间：</td>
+								<td>
+									<div class="col-md-3"><input type="text" name="serverTime" id="pickdate" class="form-control" /></div>
 								</td>
 							</tr>
 							<tr>

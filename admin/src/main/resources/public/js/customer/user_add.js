@@ -1,4 +1,12 @@
 $(function() {
+	
+	//初始化时间控件
+	$("#pickdate").dateDropper({
+		animate: false,
+		format: 'Y-m-d',
+		maxYear: '2050'
+	});
+	
 	userFormValidate = formValidate("addUserForm",{
 		password: {
 			required: true,

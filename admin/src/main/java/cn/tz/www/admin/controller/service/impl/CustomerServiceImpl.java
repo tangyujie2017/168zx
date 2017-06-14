@@ -75,6 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
 		temp.setMobile(user.getMobile());
 		temp.setRealName(user.getRealName());
 		temp.setLogin(user.getMobile());
+		temp.setServerTime(user.getServerTime());
 		temp.getRoles().clear();
 		temp.setRoles(user.getRoles());
 		customerRepository.update(temp);

@@ -32,7 +32,7 @@ public class CustomerAddCmd {
 	  private String repeatPassword;
 
 	  private boolean locked = false;
-
+      private String serverTime;
 	  private String headPhoto;
 
 	  public CustomerAddCmd() {
@@ -40,12 +40,13 @@ public class CustomerAddCmd {
 	  }
 
 	  public CustomerAddCmd(
-	      String mobile, String realName, Set<Long> roles, String password, String repeatPassword) {
+	      String mobile, String realName, Set<Long> roles, String password, String repeatPassword,String serverTime) {
 	    this.mobile = mobile;
 	    this.realName = realName;
 	    this.roles = roles;
 	    this.password = password;
 	    this.repeatPassword = repeatPassword;
+	    this.serverTime=serverTime;
 	  }
 
 	  public CustomerDetails toDetails() {
@@ -57,7 +58,7 @@ public class CustomerAddCmd {
 	    }
 	    CustomerDetails details =
 	        new CustomerDetails(
-	            0, mobile, realName, mobile, password, locked, tmpRoleDetailsSet, headPhoto);
+	            0, mobile, realName, mobile, password, locked, tmpRoleDetailsSet, headPhoto,serverTime);
 	    return details;
 	  }
 
@@ -124,5 +125,13 @@ public class CustomerAddCmd {
 	  public void setHeadPhoto(String headPhoto) {
 	    this.headPhoto = headPhoto;
 	  }
+
+	public String getServerTime() {
+		return serverTime;
+	}
+
+	public void setServerTime(String serverTime) {
+		this.serverTime = serverTime;
+	}
 
 }

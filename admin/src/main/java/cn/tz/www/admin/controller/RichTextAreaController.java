@@ -49,8 +49,8 @@ public class RichTextAreaController {
 	private Values values;
 	@Autowired
 	private ServletContext servletContext;
-	private static long maxSize = 1000000;
-
+	private static long maxSize = 5000000;
+	                              
 	@PostMapping(value = "/richTextArea/fileUpload")
 
 	@ResponseBody
@@ -100,7 +100,7 @@ public class RichTextAreaController {
 				String filename = uploadify.getOriginalFilename();
 				// 检查文件大小
 				if (uploadify.getSize() > maxSize) {
-					return getError("上传文件大小超过限制。");
+					return getError("上传文件大小超过限制(5M)。");
 				}
 				// 检查扩展名
 				if (filename.lastIndexOf(".") >= 0) {

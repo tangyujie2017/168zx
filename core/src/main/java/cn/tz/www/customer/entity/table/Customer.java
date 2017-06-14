@@ -1,5 +1,7 @@
 package cn.tz.www.customer.entity.table;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,8 +50,8 @@ public class Customer extends BaseEntity {
     
     @Column(name = "create_time")
     private Date createTime = new Date();
-    
-   
+    @Column(name = "server_time")
+    private Date serverTime = new Date();
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(name = "customer_customerrole", joinColumns = { @JoinColumn(name = "customerid", referencedColumnName = "id") }, inverseJoinColumns = {
@@ -84,6 +86,18 @@ public class Customer extends BaseEntity {
 
 	public String getRealName() {
 		return realName;
+	}
+
+
+
+	public Date getServerTime() {
+		return serverTime;
+	}
+
+
+
+	public void setServerTime(Date serverTime) {
+		this.serverTime = serverTime;
 	}
 
 
@@ -186,22 +200,24 @@ public class Customer extends BaseEntity {
 	        this.realName = realName;
 	    }
 
-	    public Customer(String mobile, String realName, String login, String password, boolean locked, List<CustomerRole> roles) {
+	    public Customer(String mobile, String realName, String login, String password, boolean locked, List<CustomerRole> roles,Date serverTime) {
 	        this.mobile = mobile;
 	        this.realName = realName;
 	        this.login = login;
 	        this.password = password;
 	        this.locked = locked;
 	        this.roles = roles;
+	        this.serverTime=serverTime;
 	    }
 	
-	    public Customer(Long id, String mobile, String realName, String login, boolean locked, List<CustomerRole> roles) {
+	    public Customer(Long id, String mobile, String realName, String login, boolean locked, List<CustomerRole> roles,Date serverTime) {
 	        this.id = id;
 	        this.mobile = mobile;
 	        this.login = login;
 	        this.realName = realName;
 	        this.locked = locked;
 	        this.roles = roles;
+	        this.serverTime=serverTime;
 	    }
 	
 	
@@ -218,16 +234,18 @@ public class Customer extends BaseEntity {
             locked,
             CustomerRole.toDetailsList(roles),
             headPhoto,
-            createTime);
+            createTime,dateToString(serverTime));
       }
+    
     public static Customer fromDetails(CustomerDetails details) {
+    	
         return new Customer(
             details.getMobile(),
             details.getRealName(),
             details.getLogin(),
             details.getPassword(),
             details.isLocked(),
-            CustomerRole.fromDetailsList(details.getRoles()));
+            CustomerRole.fromDetailsList(details.getRoles()),dateToString(details.getServerTime()));
       }
     public static Customer fromDetails2(CustomerDetails details) {
         return new Customer(
@@ -236,7 +254,7 @@ public class Customer extends BaseEntity {
             details.getRealName(),
             details.getLogin(),
             details.isLocked(),
-            CustomerRole.fromDetailsList(details.getRoles()));
+            CustomerRole.fromDetailsList(details.getRoles()),dateToString(details.getServerTime()));
       }
     public static List<Select2Vo> toSelect2VoList(List<Customer> userList) {
 		if (userList == null)
@@ -270,5 +288,24 @@ public class Customer extends BaseEntity {
         return detailsList;
       }
 	
-
+ private static String  dateToString(Date serverTime){
+	 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	 String dateString="";
+	 if(serverTime!=null){
+		  dateString = formatter.format(serverTime);
+	 }
+	 
+	return dateString;
+ }
+ private static Date  dateToString(String  serverTime){
+	 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	 Date date = null;
+	try {
+		date = formatter.parse(serverTime);
+	} catch (ParseException e) {
+		
+		e.printStackTrace();
+	}
+	return date;
+ }
 }

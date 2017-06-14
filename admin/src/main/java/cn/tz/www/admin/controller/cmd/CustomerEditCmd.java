@@ -26,16 +26,17 @@ public class CustomerEditCmd {
 	private Collection<Long> roles;
 	
 	private boolean locked = false;
-
+    private  String serverTime;
 	public CustomerEditCmd() {
 	}
 
-	public CustomerEditCmd(Long id, String mobile, String realName, boolean locked, Collection<Long> roles) {
+	public CustomerEditCmd(Long id, String mobile, String realName, boolean locked, Collection<Long> roles,String serverTime) {
 		this.id = id;
 		this.mobile = mobile;
 		this.realName = realName;
 		this.roles = roles;
 		this.locked = locked;
+		this. serverTime= serverTime;
 	}
 
 	public String getMobile() {
@@ -62,6 +63,14 @@ public class CustomerEditCmd {
 		this.roles = roles;
 	}
 
+	public String getServerTime() {
+		return serverTime;
+	}
+
+	public void setServerTime(String serverTime) {
+		this.serverTime = serverTime;
+	}
+
 	public CustomerDetails toDetails() {
 		List<CustomerRoleDetails> tmpRoleDetailsSet = null;
 		if (roles != null) {
@@ -69,7 +78,7 @@ public class CustomerEditCmd {
 			roles.stream().forEach(i -> roleDetailsSet.add(new CustomerRoleDetails(Long.valueOf(i))));
 			tmpRoleDetailsSet = roleDetailsSet;
 		}
-		CustomerDetails details = new CustomerDetails(id, mobile, realName, mobile, locked, tmpRoleDetailsSet);
+		CustomerDetails details = new CustomerDetails(id, mobile, realName, mobile, locked, tmpRoleDetailsSet,serverTime);
 		return details;
 	}
 	
@@ -81,7 +90,7 @@ public class CustomerEditCmd {
 			roleDetails.stream().forEach(r -> tmpRoleIds.add(r.getId()));
 			roleIds = tmpRoleIds;
 		}
-	    return new CustomerEditCmd(details.getId(), details.getMobile(), details.getRealName(), details.isLocked(), roleIds);
+	    return new CustomerEditCmd(details.getId(), details.getMobile(), details.getRealName(), details.isLocked(), roleIds,details.getServerTime());
 	  }
 
 	public Long getId() {

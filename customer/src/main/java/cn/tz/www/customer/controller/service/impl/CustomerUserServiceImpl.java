@@ -1,6 +1,7 @@
 package cn.tz.www.customer.controller.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,13 @@ public class CustomerUserServiceImpl implements CustomerUserService {
 		//检查密码
 		if (customer.isPresent()) {
 			Customer user= customer.get();
+			if(user.isLocked()){
+				return JsonObj.newErrorJsonObj("账号已经被锁定,无法登录");
+			}
+			if(user.getServerTime().before(new Date())){
+				return JsonObj.newErrorJsonObj("账号已过期,无法登录");
+				
+			}
 			if(passwordEncoder.matches(password, user.getPassword())){
 				CustomerResource customerResource=new CustomerResource();
 				customerResource.setId(user.getId());
@@ -133,7 +141,14 @@ public class CustomerUserServiceImpl implements CustomerUserService {
 		//检查密码
 		if (user!=null) {
 		
-
+			if(user.isLocked()){
+				return JsonObj.newErrorJsonObj("账号已经被锁定,无法登录");
+			}
+			if(user.getServerTime()!=null){
+			if(user.getServerTime().before(new Date())){
+				return JsonObj.newErrorJsonObj("账号已过期,无法登录");
+				
+			}}
 			CustomerResource customerResource=new CustomerResource();
 			customerResource.setId(user.getId());
 			customerResource.setLogin(user.getLogin());
