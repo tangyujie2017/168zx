@@ -16,6 +16,7 @@
     <script id="jquery_182" type="text/javascript" class="library" src="/js/jquery-1.8.2.min.js"></script>
     <script id="jquery_183" type="text/javascript" class="library" src="/js/jquery.luara.0.0.1.min.js"></script>
     <script type="text/javascript" src="/js/test.js"></script>
+    <script type="text/javascript" src="/js/web/index.js"></script>
 </head>
 <body>
 <div class="main">
@@ -28,6 +29,7 @@
                 </a>
             </div>
             <div class="header-right fr">
+            <!-- 导航栏 -->
                 <ul>
                     <li><a href="" class="active">首页</a>
                         <div><img class="one active" src="/images/icon_mark_menu.png" alt=""/></div></li>
@@ -43,7 +45,7 @@
     <div class="hotInfo ">
         <div class="sblie header-main">
             <div class="example2 fl">
-                <ul>
+                <ul id="slider_ul">
                     <li><img src="/images/1.jpg" alt="1" style="width: 729px;height: 365px"/></li>
                     <li><img src="/images/2.jpg" alt="2" style="width: 729px;height: 365px"/></li>
                     <li><img src="/images/3.jpg" alt="3" style="width: 729px;height: 365px"/></li>
@@ -61,7 +63,7 @@
                     <span>热点资讯</span>
                 </div>
                 <div class="times">
-                    <ul>
+                    <ul id="hot_news_ul">
                         <li><a href="hot.html" style="text-decoration: none"><b></b><p>热点新闻的标题热点新闻的标题热点新闻
                             的标题热点新闻的标题</p></a></li>
                         <!--b标签不输入内容，span标签内输入时间不限制格式，p标签内输入介绍内容。注意，标签内不能使用div分割-->
@@ -85,7 +87,7 @@
                     <span class="ti">证券要闻</span>
                     <a href="news.html">更多</a>
                 </div>
-                <div class="three-img">
+               <!--  <div class="three-img">
                     <a href="news.html"><img class="fl" src="/images/new.png" alt=""/></a>
                     <a href="news.html"><img class="fl img-wi" src="/images/new2.jpg" alt=""/></a>
                     <a href="news.html"> <img class="fl img-wi" src="/images/new3.jpg" alt=""/></a>
@@ -94,8 +96,8 @@
                 <div class="see">
                     <img src="/images/icon_view.png" alt=""/>
                     <span class="see-tu">111,222</span>
-                </div>
-                <ul class="lists">
+                </div> -->
+                <ul class="lists"   id="zqyw_ui">
                     <li class="ov">
                         <a href="news.html">
                            <div class="img fl">
@@ -164,7 +166,7 @@
                     <span class="ti">A股分析</span>
                     <a href="analysis.html">更多</a>
                 </div>
-                <div class="three-img">
+              <!--   <div class="three-img">
                     <a href="analysisD.html"><img class="fl" src="/images/new.png" alt=""/></a>
                     <a href="analysisD.html"><img class="fl img-wi" src="/images/new2.jpg" alt=""/></a>
                     <a href="analysisD.html"> <img class="fl img-wi" src="/images/new3.jpg" alt=""/></a>
@@ -173,8 +175,8 @@
                 <div class="see">
                     <img src="/images/icon_view.png" alt=""/>
                     <span class="see-tu">111,222</span>
-                </div>
-                <ul class="lists">
+                </div> -->
+                <ul class="lists" id="agzj_ul">
                     <li class="ov">
                         <a href="analysisD.html">
                             <div class="img fl">
@@ -240,10 +242,10 @@
             <div class="three-three fl three-wi three-with">
                 <div class="hot-titile pad">
                     <img src="/images/icon_mark.png" alt=""/>
-                    <span class="ti">宏观策略</span>
+                    <span class="ti">黑马池</span>
                     <a href="strategy.html">更多</a>
                 </div>
-                <div class="three-img">
+              <!--   <div class="three-img">
                     <a href="strategyD.html"><img class="fl" src="/images/new.png" alt=""/></a>
                     <a href="strategyD.html"><img class="fl img-wi" src="/images/new2.jpg" alt=""/></a>
                     <a href="strategyD.html"> <img class="fl img-wi" src="/images/new3.jpg" alt=""/></a>
@@ -252,8 +254,8 @@
                 <div class="see">
                     <img src="/images/icon_view.png" alt=""/>
                     <span class="see-tu">111,222</span>
-                </div>
-                <ul class="lists">
+                </div> -->
+                <ul class="lists" id="hmc_ul">
                     <li class="ov">
                         <a href="strategyD.html">
                         <div class="img fl">
@@ -325,7 +327,7 @@
                 <img src="/images/icon_mark.png" alt=""/>
                 <span class="ti">理财产品</span>
             </div>
-            <div class="pro-top">
+            <div class="pro-top" id="product_div">
                 <div class="pro-list">
                     <a href="probasin.html" style="text-decoration: none">
                         <img src="/images/new2.jpg" alt=""/>

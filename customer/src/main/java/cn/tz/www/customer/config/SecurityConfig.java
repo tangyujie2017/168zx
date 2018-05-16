@@ -81,7 +81,7 @@ public class SecurityConfig {
           "/css/**",
           "/h2-console/*",
           "/assets/*",
-          "/web/hello"
+          "/web/**"
       );
     }
     
