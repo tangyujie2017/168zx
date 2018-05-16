@@ -5,7 +5,7 @@ $(function() {
 	init_hot_new(type);
 	init_zqyw(1);
 	init_agzj(2);
-	init_agzj(4);
+	init_hmc(4);
 	init_product();
 });
 
@@ -171,7 +171,7 @@ function init_hmc(type){
 		success : function(data, status) {
 			if (data.success) {
 				$("#hmc_ul").html("");
-				var hgclHtml="";
+				var hmcHtml="";
 				var list = data.result.items;
 				if(list.length > 0){
 					for(var i=0;i<list.length;i++){
