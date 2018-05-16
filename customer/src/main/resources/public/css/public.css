@@ -1,0 +1,410 @@
+.main {
+    /*width: 1120px;*/
+    /*margin: 0 auto;*/
+}
+
+.header {
+    height: 80px;
+    background: #f5f6f7;
+    overflow: hidden;
+}
+
+.header-main {
+    width: 1120px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.header .logo {
+    margin-top: 22px;
+}
+
+.header-right ul {
+    margin: 0;
+    overflow: hidden;
+}
+
+.header-right ul li {
+    float: left;
+    position: relative;
+}
+
+.header-right ul li a {
+    margin-left: 60px;
+    font: 18px '微软雅黑';
+    color: #969799;
+    line-height: 80px;
+}
+
+.header-right ul li a:hover {
+    color: #4b4c4d;
+    text-decoration: none;
+}
+
+.header-right ul li > img {
+    display: none;
+    position: absolute;
+    bottom: 14px;
+    right: 21px;
+}
+
+.header .one {
+    display: none;
+    position: absolute;
+    bottom: 14px;
+    right: 3px;
+}
+
+.header-right .active {
+    display: inline-block;
+    color: #4b4c4d;
+}
+
+.hotInfo {
+    overflow: hidden;
+}
+
+.sblie {
+    margin-top: 20px;
+}
+
+.exampleN {
+    margin-left: 40px;
+}
+
+.hot-titile {
+    font: 14px '微软雅黑';
+    color: #969799;
+}
+
+.hot-titile span {
+    margin-left: 7px;
+}
+.hot-titile span:hover{
+    cursor: pointer;
+}
+/*时间轴*/
+.times {
+    display: block;
+    margin: 15px 0;
+}
+
+/*首先，我们要创建一个容器class*/
+.times ul {
+    /*margin-left: 25px;*/
+    border-left: 2px solid #ddd;
+}
+
+/*利用ul标签的特性，设置外边框左移25px，左边边框是2px粗的实心线，颜色一般要浅一点*/
+.times ul li {
+    width: 341px;
+    margin-left: -51px;
+    margin-bottom: 25px;
+    line-height: 1.8;
+    font-weight: narmal;
+}
+
+/*一般情况，通过li标签控制圆点回到时间线上，然后控制要出现的文字大小和是否粗体*/
+.times ul li b {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border: 1px solid #e9eced;
+    margin: 5px;
+    margin-top: 11px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+}
+
+/*利用处理加粗以外没有其它特别属性b标签做时间轴的圆点。*/
+.times ul li span {
+    padding-left: 7px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #555;
+}
+
+/*设置span标签的属性，让它来做时间显示，加一点边距，使时间显示离时间线远一点*/
+.times ul li:hover b {
+    border: 2px solid #ff6600;
+}
+
+/*注意这一行，前面的li标签后面加了一个:hover伪属性，意思是鼠标移上来，激活后面的属性，这样可以设置鼠标移动到整个时间范围的时候，时间点和时间显示会变色*/
+.times ul li:hover span {
+    color: #ff6600;
+}
+
+/*同上*/
+.exampleN .times ul li p {
+    padding-left: 15px;
+    font-size: 18px;
+    color: #4b4c4d;
+    margin-left: 10px;
+    /*line-height: 1.5;*/
+}
+
+/*这里利用段落标签p做文字介绍*/
+/*证券要闻*/
+.three{
+    overflow: hidden;
+}
+.three-wi{
+    width: 347px;
+    min-height: 570px;
+}
+.three-with{
+    margin-left: 39px;
+}
+.hot-titile .ti{
+    font-size: 16px;
+    color: #4b4c4d;
+    font-weight: 700;
+}
+.hot-titile>a{
+    font-size: 14px;
+    float: right;
+    margin-top: 3px;
+    color: #969799;
+}
+.pad{
+    padding-bottom: 13px;
+    border-bottom: 1px solid #d4d7d9;
+}
+.three-img{
+    margin-top: 10px;
+    overflow: hidden;
+}
+.three-img>a>img,.list img{
+    width: 110px;
+    height: 74px;
+}
+.img-wi{
+    margin-left: 8px;
+}
+.three-title{
+    font: 18px/1.7 '微软雅黑';
+    margin-top: 5px;
+    color: #4b4c4d;
+}
+.see-tu{
+    margin-left: 3px;
+    font-size: 12px;
+    color: #c8c9cc;
+}
+.header-main .three-wi ul{
+    padding: 0;
+    margin: 0;
+}
+.lists-title{
+    margin-left: 20px;
+}
+.lists .img>img{
+    width: 120px;
+    height: 82px;
+}
+.lists li{
+    margin-bottom: 5px;
+}
+.header-main .three-one .lists,
+.header-main .three-two .lists,
+.header-main .three-three .lists{
+    margin-top: 10px;
+}
+.lists-title-ti{
+    width: 192px;
+    /*font-family: "微软雅黑";*/
+    font-size: 16px;
+    line-height: 1.8;
+    color: #969798;
+}
+/*产品*/
+.product{
+    margin-top: 20px;
+    margin-bottom: 45px;
+}
+.pro-top{
+    margin-top: 20px;
+}
+.pro-list{
+    float: left;
+    margin-left: 30px;
+    width: 200px;
+}
+.pro-list img{
+    width: 200px;
+    height: 137px;
+    box-shadow: 0px 4px 8px 0px
+    rgba(0, 0, 0, 0.3);
+    border-radius: 4px 4px 4px 4px;
+}
+.pro-list:first-child{
+    margin-left: 0;
+}
+.pro-title{
+    margin-top: 18px;
+    font: 18px '微软雅黑';
+    font-weight: 700;
+color: #4b4c4d;
+    text-align: center;
+}
+.p-de{
+    margin-top: 5px;
+    font: 14px/1.6 '微软雅黑';
+    color: #969799;
+}
+
+/*页脚*/
+footer{
+    width: 100%;
+    height: 80px;
+    background: #3d454d;
+}
+footer p{
+    font: 14px/80px '微软雅黑';
+    text-align: center;
+    color: #ffffff;
+}
+/*证券要闻页面*/
+.list-img{
+    width: 180px;
+    height: 123px;
+    margin-right: 18px;
+}
+.new-list{
+    margin: 20px 0;
+}
+.new-list .list-title .list-title-t{
+    font-size: 16px;
+    color: #4b4c4d;
+    margin-bottom: 12px;
+}
+.new-see-list{
+    margin-top: 14px;
+}
+.new-list .list-title .list-title-p{
+    font: 14px/1.9 '微软雅黑';
+    color: #969799;
+    text-indent: 0;
+}
+.new-lists a{
+    text-decoration: none;
+}
+.left .hot-titile img{
+    margin-top: -3px;
+}
+/*证券要闻详情页面*/
+.main-new{
+    margin-top: 34px;
+    margin-bottom: 48px;
+}
+.main-new-list{
+    margin-top: 34px;
+}
+.main-new .exampleN{
+    margin: 0;
+}
+.new-left{
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d4d7d9;
+}
+.new-left span{
+    font-size: 16px;
+    color: #969799;
+    font-weight: 700;
+}
+.left{
+    width: 732px;
+    min-height: 400px;
+    margin-right: 45px;
+}
+.left h2{
+    margin: 20px 0;
+}
+.new-see{
+    margin-bottom: 20px;
+}
+.new-see span{
+    font-size: 14px;
+    color: #c8c9cc;
+}
+.header-main .left p{
+    font: 16px/30px '微软雅黑';
+    color: #4b4b4d;
+    text-indent:23px;
+}
+.header-main .left p img{
+    width: 100%;
+    margin: 12px 0;
+}
+.right{
+    width: 341px;
+    min-height: 400px;
+}
+/*分页样式*/
+.pagination>li>a, .pagination>li>span{
+    margin-left: 8px;
+}
+/*
+产品理财*/
+.pros-list{
+    float: left;
+    width: 224px;
+    margin-top: 18px;
+    /*ma*/
+}
+.pros-lists .pros-list img{
+    width: 224px;
+    height: 148px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 4px 4px 4px 4px;
+}
+.pros-lists .pros-list>div{
+    font-size: 18px;
+    color: #4b4c4d;
+    font-weight: 700;
+    margin: 14px 0 10px 0;
+    text-align: center;
+}
+.pros-lists .pros-list>p{
+    font-size: 14px;
+    line-height: 1.6;
+    color: #969799;
+}
+.pros-ji{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+/*产品详情*/
+.pro-titles{
+    margin: 38px 0 36px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #4b4c4d;
+}
+.con{
+    min-width: 20px;
+    font-size: 16px;
+    color: #4b4b4d;
+    font-weight: 700;
+}
+.content{
+    width: 636px;
+    font: 16px/2 '微软雅黑';
+    color: #4b4b4d;
+    margin-left: 12px;
+    margin-top: -5px;
+}
+.content span{
+    display: block;
+    margin-bottom: 30px;
+}
+.pro{
+    margin-bottom: 30px;
+}
+.pro-l{
+    margin-bottom: 40px;
+}

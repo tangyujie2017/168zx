@@ -45,12 +45,12 @@ public class SecurityConfig {
           .antMatchers("/api/customer/login").permitAll()
           .antMatchers("/api/customer/reset").permitAll()
           .antMatchers("/api/customer/loadById").permitAll()
+         
           //公共资源不需要认证
           .antMatchers("/api/customer/public/*").permitAll()
           .antMatchers("/api/customer/*").authenticated()
           .antMatchers("/api/customer/vip/*").hasAnyRole("VIP")
          
-      ;
       ;
     }
 
@@ -80,9 +80,11 @@ public class SecurityConfig {
           "/images/**",
           "/css/**",
           "/h2-console/*",
-          "/assets/*"
+          "/assets/*",
+          "/web/hello"
       );
     }
+    
 
    
 

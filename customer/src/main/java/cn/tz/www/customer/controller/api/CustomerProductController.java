@@ -1,4 +1,4 @@
-package cn.tz.www.customer.controller;
+package cn.tz.www.customer.controller.api;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

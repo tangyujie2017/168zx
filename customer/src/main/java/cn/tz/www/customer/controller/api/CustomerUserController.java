@@ -1,4 +1,4 @@
-package cn.tz.www.customer.controller;
+package cn.tz.www.customer.controller.api;
 
 import java.util.ArrayList;
 import java.util.List;

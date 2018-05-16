@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<!-- <meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/> -->
+        <title>首页</title>
+    <link rel="stylesheet" href="/css/css.css"/>
+    <link rel="stylesheet" href="/css/public.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/luara.left.css"/>
+    <script id="jquery_182" type="text/javascript" class="library" src="/js/jquery-1.8.2.min.js"></script>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/jquery.luara.0.0.1.min.js"></script>
+    <script type="text/javascript" src="/js/test.js"></script>
+</head>
+<body>
+<div class="main">
+    <!--头-->
+    <div class="header">
+        <div class="header-main">
+            <div class="logo fl">
+                <a href="index.html">
+                    <img src="/images/logo.png" alt="logo"/>
+                </a>
+            </div>
+            <div class="header-right fr">
+                <ul>
+                    <li><a href="" class="active">首页</a>
+                        <div><img class="one active" src="/images/icon_mark_menu.png" alt=""/></div></li>
+                    <li><a href="newlist.html">证券要闻</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="analysis.html">A股分析</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="strategy.html">宏观策略</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="product.html">产品理财</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--热点资讯-->
+    <div class="hotInfo ">
+        <div class="sblie header-main">
+            <div class="example2 fl">
+                <ul>
+                    <li><img src="/images/1.jpg" alt="1" style="width: 729px;height: 365px"/></li>
+                    <li><img src="/images/2.jpg" alt="2" style="width: 729px;height: 365px"/></li>
+                    <li><img src="/images/3.jpg" alt="3" style="width: 729px;height: 365px"/></li>
+                </ul>
+                <ol>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+            <div class="exampleN fl">
+                <div class="hot-titile">
+                    <img src="/images/icon_mark.png" alt=""/>
+                    <span>热点资讯</span>
+                </div>
+                <div class="times">
+                    <ul>
+                        <li><a href="hot.html" style="text-decoration: none"><b></b><p>热点新闻的标题热点新闻的标题热点新闻
+                            的标题热点新闻的标题</p></a></li>
+                        <!--b标签不输入内容，span标签内输入时间不限制格式，p标签内输入介绍内容。注意，标签内不能使用div分割-->
+                        <li><a href="hot.html" style="text-decoration: none"><b></b><p>热点新闻的标题热点新闻的标题热点新闻
+                            的标题热点新闻的标题</p></a></li>
+                        <li><a href="hot.html" style="text-decoration: none"><b></b><p>热点新闻的标题热点新闻的标题热点新闻
+                            的标题热点新闻的标题</p></a></li>
+                        <li><a href="hot.html" style="text-decoration: none"><b></b><p>热点新闻的标题热点新闻的标题热点新闻
+                            的标题热点新闻的标题</p></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--证券要闻-->
+    <div class="three">
+        <div class="header-main">
+            <div class="three-one fl three-wi ">
+                <div class="hot-titile pad">
+                    <img src="/images/icon_mark.png" alt=""/>
+                    <span class="ti">证券要闻</span>
+                    <a href="news.html">更多</a>
+                </div>
+                <div class="three-img">
+                    <a href="news.html"><img class="fl" src="/images/new.png" alt=""/></a>
+                    <a href="news.html"><img class="fl img-wi" src="/images/new2.jpg" alt=""/></a>
+                    <a href="news.html"> <img class="fl img-wi" src="/images/new3.jpg" alt=""/></a>
+                </div>
+                <a href="news.html" style="text-decoration: none"><p class="three-title">热点新闻的标题热点新闻的标题热点新闻的标题热点新闻的标题</p></a>
+                <div class="see">
+                    <img src="/images/icon_view.png" alt=""/>
+                    <span class="see-tu">111,222</span>
+                </div>
+                <ul class="lists">
+                    <li class="ov">
+                        <a href="news.html">
+                           <div class="img fl">
+                            <img src="/images/new2.jpg" alt=""/>
+                        </div>
+                           <div class="lists-title fl">
+                            <p class="lists-title-ti">
+                                热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                            <div class="see-tu" style="margin-top: 10px">
+                                <img src="/images/icon_view.png" alt=""/>
+                                <span class="see-tu">111,222</span>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="news.html">
+                           <div class="img fl">
+                            <img src="/images/new2.jpg" alt=""/>
+                        </div>
+                           <div class="lists-title fl">
+                            <p class="lists-title-ti">
+                                热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                            <div class="see-tu" style="margin-top: 10px">
+                                <img src="/images/icon_view.png" alt=""/>
+                                <span class="see-tu">111,222</span>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="news.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="news.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="three-two fl three-wi three-with">
+                <div class="hot-titile pad">
+                    <img src="/images/icon_mark.png" alt=""/>
+                    <span class="ti">A股分析</span>
+                    <a href="analysis.html">更多</a>
+                </div>
+                <div class="three-img">
+                    <a href="analysisD.html"><img class="fl" src="/images/new.png" alt=""/></a>
+                    <a href="analysisD.html"><img class="fl img-wi" src="/images/new2.jpg" alt=""/></a>
+                    <a href="analysisD.html"> <img class="fl img-wi" src="/images/new3.jpg" alt=""/></a>
+                </div>
+                <a href="analysisD.html" style="text-decoration: none"><p class="three-title">热点新闻的标题热点新闻的标题热点新闻的标题热点新闻的标题</p></a>
+                <div class="see">
+                    <img src="/images/icon_view.png" alt=""/>
+                    <span class="see-tu">111,222</span>
+                </div>
+                <ul class="lists">
+                    <li class="ov">
+                        <a href="analysisD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="analysisD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="analysisD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="analysisD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="three-three fl three-wi three-with">
+                <div class="hot-titile pad">
+                    <img src="/images/icon_mark.png" alt=""/>
+                    <span class="ti">宏观策略</span>
+                    <a href="strategy.html">更多</a>
+                </div>
+                <div class="three-img">
+                    <a href="strategyD.html"><img class="fl" src="/images/new.png" alt=""/></a>
+                    <a href="strategyD.html"><img class="fl img-wi" src="/images/new2.jpg" alt=""/></a>
+                    <a href="strategyD.html"> <img class="fl img-wi" src="/images/new3.jpg" alt=""/></a>
+                </div>
+                <a href="strategyD.html"><p class="three-title">热点新闻的标题热点新闻的标题热点新闻的标题热点新闻的标题</p></a>
+                <div class="see">
+                    <img src="/images/icon_view.png" alt=""/>
+                    <span class="see-tu">111,222</span>
+                </div>
+                <ul class="lists">
+                    <li class="ov">
+                        <a href="strategyD.html">
+                        <div class="img fl">
+                            <img src="/images/new2.jpg" alt=""/>
+                        </div>
+                        <div class="lists-title fl">
+                            <p class="lists-title-ti">
+                                热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                            <div class="see-tu" style="margin-top: 10px">
+                                <img src="/images/icon_view.png" alt=""/>
+                                <span class="see-tu">111,222</span>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="strategyD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="strategyD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ov">
+                        <a href="strategyD.html">
+                            <div class="img fl">
+                                <img src="/images/new2.jpg" alt=""/>
+                            </div>
+                            <div class="lists-title fl">
+                                <p class="lists-title-ti">
+                                    热点新闻的标题热点新闻的标题热点新的标题新的标题新的标题</p>
+                                <div class="see-tu" style="margin-top: 10px">
+                                    <img src="/images/icon_view.png" alt=""/>
+                                    <span class="see-tu">111,222</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 产品-->
+    <div class="product">
+        <div class="header-main">
+            <div class="hot-titile">
+                <img src="/images/icon_mark.png" alt=""/>
+                <span class="ti">理财产品</span>
+            </div>
+            <div class="pro-top">
+                <div class="pro-list">
+                    <a href="probasin.html" style="text-decoration: none">
+                        <img src="/images/new2.jpg" alt=""/>
+                        <div class="pro-title">聚金宝</div>
+                        <p class="p-de">“聚金宝”以多样交易品种、先进系统、优质服务、开启贵金属投资新纪元。</p>
+                    </a>
+                </div>
+                <div class="pro-list">
+                    <a href="probasin.html" style="text-decoration: none">
+                    <img src="/images/new2.jpg" alt=""/>
+                    <div class="pro-title">基金智能定投</div>
+                    <p class="p-de">您可以自由选择基金定投的扣款周期、扣款金额、根据扣款期数、金额等。</p>
+                    </a>
+                </div>
+                <div class="pro-list">
+                    <a href="probasin.html" style="text-decoration: none">
+                    <img src="/images/new2.jpg" alt=""/>
+                    <div class="pro-title">聚财宝</div>
+                    <p class="p-de">“聚财宝”有各类型产品，满足客户对收益性、流动性的不同需求。</p>
+                    </a>
+                </div>
+                <div class="pro-list">
+                    <a href="probasin.html" style="text-decoration: none">
+                    <img src="/images/new2.jpg" alt=""/>
+                    <div class="pro-title">证券第三方存管</div>
+                    <p class="p-de">"网银、电话预指定确认及网银预约开户轻松快捷，银证转账实时安全。</p>
+                    </a>
+                </div>
+                <div class="pro-list">
+                    <a href="probasin.html" style="text-decoration: none">
+                    <img src="/images/new2.jpg" alt=""/>
+                    <div class="pro-title">金橙财富"</div>
+                    <p class="p-de">“金橙财富”投资型产品面向个人客户，公司客户和同业客户，帮您打理资金，获取优质服务。</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--页脚-->
+        <footer>
+            <p>Copyright © 2016-2018 168咨询网</p>
+        </footer>
+</div>
+</body>
+</html>
