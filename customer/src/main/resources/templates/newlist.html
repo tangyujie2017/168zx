@@ -6,26 +6,22 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="_csrf" th:content="${_csrf.token}"/>
-        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+<!-- 		<meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/> -->
     <title>证券要闻</title>
-    <link rel="stylesheet" href="./css/css.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/luara.left.css">
-    <link rel="stylesheet" href="./js/bootstrap.min.css">
-    <link rel="stylesheet" href="./js/myPage.css">
-    <link rel="stylesheet" href="./css/public.css">
-    <script id="jquery_182" type="text/javascript" class="library" src="./js/jquery-1.8.2.min.js"></script>
-    <script id="jquery_183" type="text/javascript" class="library" src="./js/jquery.luara.0.0.1.min.js"></script>
-    <script id="jquery_183" type="text/javascript" class="library" src="./js/jqPaginator.min.js"></script>
-    <script id="jquery_183" type="text/javascript" class="library" src="./js/myPage.js"></script>
-
-    <script type="text/javascript" src="./js/test.js"></script>
-    <script type="text/javascript">
-        function loadData(num) {
-            $("#PageCount").val("89");
-        }
-    </script>
+    <link rel="stylesheet" href="/css/css.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/luara.left.css">
+    <link rel="stylesheet" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" href="/js/myPage.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <script id="jquery_182" type="text/javascript" class="library" src="/js/jquery-1.8.2.min.js"></script>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/jquery.luara.0.0.1.min.js"></script>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/jqPaginator.min.js"></script>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/myPage.js"></script>
+    <script  type="text/javascript"  src="/js/web/newslist.js"></script>
+  
+ 
 </head>
 <body>
 <!--证券要闻-->
@@ -35,16 +31,16 @@
         <div class="header-main">
             <div class="logo fl">
                 <a href="index.html">
-                    <img src="./images/logo.png" alt="logo">
+                    <img src="/images/logo.png" alt="logo"/>
                 </a>
             </div>
             <div class="header-right fr">
                 <ul>
                     <li><a href="index.html">首页</a>
-                    <li><a href="newlist.html" class="active">证券要闻</a><img class="active" src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="analysis.html">A股分析</a><img src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="strategy.html">宏观策略</a><img src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="product.html">产品理财</a><img src="./images/icon_mark_menu.png" alt=""></li>
+                    <li><a href="newlist.html" class="active">证券要闻</a><img class="active" src="/images/icon_mark_menu.png" alt=""></li>
+                    <li><a href="analysis.html">A股分析</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="strategy.html">宏观策略</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="product.html">产品理财</a><img src="/images/icon_mark_menu.png" alt=""/></li>
                 </ul>
             </div>
         </div>
@@ -52,20 +48,20 @@
     <div class="header-main main-new-list">
         <div class="left fl">
             <div class="hot-titile new-left">
-                <img src="./images/icon_mark.png" alt="">
+                <img src="/images/icon_mark.png" alt=""/>
                 <span>168信息网 > 证券要闻</span>
             </div>
-            <div class="new-lists">
+            <div class="new-lists" id="news_lists">
                 <a href="news.html">
                     <div class="new-list">
                     <div class="fl">
-                        <img class="list-img" src="./images/new3.jpg" alt="">
+                        <img class="list-img" src="/images/new3.jpg" alt=""/>
                     </div>
                     <div class="list-title">
                         <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                         <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                         <div class="see new-see-list">
-                            <img src="./images/icon_view.png" alt="">
+                            <img src="/images/icon_view.png" alt=""/>
                             <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                         </div>
                     </div>
@@ -73,13 +69,13 @@
                 <a href="news.html">
                     <div class="new-list">
                     <div class="fl">
-                        <img class="list-img" src="./images/new3.jpg" alt="">
+                        <img class="list-img" src="/images/new3.jpg" alt=""/>
                     </div>
                     <div class="list-title">
                         <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                         <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                         <div class="see new-see-list">
-                            <img src="./images/icon_view.png" alt="">
+                            <img src="/images/icon_view.png" alt="">
                             <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                         </div>
                     </div>
@@ -87,13 +83,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt=""/>
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt=""/>
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -101,13 +97,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt=""/>
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt=""/>
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -115,13 +111,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt="">
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt="">
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -129,13 +125,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt="">
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt="">
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -143,13 +139,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt="">
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt="">
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -157,13 +153,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt="">
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt="">
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -171,13 +167,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt="">
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt="">
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -185,13 +181,13 @@
                 <a href="news.html">
                     <div class="new-list">
                         <div class="fl">
-                            <img class="list-img" src="./images/new3.jpg" alt="">
+                            <img class="list-img" src="/images/new3.jpg" alt="">
                         </div>
                         <div class="list-title">
                             <div class="list-title-t">热点新闻的标题热点新闻的标题热点新的标题热点新闻的标题热点新闻的标题热点新的标题</div>
                             <p class="list-title-p">这是文章内容的摘要，限定两行，超出隐藏。热点新闻的标题热点新闻的标题热点新的标题。这是文章内容的摘要，限定两行，超出隐藏。这是文章内容的摘要</p>
                             <div class="see new-see-list">
-                                <img src="./images/icon_view.png" alt="">
+                                <img src="/images/icon_view.png" alt="">
                                 <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
                             </div>
                         </div>
@@ -214,7 +210,7 @@
         <div class="right fl">
             <div class="exampleN">
                 <div class="hot-titile">
-                    <img src="./images/icon_mark.png" alt="">
+                    <img src="/images/icon_mark.png" alt="">
                     <span>热点资讯</span>
                 </div>
                 <div class="times">

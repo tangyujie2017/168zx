@@ -31,7 +31,7 @@
 
 .header-right ul li a {
     margin-left: 60px;
-    font: 18px '微软雅黑';
+    font: 18px '寰蒋闆呴粦';
     color: #969799;
     line-height: 80px;
 }
@@ -73,7 +73,7 @@
 }
 
 .hot-titile {
-    font: 14px '微软雅黑';
+    font: 14px '寰蒋闆呴粦';
     color: #969799;
 }
 
@@ -83,19 +83,19 @@
 .hot-titile span:hover{
     cursor: pointer;
 }
-/*时间轴*/
+/*鏃堕棿杞�*/
 .times {
     display: block;
     margin: 15px 0;
 }
 
-/*首先，我们要创建一个容器class*/
+/*棣栧厛锛屾垜浠鍒涘缓涓�涓鍣╟lass*/
 .times ul {
     /*margin-left: 25px;*/
     border-left: 2px solid #ddd;
 }
 
-/*利用ul标签的特性，设置外边框左移25px，左边边框是2px粗的实心线，颜色一般要浅一点*/
+/*鍒╃敤ul鏍囩鐨勭壒鎬э紝璁剧疆澶栬竟妗嗗乏绉�25px锛屽乏杈硅竟妗嗘槸2px绮楃殑瀹炲績绾匡紝棰滆壊涓�鑸娴呬竴鐐�*/
 .times ul li {
     width: 341px;
     margin-left: -51px;
@@ -104,7 +104,7 @@
     font-weight: narmal;
 }
 
-/*一般情况，通过li标签控制圆点回到时间线上，然后控制要出现的文字大小和是否粗体*/
+/*涓�鑸儏鍐碉紝閫氳繃li鏍囩鎺у埗鍦嗙偣鍥炲埌鏃堕棿绾夸笂锛岀劧鍚庢帶鍒惰鍑虹幇鐨勬枃瀛楀ぇ灏忓拰鏄惁绮椾綋*/
 .times ul li b {
     width: 8px;
     height: 8px;
@@ -120,7 +120,7 @@
     float: left;
 }
 
-/*利用处理加粗以外没有其它特别属性b标签做时间轴的圆点。*/
+/*鍒╃敤澶勭悊鍔犵矖浠ュ娌℃湁鍏跺畠鐗瑰埆灞炴�鏍囩鍋氭椂闂磋酱鐨勫渾鐐广��*/
 .times ul li span {
     padding-left: 7px;
     font-size: 12px;
@@ -128,17 +128,17 @@
     color: #555;
 }
 
-/*设置span标签的属性，让它来做时间显示，加一点边距，使时间显示离时间线远一点*/
+/*璁剧疆span鏍囩鐨勫睘鎬э紝璁╁畠鏉ュ仛鏃堕棿鏄剧ず锛屽姞涓�鐐硅竟璺濓紝浣挎椂闂存樉绀虹鏃堕棿绾胯繙涓�鐐�*/
 .times ul li:hover b {
     border: 2px solid #ff6600;
 }
 
-/*注意这一行，前面的li标签后面加了一个:hover伪属性，意思是鼠标移上来，激活后面的属性，这样可以设置鼠标移动到整个时间范围的时候，时间点和时间显示会变色*/
+/*娉ㄦ剰杩欎竴琛岋紝鍓嶉潰鐨刲i鏍囩鍚庨潰鍔犱簡涓�涓�:hover浼睘鎬э紝鎰忔�濇槸榧犳爣绉讳笂鏉ワ紝婵�娲诲悗闈㈢殑灞炴�э紝杩欐牱鍙互璁剧疆榧犳爣绉诲姩鍒版暣涓椂闂磋寖鍥寸殑鏃跺�欙紝鏃堕棿鐐瑰拰鏃堕棿鏄剧ず浼氬彉鑹�*/
 .times ul li:hover span {
     color: #ff6600;
 }
 
-/*同上*/
+/*鍚屼笂*/
 .exampleN .times ul li p {
     padding-left: 15px;
     font-size: 18px;
@@ -147,8 +147,8 @@
     /*line-height: 1.5;*/
 }
 
-/*这里利用段落标签p做文字介绍*/
-/*证券要闻*/
+/*杩欓噷鍒╃敤娈佃惤鏍囩p鍋氭枃瀛椾粙缁�*/
+/*璇佸埜瑕侀椈*/
 .three{
     overflow: hidden;
 }
@@ -186,7 +186,7 @@
     margin-left: 8px;
 }
 .three-title{
-    font: 18px/1.7 '微软雅黑';
+    font: 18px/1.7 '寰蒋闆呴粦';
     margin-top: 5px;
     color: #4b4c4d;
 }
@@ -216,12 +216,12 @@
 }
 .lists-title-ti{
     width: 192px;
-    /*font-family: "微软雅黑";*/
+    /*font-family: "寰蒋闆呴粦";*/
     font-size: 16px;
     line-height: 1.8;
     color: #969798;
 }
-/*产品*/
+/*浜у搧*/
 .product{
     margin-top: 20px;
     margin-bottom: 45px;
@@ -246,32 +246,32 @@
 }
 .pro-title{
     margin-top: 18px;
-    font: 18px '微软雅黑';
+    font: 18px '寰蒋闆呴粦';
     font-weight: 700;
 color: #4b4c4d;
     text-align: center;
 }
 .p-de{
     margin-top: 5px;
-    font: 14px/1.6 '微软雅黑';
+    font: 14px/1.6 '寰蒋闆呴粦';
     color: #969799;
 }
 
-/*页脚*/
+/*椤佃剼*/
 footer{
     width: 100%;
     height: 80px;
     background: #3d454d;
 }
 footer p{
-    font: 14px/80px '微软雅黑';
+    font: 14px/80px '寰蒋闆呴粦';
     text-align: center;
     color: #ffffff;
 }
-/*证券要闻页面*/
+/*璇佸埜瑕侀椈椤甸潰*/
 .list-img{
-    width: 180px;
-    height: 123px;
+    width: 160px;
+    height: 110px;
     margin-right: 18px;
 }
 .new-list{
@@ -286,7 +286,7 @@ footer p{
     margin-top: 14px;
 }
 .new-list .list-title .list-title-p{
-    font: 14px/1.9 '微软雅黑';
+    font: 14px/1.9 '寰蒋闆呴粦';
     color: #969799;
     text-indent: 0;
 }
@@ -296,7 +296,7 @@ footer p{
 .left .hot-titile img{
     margin-top: -3px;
 }
-/*证券要闻详情页面*/
+/*璇佸埜瑕侀椈璇︽儏椤甸潰*/
 .main-new{
     margin-top: 34px;
     margin-bottom: 48px;
@@ -332,7 +332,7 @@ footer p{
     color: #c8c9cc;
 }
 .header-main .left p{
-    font: 16px/30px '微软雅黑';
+    font: 16px/30px '寰蒋闆呴粦';
     color: #4b4b4d;
     text-indent:23px;
 }
@@ -344,12 +344,12 @@ footer p{
     width: 341px;
     min-height: 400px;
 }
-/*分页样式*/
+/*鍒嗛〉鏍峰紡*/
 .pagination>li>a, .pagination>li>span{
     margin-left: 8px;
 }
 /*
-产品理财*/
+浜у搧鐞嗚储*/
 .pros-list{
     float: left;
     width: 224px;
@@ -378,7 +378,7 @@ footer p{
     margin-left: 30px;
     margin-right: 30px;
 }
-/*产品详情*/
+/*浜у搧璇︽儏*/
 .pro-titles{
     margin: 38px 0 36px 0;
     font-size: 24px;
@@ -393,7 +393,7 @@ footer p{
 }
 .content{
     width: 636px;
-    font: 16px/2 '微软雅黑';
+    font: 16px/2 '寰蒋闆呴粦';
     color: #4b4b4d;
     margin-left: 12px;
     margin-top: -5px;

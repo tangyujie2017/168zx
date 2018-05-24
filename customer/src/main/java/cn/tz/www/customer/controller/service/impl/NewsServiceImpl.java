@@ -15,38 +15,38 @@ import cn.tz.www.customer.entity.repository.news.NewsRepository;
 import cn.tz.www.customer.entity.table.News;
 import cn.tz.www.customer.entity.tools.Groups;
 import cn.tz.www.customer.entity.tools.Page;
+
 @Service
 public class NewsServiceImpl implements NewsService {
 	@Autowired
 	private NewsRepository newsRepository;
 
-	public Page<NewsVo> loadNewsByType(Groups groups, Page<News> page,String imgUrl) {
-		
-		page  = newsRepository.findEntityPageByGroups(groups, page);
-		
-		
-		return convertNews(page,imgUrl);
+	public Page<NewsVo> loadNewsByType(Groups groups, Page<News> page, String imgUrl) {
+
+		page = newsRepository.findEntityPageByGroups(groups, page);
+
+		return convertNews(page, imgUrl);
 	}
 
 	@SuppressWarnings("unchecked")
-	private Page<NewsVo> convertNews(Page<News> page,String imgUrl) {
-		Page<NewsVo> result=new Page<>(page.getPageSize(), page.getCurrentPage());
+	private Page<NewsVo> convertNews(Page<News> page, String imgUrl) {
+		Page<NewsVo> result = new Page<>(page.getPageSize(), page.getCurrentPage());
 		result.setFromIndex(page.getFromIndex());
 		result.setTotalCount(page.getTotalCount());
 		result.setTotalPageCount(page.getTotalPageCount());
 		List<NewsVo> vos = new ArrayList<NewsVo>();
 		page.getItems().stream().forEach(a -> {
-			News news=(News)a;
+			News news = (News) a;
 			NewsVo vo = new NewsVo();
 			vo.setId(news.getId());
 			vo.setTitle(news.getTitle());
-			
+			vo.setDeclareContext(news.getDeclareContext());
 			vo.setContext(news.getContext());
 			vo.setViewTimes(news.getViewTimes());
 			vo.setBaseUrl(imgUrl);
-			if(news.getNewsMainImg()!=null){
-			vo.setNewsMainImg(news.getNewsMainImg());
-			}else{
+			if (news.getNewsMainImg() != null) {
+				vo.setNewsMainImg(news.getNewsMainImg());
+			} else {
 				vo.setNewsMainImg("");
 			}
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -54,7 +54,7 @@ public class NewsServiceImpl implements NewsService {
 			vos.add(vo);
 		});
 		result.setItems(vos);
-		return  result;
+		return result;
 	}
 
 	@Transactional
@@ -65,7 +65,7 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public NewsVo getNewsById(Long newsId,String imgUrl) {
+	public NewsVo getNewsById(Long newsId, String imgUrl) {
 		News n = newsRepository.find(newsId);
 		NewsVo vo = new NewsVo();
 		vo.setId(n.getId());
@@ -73,9 +73,9 @@ public class NewsServiceImpl implements NewsService {
 		vo.setContext(n.getContext());
 		vo.setViewTimes(n.getViewTimes());
 		vo.setBaseUrl(imgUrl);
-		if(n.getNewsMainImg()!=null){
-		vo.setNewsMainImg(n.getNewsMainImg());
-		}else{
+		if (n.getNewsMainImg() != null) {
+			vo.setNewsMainImg(n.getNewsMainImg());
+		} else {
 			vo.setNewsMainImg("");
 		}
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

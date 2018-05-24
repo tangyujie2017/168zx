@@ -13,6 +13,7 @@ public class NewsVo {
 	private String createTime;
 	private Integer viewTimes;
 	private String baseUrl;
+	private String declareContext;
 	public Long getId() {
 		return id;
 	}
@@ -68,6 +69,12 @@ public class NewsVo {
 	}
 	public void setViewTimes(Integer viewTimes) {
 		this.viewTimes = viewTimes;
+	}
+	public String getDeclareContext() {
+		return declareContext;
+	}
+	public void setDeclareContext(String declareContext) {
+		this.declareContext = declareContext;
 	}
 
 }
