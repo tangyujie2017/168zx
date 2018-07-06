@@ -35,6 +35,11 @@ public class IndexController {
 
 		return "/index";
 	}
+	@RequestMapping("/web/login")
+	public String login() {
+
+		return "/login";
+	}
 
 	// 获取滚动图片
 	@RequestMapping(value = "/web/slider/list")
