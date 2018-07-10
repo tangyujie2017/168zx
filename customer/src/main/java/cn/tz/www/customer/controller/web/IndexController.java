@@ -1,7 +1,5 @@
 package cn.tz.www.customer.controller.web;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -30,12 +28,19 @@ public class IndexController {
 	@Value("${customer.images.url-prefix}")
 	private String imgUrl;
 
+	@RequestMapping("/")
+	public String welcome() {
+
+		return "/index";
+	}
+
 	@RequestMapping("/web/index")
 	public String index() {
 
 		return "/index";
 	}
-	@RequestMapping("/web/login")
+
+	@RequestMapping("/login")
 	public String login() {
 
 		return "/login";
@@ -44,7 +49,7 @@ public class IndexController {
 	// 获取滚动图片
 	@RequestMapping(value = "/web/slider/list")
 	@ResponseBody
-	public JsonObj getSliderByType(@RequestParam("type")Integer type) {
+	public JsonObj getSliderByType(@RequestParam("type") Integer type) {
 		if (type == null) {
 			return JsonObj.newErrorJsonObj("请求参数不正确");
 		}
@@ -83,7 +88,7 @@ public class IndexController {
 		return JsonObj.newSuccessJsonObj("更新浏览次数成功");
 
 	}
-  
+
 	@RequestMapping(value = "/web/info/getByid")
 	@ResponseBody
 	public JsonObj getNewsById(Long newsId) {
@@ -94,21 +99,19 @@ public class IndexController {
 		return JsonObj.newSuccessJsonObj("更新浏览次数成功", newsService.getNewsById(newsId, imgUrl));
 
 	}
+
 	@GetMapping(value = "/web/product/list")
 	@ResponseBody
-	public JsonObj loadProductList( Integer pageSize,Integer currentPage) {
-		if (pageSize!=null&&currentPage!=null) {
-           Groups g = new Groups();
-			
+	public JsonObj loadProductList(Integer pageSize, Integer currentPage) {
+		if (pageSize != null && currentPage != null) {
+			Groups g = new Groups();
+
 			Page<Product> page = new Page<Product>(pageSize, currentPage);
 			return JsonObj.newSuccessJsonObj("获取消息成功", productService.loadProductList(g, page, imgUrl));
-			
-		}else{
+
+		} else {
 			return JsonObj.newErrorJsonObj("请求参数不正确");
 		}
-	
-		
-		
 
 	}
 
