@@ -1,3 +1,16 @@
+
+
+$(function() {
+	//初始化页面
+
+	loadData(2, 10, 1);
+	init_hot_new();
+});
+
+function exeData(num, type) {
+	loadData(2, 10, num);
+
+}
 function loadData(type, pageSize, currentPage) {
 	$.ajax({
 		url : "/web/info/list?type=" + type + "&pageSize=" + pageSize
@@ -18,21 +31,10 @@ function loadData(type, pageSize, currentPage) {
 			alert("系统错误，请稍后");
 		}
 	});
+	
+	
 
 }
-
-$(function() {
-	//初始化页面
-
-	loadData(2, 10, 1);
-
-});
-
-function exeData(num, type) {
-	loadData(2, 10, num);
-
-}
-
 function createNewsList(data) {
 
 	if (data != null) {
@@ -42,7 +44,7 @@ function createNewsList(data) {
 		$("#news_lists").html("");
 		for (var i = 0; i < items.length; i++) {
 
-			html += '<a href="news.html">';
+			html += '<a href="/item/page?type=2&id='+items[i].id+'">';
 			html += '<div class="new-list">';
 			html += '<div class="fl">';
 			if(items[i].newsMainImg==null||items[i].newsMainImg==''){
@@ -69,3 +71,10 @@ function createNewsList(data) {
 	}
 
 }
+
+
+
+
+
+
+

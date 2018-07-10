@@ -1,8 +1,8 @@
-var type=parseInt(4*Math.random());
+
 
 $(function() {
 	initSlider(type);
-	init_hot_new(type);
+	init_hot_new();
 	init_zqyw(1);
 	init_agzj(2);
 	init_hmc(4);
@@ -45,39 +45,6 @@ function initSlider(type){
 }
 
 
-function init_hot_new(type){
-	
-	if(type==null){
-		alert("无效类型");
-		return;
-		
-	}
-	$.ajax({
-		url : "/web/info/list?type="+type+"&pageSize=5&currentPage=1",
-		type : 'get',
-		cache : false,
-		contentType : false,
-		processData : false,
-		timeout : 2000,
-		success : function(data, status) {
-			if (data.success) {
-				$("#hot_news_ul").html("");
-				var hotNewsHtml="";
-				var list = data.result.items;
-				if(list.length > 0){
-					for(var i=0;i<list.length;i++){
-						hotNewsHtml+= ' <li><a href="hot.html" style="text-decoration: none"><b></b><p>'+list[i].title+'</p></a></li>'
-					}
-					
-				}
-				$("#hot_news_ul").html(hotNewsHtml)
-			}
-		},
-		fail : function(err, status) {
-			alert("系统错误，请稍后");
-		}
-	});
-}
 
 
 
@@ -102,7 +69,7 @@ function init_zqyw(type){
 				var list = data.result.items;
 				if(list.length > 0){
 					for(var i=0;i<list.length;i++){
-						zqywHtml+= '<li class="ov"><a href="news.html"><div class="img fl"><img src="'+list[i].baseUrl+list[i].newsMainImg+'" alt=""/></div><div class="lists-title fl"><p class="lists-title-ti">'+list[i].title+'</p><div class="see-tu" style="margin-top: 10px"><img src="/images/icon_view.png" alt=""/><span class="see-tu">'+list[i].viewTimes+'</span></div></div></a></li>'
+						zqywHtml+= '<li class="ov"><a href="/item/page?type=1&id='+list[i].id+'"><div class="img fl"><img src="'+list[i].baseUrl+list[i].newsMainImg+'" alt=""/></div><div class="lists-title fl"><p class="lists-title-ti">'+list[i].title+'</p><div class="see-tu" style="margin-top: 10px"><img src="/images/icon_view.png" alt=""/><span class="see-tu">'+list[i].viewTimes+'</span></div></div></a></li>'
 					}
 					
 				}
@@ -137,7 +104,7 @@ function init_agzj(type){
 				var list = data.result.items;
 				if(list.length > 0){
 					for(var i=0;i<list.length;i++){
-						agzjHtml+= '<li class="ov"><a href="news.html"><div class="img fl"><img src="'+list[i].baseUrl+list[i].newsMainImg+'" alt=""/></div><div class="lists-title fl"><p class="lists-title-ti">'+list[i].title+'</p><div class="see-tu" style="margin-top: 10px"><img src="/images/icon_view.png" alt=""/><span class="see-tu">'+list[i].viewTimes+'</span></div></div></a></li>'
+						agzjHtml+= '<li class="ov"><a href="/item/page?type=2&id='+list[i].id+'"><div class="img fl"><img src="'+list[i].baseUrl+list[i].newsMainImg+'" alt=""/></div><div class="lists-title fl"><p class="lists-title-ti">'+list[i].title+'</p><div class="see-tu" style="margin-top: 10px"><img src="/images/icon_view.png" alt=""/><span class="see-tu">'+list[i].viewTimes+'</span></div></div></a></li>'
 					}
 					
 				}
@@ -175,7 +142,7 @@ function init_hmc(type){
 				var list = data.result.items;
 				if(list.length > 0){
 					for(var i=0;i<list.length;i++){
-						hmcHtml+= '<li class="ov"><a href="news.html"><div class="img fl"><img src="'+list[i].baseUrl+list[i].newsMainImg+'" alt=""/></div><div class="lists-title fl"><p class="lists-title-ti">'+list[i].title+'</p><div class="see-tu" style="margin-top: 10px"><img src="/images/icon_view.png" alt=""/><span class="see-tu">'+list[i].viewTimes+'</span></div></div></a></li>'
+						hmcHtml+= '<li class="ov"><a href="/item/page?type=4&id='+list[i].id+'"><div class="img fl"><img src="'+list[i].baseUrl+list[i].newsMainImg+'" alt=""/></div><div class="lists-title fl"><p class="lists-title-ti">'+list[i].title+'</p><div class="see-tu" style="margin-top: 10px"><img src="/images/icon_view.png" alt=""/><span class="see-tu">'+list[i].viewTimes+'</span></div></div></a></li>'
 					}
 					
 				}
@@ -219,3 +186,9 @@ function init_product(){
 		}
 	});
 }
+
+
+
+
+
+

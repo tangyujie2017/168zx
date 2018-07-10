@@ -9,13 +9,15 @@
 		<meta name="_csrf" th:content="${_csrf.token}"/>
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
-    <link rel="stylesheet" href="./css/css.css">
-    <link rel="stylesheet" href="./css/public.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/luara.left.css">
-    <script id="jquery_182" type="text/javascript" class="library" src="./js/jquery-1.8.2.min.js"></script>
-    <script id="jquery_183" type="text/javascript" class="library" src="./js/jquery.luara.0.0.1.min.js"></script>
-    <script type="text/javascript" src="./js/test.js"></script>
+    <link rel="stylesheet" href="/css/css.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/luara.left.css">
+    <script id="jquery_182" type="text/javascript" class="library" src="/js/jquery-1.8.2.min.js"></script>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/jquery.luara.0.0.1.min.js"></script>
+    <script type="text/javascript" src="/js/test.js"></script>
+    <script type="text/javascript" src="/js/web/publicSta.js"></script>
+    <script  type="text/javascript"  src="/js/web/strategyD.js"></script>
 </head>
 <body>
 <!--证券要闻-->
@@ -24,17 +26,18 @@
     <div class="header">
         <div class="header-main">
             <div class="logo fl">
-                <a href="index.html">
-                    <img src="./images/logo.png" alt="logo">
+                <a href="/web/index">
+                    <img src="/images/logo.png" alt="logo">
                 </a>
             </div>
             <div class="header-right fr">
                 <ul>
-                    <li><a href="index.html">首页</a>
-                    <li><a href="newlist.html">证券要闻</a><img  src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="analysis.html" >A股分析</a><img  src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="strategy.html" class="active">宏观策略</a><img class="active" src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="product.html">产品理财</a><img src="./images/icon_mark_menu.png" alt=""></li>
+                    <li><a href="/web/index">首页</a>
+                     <li><a href="/safe/zqyw/list" >证券要闻</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/agfx/list" >A股分析</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/hgcl/list" class="active">黑马池</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/cplc/list" >产品理财</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/login">登录系统</a><img src="/images/icon_mark_menu.png" alt=""/></li>
                 </ul>
             </div>
         </div>
@@ -42,28 +45,25 @@
     <div class="header-main main-new">
         <div class="left fl">
             <div class="hot-titile new-left">
-                <img src="./images/icon_mark.png" alt="">
-                <span>168信息网 > 宏观策略</span>
+                <img src="/images/icon_mark.png" alt="">
+                <span>赢+资讯 > 黑马池</span>
             </div>
-            <h2>热点新闻的标题，行高36px，超宽自动换行</h2>
+            <h2 th:text="${data.title}"></h2>
             <div class="see new-see">
-                <img src="./images/icon_view.png" alt="">
-                <span class="see-tu">111,222 &nbsp;2018年1月21号</span>
+                <img src="/images/icon_view.png" alt="">
+                <span class="see-tu" th:text="${data.viewTimes}" > </span>
+                <span class="see-tu" th:text="${data.createTime}" > </span>
             </div>
-            <p>这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c
-                <img src="./images/new2.jpg" alt=""> <p>这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。 这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。
-            这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。 这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。
-            这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。 这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。这是文章正文部分，字号16px，宽度为732px，图文混排，颜色为#4b4b4c。<br>
-            <p>另，文章高度不做限制，全部加载。</p></p></p>
+            <p th:utext="${data.context}"></p>
         </div>
         <div class="right fl">
             <div class="exampleN">
                 <div class="hot-titile">
-                    <img src="./images/icon_mark.png" alt="">
+                    <img src="/images/icon_mark.png" alt="">
                     <span>热点资讯</span>
                 </div>
                 <div class="times">
-                    <ul>
+                    <ul id="hot_news_ul">
                         <li><a href="strategyD.html" style="text-decoration: none"><b></b><p>热点新闻的标题热点新闻的标题热点新闻
                             的标题热点新闻的标题</p></a></li>
                         <!--b标签不输入内容，span标签内输入时间不限制格式，p标签内输入介绍内容。注意，标签内不能使用div分割-->
