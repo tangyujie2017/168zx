@@ -33,7 +33,7 @@ public class InfoController {
 	 * 
 	 * 证券要闻列表
 	 */
-	@RequestMapping("/web/zqyw/list")
+	@RequestMapping("/safe/zqyw/list")
 	public String zqyw() {
 
 		return "/newlist";
@@ -43,7 +43,7 @@ public class InfoController {
 	 * 
 	 * a股分析
 	 */
-	@RequestMapping("/web/agfx/list")
+	@RequestMapping("/safe/agfx/list")
 	public String agfx() {
 
 		return "/analysis";
@@ -53,7 +53,7 @@ public class InfoController {
 	 * 
 	 * 宏观策略
 	 */
-	@RequestMapping("/web/hgcl/list")
+	@RequestMapping("/safe/hgcl/list")
 	public String hgcl() {
 
 		return "/strategy";
@@ -63,7 +63,7 @@ public class InfoController {
 	 * 
 	 * 产品理财
 	 */
-	@RequestMapping("/web/cplc/list")
+	@RequestMapping("/safe/cplc/list")
 	public String cplc() {
 
 		return "/product";
@@ -71,7 +71,7 @@ public class InfoController {
 	
 	//拿取数据
 
-	@RequestMapping(value = "/web/info/data")
+	@RequestMapping(value = "/safe/info/data")
 	@ResponseBody
 
 	public JsonObj getNewsByType(Integer type, @RequestParam(value="pageSize" ,defaultValue="10")Integer pageSize, @RequestParam(value="currentPage" ,defaultValue="1")Integer currentPage) {
@@ -91,7 +91,7 @@ public class InfoController {
 
 	}
 
-	@GetMapping(value = "/web/info/product/list")
+	@GetMapping(value = "/safe/info/product/list")
 	@ResponseBody
 	public JsonObj loadProductList(@RequestParam(value="pageSize" ,defaultValue="10")Integer pageSize, @RequestParam(value="currentPage" ,defaultValue="1")Integer currentPage) {
 		if (pageSize != null && currentPage != null) {
