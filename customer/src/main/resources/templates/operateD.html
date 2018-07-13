@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>A股分析</title>
+    <title>证券要闻</title>
     <link rel="stylesheet" href="/css/css.css">
     <link rel="stylesheet" href="/css/public.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -15,7 +15,7 @@
     <script id="jquery_183" type="text/javascript" class="library" src="/js/jquery.luara.0.0.1.min.js"></script>
     <script type="text/javascript" src="/js/test.js"></script>
     <script type="text/javascript" src="/js/web/publicSta.js"></script>
-    <script  type="text/javascript"  src="/js/web/analysisD.js"></script>
+    <script  type="text/javascript"  src="/js/web/operateD.js"></script>
 </head>
 <body>
 <!--证券要闻-->
@@ -30,9 +30,11 @@
             </div>
             <div class="header-right fr">
                 <ul>
-                    <li><a href="/web/index">首页</a>
-                     <li><a href="/safe/zqyw/list">证券要闻</a><img src="/images/icon_mark_menu.png" alt=""/></li>
-                    <li><a href="/safe/agfx/list" class="active">A股分析</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    
+                     <li><a href="/web/index">首页</a>
+                     <li><a href="/safe/zqyw/list" >证券要闻</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/agfx/list" >A股分析</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/mscp/list" class="active">名师操盘</a><img src="/images/icon_mark_menu.png" alt=""/></li>
                     <li><a href="/safe/hgcl/list">黑马池</a><img src="/images/icon_mark_menu.png" alt=""/></li>
                     <li><a href="/safe/cplc/list">产品理财</a><img src="/images/icon_mark_menu.png" alt=""/></li>
                     <li><a href="/login">登录系统</a><img src="/images/icon_mark_menu.png" alt=""/></li>
@@ -44,7 +46,7 @@
         <div class="left fl">
             <div class="hot-titile new-left">
                 <img src="/images/icon_mark.png" alt="">
-                <span>赢+咨询 > A股分析</span>
+                <span>赢+咨询 > 证券要闻</span>
             </div>
             <h2 th:text="${data.title}"></h2>
             <div class="see new-see">

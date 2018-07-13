@@ -174,7 +174,7 @@ function init_product(){
 				if(list.length > 0){
 					
 					for(var i=0;i<list.length;i++){
-						productHtml +=' <div class="pro-list"><a href="probasin.html" style="text-decoration: none"><img src="'+list[i].baseUrl+list[i].productImg+'" alt=""/><div class="pro-title">'+list[i].name+'</div><p class="p-de">'+list[i].productDesc+'</p></a></div>';
+						productHtml +=' <div class="pro-list"><a href="/item/product?id='+list[i].id+'" style="text-decoration: none"><img src="'+list[i].baseUrl+list[i].productImg+'" alt=""/><div class="pro-title">'+list[i].name+'</div><p class="p-de">'+list[i].productDesc+'</p></a></div>';
 					}
 					
 				}

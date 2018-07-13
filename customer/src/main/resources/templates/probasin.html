@@ -6,16 +6,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="_csrf" th:content="${_csrf.token}"/>
-        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
-    <link rel="stylesheet" href="./css/css.css">
-    <link rel="stylesheet" href="./css/public.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/luara.left.css">
-    <script id="jquery_182" type="text/javascript" class="library" src="./js/jquery-1.8.2.min.js"></script>
-    <script id="jquery_183" type="text/javascript" class="library" src="./js/jquery.luara.0.0.1.min.js"></script>
-    <script type="text/javascript" src="./js/test.js"></script>
+    <link rel="stylesheet" href="/css/css.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/luara.left.css">
+    <script id="jquery_182" type="text/javascript" class="library" src="/js/jquery-1.8.2.min.js"></script>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/jquery.luara.0.0.1.min.js"></script>
+    <script type="text/javascript" src="/js/test.js"></script>
+    <script type="text/javascript" src="/js/web/publicSta.js"></script>
+    <script type="text/javascript" src="/js/web/probasin.js"></script>
 </head>
 <body>
 <div class="main">
@@ -24,16 +24,17 @@
         <div class="header-main">
             <div class="logo fl">
                 <a href="index.html">
-                    <img src="./images/logo.png" alt="logo">
+                    <img src="/images/logo.png" alt="logo">
                 </a>
             </div>
             <div class="header-right fr">
                 <ul>
-                    <li><a href="index.html">首页</a>
-                    <li><a href="newlist.html">证券要闻</a><img  src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="analysis.html">A股分析</a><img src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="strategy.html">宏观策略</a><img src="./images/icon_mark_menu.png" alt=""></li>
-                    <li><a href="product.html" class="active">产品理财</a><img class="active" src="./images/icon_mark_menu.png" alt=""></li>
+                     <li><a href="/web/index">首页</a>
+                     <li><a href="/safe/zqyw/list" >证券要闻</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/agfx/list" >A股分析</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/hgcl/list">黑马池</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/safe/cplc/list" class="active">产品理财</a><img src="/images/icon_mark_menu.png" alt=""/></li>
+                    <li><a href="/login">登录系统</a><img src="/images/icon_mark_menu.png" alt=""/></li>
                 </ul>
             </div>
         </div>
@@ -41,51 +42,40 @@
     <div class="header-main main-new" style="overflow: hidden">
         <div class="left fl">
             <div class="hot-titile new-left">
-                <img src="./images/icon_mark.png" alt="">
-                <span>168信息网 > 产品理财 > 聚宝盆</span>
+                <img src="/images/icon_mark.png" alt="">
+                <span>赢+咨询 > 产品理财 > </span ><span th:text="${data.name}"></span>
             </div>
-            <div class="pro-titles">
-                168投资“聚金宝”个人理财产品
+            <div class="pro-titles" th:text="${data.name}">
+                
             </div>
             <div>
                 <div class="con fl">产品介绍：</div>
-                <div class="content fl pro">
-                    "我行“聚金宝”全新升级，在已有实物黄金交易品种的基础上，新增黄金、白银延期交易品种，以先进的系统，优质的服务，开启贵金属投资新纪元。新增的黄金、白银延期交易（Au（T+D）、Au（T+N1）、Au（T+N2）、Ag（T+D））通过保证金交易，多倍杠杆，双向操作，不失为投资者套期保值和套利的理想选择。新增独特的客户端交易渠道，为投资者打造全面、快捷的交易平台。特别提供的白银延期交易品种，丰富了贵金属投资品种，满足不同投资者的投资需求。"
+                <div class="content fl pro" th:text="${data.productDesc}">
+                    
                 </div>
 
             </div>
-            <div>
-                <div class="con fl">办理流程：</div>
-                <div class="content fl pro-l">办理借记卡 > 签订业务协议 > 开立黄金交易账户 > 多渠道交易 > 套利或提取实物黄金</div>
-            </div>
+           
             <div>
                 <div class="con fl">产品特点：</div>
-                <div class="content fl">
-                    <span>双向交易，多倍杠杆，放大投资规模，涨跌均有机会获利</span>
-
-                    <span>品种齐全，实物黄金交易之外，更提供黄金、白银等多品种的延期交易</span>
-
-                    <span>渠道多样，客户端、网上银行、电话银行、柜台任您选择</span>
-
-                    <span>专户管理，资金灵活安全</span>
-
-                    <span>交易起点低，多档次优惠</span>
+                <div class="content fl" th:utext="${data.productDetail}">
+                   
                 </div>
             </div>
             <div>
-                <div class="con fl">权责声明：</div>
+               <!--  <div class="con fl">权责声明：</div>
                 <div class="content fl pro">
-                    平安银行在法律允许范围内保留最终解释权和修改权。</div>
+                    平安银行在法律允许范围内保留最终解释权和修改权。</div> -->
             </div>
         </div>
         <div class="right fl">
             <div class="exampleN">
                 <div class="hot-titile">
-                    <img src="./images/icon_mark.png" alt="">
+                    <img src="/images/icon_mark.png" alt="">
                     <span>热点资讯</span>
                 </div>
                 <div class="times">
-                    <ul>
+                    <ul   id="hot_news_ul">
                         <li><b></b><p>热点新闻的标题热点新闻的标题热点新闻
                             的标题热点新闻的标题</p></li>
                         <!--b标签不输入内容，span标签内输入时间不限制格式，p标签内输入介绍内容。注意，标签内不能使用div分割-->
@@ -101,7 +91,7 @@
         </div>
     </div>
     <footer>
-        <p>Copyright © 2016-2018 赢+资讯</p>
+        <p>Copyright © 2016-2018 赢+咨询</p>
     </footer>
 </div>
 </body>

@@ -38,6 +38,15 @@ public class InfoController {
 
 		return "/newlist";
 	}
+	/**
+	 * 
+	 * 名师操盘
+	 */
+	@RequestMapping("/safe/mscp/list")
+	public String mscp() {
+
+		return "/operate";
+	}
 
 	/**
 	 * 
