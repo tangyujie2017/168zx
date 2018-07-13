@@ -1,4 +1,4 @@
-var type=parseInt(4*Math.random());
+var type= Math.floor(Math.random() * (4 - 1)) + 1
 
 
 
